@@ -11,7 +11,7 @@ class UserDirectory(models.Model):
         verbose_name_plural = 'Справочники пользователей'
 
     def __str__(self):
-        return self.user.username
+        return self.user.first_name
 
 
 class MachineModel(models.Model):
