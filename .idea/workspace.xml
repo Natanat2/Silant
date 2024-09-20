@@ -4,14 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add rus lang">
-      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0004_organizationcarriedmaintenance_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0005_alter_maintenance_operating_time.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0006_alter_maintenance_order_number.py" afterDir="false" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add to">
+      <change afterPath="$PROJECT_DIR$/silant/complaints/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/migrations/0002_methodsofrecovery_description_of_method_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/migrations/0003_alter_methodsofrecovery_description_of_method_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/migrations/0004_alter_methodsofrecovery_description_of_method_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/migrations/0002_organizationcarriedmaintenance_description_of_organization_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/migrations/0003_alter_organizationcarriedmaintenance_description_of_organization_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/migrations/0004_alter_organizationcarriedmaintenance_description_of_organization_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0007_methodsofrecovery_nodes_alter_maintenance_machine_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0008_alter_methodsofrecovery_options_alter_nodes_options.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0009_alter_complaints_options.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0010_remove_maintenance_machine_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0011_controlledbridgemodel_description_of_controlled_bridge_model_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0012_alter_controlledbridgemodel_description_of_controlled_bridge_model_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0013_alter_controlledbridgemodel_description_of_controlled_bridge_model_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0014_alter_machine_supply_contract_number_date.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/silant/service/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/silant/service/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/silant/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726738478121</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add to">
+      <option name="closed" value="true" />
+      <created>1726741098099</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1726741098099</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -131,6 +168,7 @@
     <MESSAGE value="init" />
     <MESSAGE value="add rus" />
     <MESSAGE value="add rus lang" />
-    <option name="LAST_COMMIT_MESSAGE" value="add rus lang" />
+    <MESSAGE value="add to" />
+    <option name="LAST_COMMIT_MESSAGE" value="add to" />
   </component>
 </project>

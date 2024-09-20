@@ -1,7 +1,5 @@
-from .models import *
 from django.contrib import admin
 from .models import *
-
 
 class BaseAdmin(admin.ModelAdmin):
     list_display = ('__str__',)
@@ -14,6 +12,3 @@ admin.site.register(EngineModel, BaseAdmin)
 admin.site.register(TransmissionModel, BaseAdmin)
 admin.site.register(LeadBridgeModel, BaseAdmin)
 admin.site.register(ControlledBridgeModel, BaseAdmin)
-admin.site.register(TypeOfMaintenance, BaseAdmin)
-admin.site.register(OrganizationCarriedMaintenance, BaseAdmin)
-admin.site.register(Maintenance, BaseAdmin)

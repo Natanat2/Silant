@@ -1,5 +1,3 @@
-import datetime
-
 from django.db import models
 from django.contrib.auth.models import User, Group
 
@@ -18,6 +16,8 @@ class UserDirectory(models.Model):
 
 class MachineModel(models.Model):
     machine_model_name = models.CharField(max_length = 16, verbose_name = 'Модель техники')
+    description_of_machine_model = models.CharField(max_length = 64, verbose_name = 'Описание модели техники',
+                                                    default = '', blank = True, null = True)
 
     class Meta:
         verbose_name = 'Модель техники'
@@ -29,6 +29,8 @@ class MachineModel(models.Model):
 
 class EngineModel(models.Model):
     engine_model_name = models.CharField(max_length = 16, verbose_name = 'Модель двигателя')
+    description_of_engine_model = models.CharField(max_length = 64, verbose_name = 'Описание модели двигателя',
+                                                   default = '', blank = True, null = True)
 
     class Meta:
         verbose_name = 'Модель двигателя'
@@ -40,6 +42,8 @@ class EngineModel(models.Model):
 
 class TransmissionModel(models.Model):
     transmission_model_name = models.CharField(max_length = 16, verbose_name = 'Модель трансмиссии')
+    description_of_transmission_model = models.CharField(max_length = 64, verbose_name = 'Описание модели трансмиссии',
+                                                         default = '', blank = True, null = True)
 
     class Meta:
         verbose_name = 'Модель трансмиссии'
@@ -51,6 +55,9 @@ class TransmissionModel(models.Model):
 
 class LeadBridgeModel(models.Model):
     lead_bridge_model_name = models.CharField(max_length = 16, verbose_name = 'Модель ведущего моста')
+    description_of_lead_bridge_model = models.CharField(max_length = 64,
+                                                        verbose_name = 'Описание модели ведущего моста',
+                                                        default = '', blank = True, null = True)
 
     class Meta:
         verbose_name = 'Модель ведущего моста'
@@ -62,6 +69,9 @@ class LeadBridgeModel(models.Model):
 
 class ControlledBridgeModel(models.Model):
     controlled_bridge_model_name = models.CharField(max_length = 16, verbose_name = 'Модель управляемого моста')
+    description_of_controlled_bridge_model = models.CharField(max_length = 64,
+                                                              verbose_name = 'Описание модели управляемого моста',
+                                                              default = '', blank = True, null = True)
 
     class Meta:
         verbose_name = 'Модель управляемого моста'
@@ -86,7 +96,7 @@ class Machine(models.Model):
                                                 verbose_name = 'Модель управляемого моста')
     controlled_bridge_factory_number = models.CharField(max_length = 16, verbose_name = 'Зав. № управляемого моста')
     supply_contract_number_date = models.CharField(max_length = 16, verbose_name = 'Договор поставки №, дата',
-                                                   null = True)
+                                                   blank = True, null = True)
     date_shipment_from_factory = models.DateField(verbose_name = 'Дата отгрузки с завода')
     consumer = models.CharField(max_length = 32, verbose_name = 'Грузополучатель')
     delivery_address = models.CharField(max_length = 64, verbose_name = 'Адрес поставки')
@@ -111,49 +121,3 @@ class Machine(models.Model):
 
     def __str__(self):
         return self.machine_factory_number
-
-
-class TypeOfMaintenance(models.Model):
-    type_of_maintenance_name = models.CharField(max_length = 16, verbose_name = 'Вид ТО')
-
-    class Meta:
-        verbose_name = 'Вид ТО'
-        verbose_name_plural = 'Виды ТО'
-
-    def __str__(self):
-        return self.type_of_maintenance_name
-
-
-class OrganizationCarriedMaintenance(models.Model):
-    name_organization = models.CharField(max_length = 32, verbose_name = 'Организация, проводившая ТО')
-
-    class Meta:
-        verbose_name = 'Организация, проводившая ТО'
-        verbose_name_plural = 'Организации, проводившие ТО'
-
-    def __str__(self):
-        return self.name_organization
-
-
-class Maintenance(models.Model):
-    machine = models.ForeignKey(Machine, on_delete = models.CASCADE, verbose_name = 'Машина', null = True)
-    type_of_maintenance = models.ForeignKey(TypeOfMaintenance, on_delete = models.CASCADE, verbose_name = 'Вид ТО')
-    date_of_maintenance = models.DateField(verbose_name = 'Дата проведения ТО')
-    operating_time = models.IntegerField(default = '', verbose_name = 'Наработка, м/час')
-    order_number = models.CharField(max_length = 32, verbose_name = '№ заказ-наряда', default = '')
-    order_date = models.DateField(verbose_name = 'Дата заказ-наряда', default = datetime.date.today)
-    organization_carried_maintenance = models.ForeignKey(OrganizationCarriedMaintenance, on_delete = models.CASCADE,
-                                                         verbose_name = 'Организация, проводившая ТО', default = 1)
-    service_company_maintenance = models.ForeignKey(
-        UserDirectory,
-        on_delete = models.CASCADE,
-        related_name = 'service_companies_maintenance', verbose_name = 'Сервисная компания',
-        limit_choices_to = {'groups__name': 'ServiceCompany'}, default = 1
-    )
-
-    class Meta:
-        verbose_name = 'Техническое обслуживание'
-        verbose_name_plural = 'Технические обслуживания'
-
-    def __str__(self):
-        return self.order_number
