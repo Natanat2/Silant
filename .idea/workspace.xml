@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add admin fields">
-      <change afterPath="$PROJECT_DIR$/silant/maintenance/migrations/0006_alter_maintenance_operating_time.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/silant/service/migrations/0015_alter_machine_supply_contract_number_date.py" afterDir="false" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add pp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/complaints/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/maintenance/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/maintenance/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/maintenance/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/maintenance/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/service/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726818206442</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add pp">
+      <option name="closed" value="true" />
+      <created>1726826733778</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1726826733778</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -168,6 +170,7 @@
     <MESSAGE value="add 3 apps" />
     <MESSAGE value="add time zone" />
     <MESSAGE value="add admin fields" />
-    <option name="LAST_COMMIT_MESSAGE" value="add admin fields" />
+    <MESSAGE value="add pp" />
+    <option name="LAST_COMMIT_MESSAGE" value="add pp" />
   </component>
 </project>
