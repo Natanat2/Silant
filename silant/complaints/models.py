@@ -31,15 +31,16 @@ class MethodsOfRecovery(models.Model):
 
 class Complaints(models.Model):
     machine = models.ForeignKey(Machine, on_delete = models.CASCADE, verbose_name = 'Зав. № машины', null = True)
-    date_of_refusal = models.DateField(verbose_name = 'Дата отказа', default = datetime.date.today)
-    operating_time_refusal = models.PositiveIntegerField(default = 0, verbose_name = 'Наработка, м/час')
+    date_of_refusal = models.DateField(verbose_name = 'Дата отказа')
+    operating_time_refusal = models.PositiveIntegerField(verbose_name = 'Наработка, м/час')
     failure_node = models.ForeignKey(Nodes, on_delete = models.CASCADE, verbose_name = 'Узел отказа', null = True)
     description_of_refusal = models.CharField(max_length = 128, verbose_name = 'Описание отказа', null = True)
     method_of_recovery = models.ForeignKey(MethodsOfRecovery, on_delete = models.CASCADE,
                                            verbose_name = 'Способ восстановления', null = True)
-    spare_parts_used = models.CharField(max_length = 128, verbose_name = 'Используемые запасные части', null = True)
+    spare_parts_used = models.CharField(max_length = 128, verbose_name = 'Используемые запасные части', blank = True,
+                                        null = True)
     restoration_date = models.DateField(verbose_name = 'Дата восстановления', default = datetime.date.today)
-    downtime = models.IntegerField(verbose_name = 'Время простоя', editable=False)
+    downtime = models.IntegerField(verbose_name = 'Время простоя', editable = False)
     service_company_maintenance = models.ForeignKey(
         UserDirectory,
         on_delete = models.CASCADE,

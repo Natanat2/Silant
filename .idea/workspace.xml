@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add pp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/complaints/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726826733778</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add pp">
+      <option name="closed" value="true" />
+      <created>1726834902617</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1726834902617</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
