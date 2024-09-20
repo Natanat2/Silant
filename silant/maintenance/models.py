@@ -6,7 +6,7 @@ import datetime
 class TypeOfMaintenance(models.Model):
     type_of_maintenance_name = models.CharField(max_length = 16, verbose_name = 'Вид ТО')
     description_of_type_of_maintenance = models.CharField(max_length = 64, verbose_name = 'Описание вида ТО',
-                                                          default = '', blank=True, null=True)
+                                                          default = '', blank = True, null = True)
 
     class Meta:
         verbose_name = 'Вид ТО'
@@ -19,7 +19,7 @@ class TypeOfMaintenance(models.Model):
 class OrganizationCarriedMaintenance(models.Model):
     name_organization = models.CharField(max_length = 32, verbose_name = 'Организация, проводившая ТО')
     description_of_organization = models.CharField(max_length = 64, verbose_name = 'Описание организации',
-                                                   default = '', blank=True, null=True)
+                                                   default = '', blank = True, null = True)
 
     class Meta:
         verbose_name = 'Организация, проводившая ТО'
@@ -33,7 +33,7 @@ class Maintenance(models.Model):
     machine = models.ForeignKey(Machine, on_delete = models.CASCADE, verbose_name = 'Зав. № машины', null = True)
     type_of_maintenance = models.ForeignKey(TypeOfMaintenance, on_delete = models.CASCADE, verbose_name = 'Вид ТО')
     date_of_maintenance = models.DateField(verbose_name = 'Дата проведения ТО')
-    operating_time = models.PositiveIntegerField(default = 0, verbose_name = 'Наработка, м/час')
+    operating_time = models.PositiveIntegerField(verbose_name = 'Наработка, м/час')
     order_number = models.CharField(max_length = 32, verbose_name = '№ заказ-наряда', default = '')
     order_date = models.DateField(verbose_name = 'Дата заказ-наряда', default = datetime.date.today)
     organization_carried_maintenance = models.ForeignKey(OrganizationCarriedMaintenance, on_delete = models.CASCADE,

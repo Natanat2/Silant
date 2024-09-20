@@ -95,8 +95,7 @@ class Machine(models.Model):
     controlled_bridge_model = models.ForeignKey(ControlledBridgeModel, on_delete = models.CASCADE,
                                                 verbose_name = 'Модель управляемого моста')
     controlled_bridge_factory_number = models.CharField(max_length = 16, verbose_name = 'Зав. № управляемого моста')
-    supply_contract_number_date = models.CharField(max_length = 16, verbose_name = 'Договор поставки №, дата',
-                                                   blank = True, null = True)
+    supply_contract_number_date = models.CharField(max_length = 16, verbose_name = 'Договор поставки №, дата')
     date_shipment_from_factory = models.DateField(verbose_name = 'Дата отгрузки с завода')
     consumer = models.CharField(max_length = 32, verbose_name = 'Грузополучатель')
     delivery_address = models.CharField(max_length = 64, verbose_name = 'Адрес поставки')

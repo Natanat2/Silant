@@ -27,10 +27,10 @@ class ControlledBridgeModelAdmin(admin.ModelAdmin):
 
 
 class MachineAdmin(admin.ModelAdmin):
-    list_display = (
-        'machine_factory_number', 'machine_model', 'engine_model', 'transmission_model',
-        'lead_bridge_model', 'controlled_bridge_model', 'date_shipment_from_factory', 'client'
-    )
+    list_display = ('supply_contract_number_date',
+                    'machine_factory_number', 'machine_model', 'engine_model', 'transmission_model',
+                    'lead_bridge_model', 'controlled_bridge_model', 'date_shipment_from_factory', 'client'
+                    )
     list_filter = ('machine_model', 'engine_model', 'transmission_model', 'client')
     search_fields = ('machine_factory_number', 'client__user__first_name')
 

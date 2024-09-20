@@ -25,8 +25,6 @@ class ComplaintsAdmin(admin.ModelAdmin):
         'downtime'
     )
     list_filter = ('date_of_refusal', 'restoration_date', 'failure_node', 'method_of_recovery')
-    search_fields = ('machine__serial_number', 'failure_node__name_of_node', 'method_of_recovery__name_of_method',
-                     'description_of_refusal')
 
 
 admin.site.register(Nodes, NodesAdmin)

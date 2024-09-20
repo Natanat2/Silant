@@ -15,7 +15,6 @@ class MaintenanceAdmin(admin.ModelAdmin):
         'order_number', 'machine', 'type_of_maintenance', 'date_of_maintenance', 'operating_time', 'order_date',
         'organization_carried_maintenance', 'service_company_maintenance')
     list_filter = ('date_of_maintenance', 'type_of_maintenance', 'machine')
-    search_fields = ('order_number', 'machine__name')  # Поиск по номеру заказа и машине
 
 
 admin.site.register(TypeOfMaintenance, TypeOfMaintenanceAdmin)
