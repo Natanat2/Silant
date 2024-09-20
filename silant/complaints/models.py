@@ -55,9 +55,6 @@ class Complaints(models.Model):
             self.downtime = 0
         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return self.date_of_refusal.strftime('%Y-%m-%d')
-
     class Meta:
         verbose_name = 'Рекламация'
         verbose_name_plural = 'Рекламации'

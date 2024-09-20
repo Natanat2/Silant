@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add pp">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/complaints/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726834902617</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add data">
+      <option name="closed" value="true" />
+      <created>1726843611887</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1726843611887</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -180,6 +186,7 @@
     <MESSAGE value="add time zone" />
     <MESSAGE value="add admin fields" />
     <MESSAGE value="add pp" />
-    <option name="LAST_COMMIT_MESSAGE" value="add pp" />
+    <MESSAGE value="add data" />
+    <option name="LAST_COMMIT_MESSAGE" value="add data" />
   </component>
 </project>
