@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add 3 apps">
-      <change afterPath="$PROJECT_DIR$/silant/maintenance/migrations/0005_alter_maintenance_operating_time.py" afterDir="false" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add time zone">
+      <change afterPath="$PROJECT_DIR$/silant/complaints/migrations/0005_alter_complaints_operating_time_refusal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/migrations/0006_alter_complaints_downtime.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/complaints/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/complaints/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/maintenance/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/maintenance/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/maintenance/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/maintenance/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/silant/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/apps.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726815098755</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add time zone">
+      <option name="closed" value="true" />
+      <created>1726817002760</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726817002760</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -148,6 +158,7 @@
     <MESSAGE value="add rus lang" />
     <MESSAGE value="add to" />
     <MESSAGE value="add 3 apps" />
-    <option name="LAST_COMMIT_MESSAGE" value="add 3 apps" />
+    <MESSAGE value="add time zone" />
+    <option name="LAST_COMMIT_MESSAGE" value="add time zone" />
   </component>
 </project>

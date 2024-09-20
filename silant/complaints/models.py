@@ -5,7 +5,8 @@ import datetime
 
 class Nodes(models.Model):
     name_of_node = models.CharField(max_length = 32, verbose_name = 'Название Узла', default = '')
-    description_of_node = models.CharField(max_length = 64, verbose_name = 'Описание Узла', default = '', blank=True, null=True)
+    description_of_node = models.CharField(max_length = 64, verbose_name = 'Описание Узла', default = '', blank = True,
+                                           null = True)
 
     class Meta:
         verbose_name = 'Название Узла'
@@ -18,7 +19,7 @@ class Nodes(models.Model):
 class MethodsOfRecovery(models.Model):
     name_of_method = models.CharField(max_length = 32, verbose_name = 'Способ восстановления', default = '')
     description_of_method = models.CharField(max_length = 64, verbose_name = 'Описание способа восстановления',
-                                             default = '', blank=True, null=True)
+                                             default = '', blank = True, null = True)
 
     class Meta:
         verbose_name = 'Способ восстановления'
@@ -31,14 +32,14 @@ class MethodsOfRecovery(models.Model):
 class Complaints(models.Model):
     machine = models.ForeignKey(Machine, on_delete = models.CASCADE, verbose_name = 'Зав. № машины', null = True)
     date_of_refusal = models.DateField(verbose_name = 'Дата отказа', default = datetime.date.today)
-    operating_time_refusal = models.IntegerField(default = '', verbose_name = 'Наработка, м/час')
+    operating_time_refusal = models.PositiveIntegerField(default = 0, verbose_name = 'Наработка, м/час')
     failure_node = models.ForeignKey(Nodes, on_delete = models.CASCADE, verbose_name = 'Узел отказа', null = True)
     description_of_refusal = models.CharField(max_length = 128, verbose_name = 'Описание отказа', null = True)
     method_of_recovery = models.ForeignKey(MethodsOfRecovery, on_delete = models.CASCADE,
                                            verbose_name = 'Способ восстановления', null = True)
     spare_parts_used = models.CharField(max_length = 128, verbose_name = 'Используемые запасные части', null = True)
     restoration_date = models.DateField(verbose_name = 'Дата восстановления', default = datetime.date.today)
-    downtime = models.IntegerField(verbose_name = 'Время простоя', default = 0)
+    downtime = models.IntegerField(verbose_name = 'Время простоя', editable=False)
     service_company_maintenance = models.ForeignKey(
         UserDirectory,
         on_delete = models.CASCADE,
@@ -54,7 +55,7 @@ class Complaints(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.date_of_refusal
+        return self.date_of_refusal.strftime('%Y-%m-%d')
 
     class Meta:
         verbose_name = 'Рекламация'
