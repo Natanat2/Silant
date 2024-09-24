@@ -4,8 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add data">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="remove sstr date">
+      <change afterPath="$PROJECT_DIR$/silant/complaints/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/complaints/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/maintenance/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/silant/service/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/complaints/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/maintenance/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/maintenance/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/silant/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/silant/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,16 +44,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/natan/PycharmProjects/Dimlopniy project/silant/complaints"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\natan\PycharmProjects\Dimlopniy project\silant\complaints" />
+      <recent name="C:\Users\natan\PycharmProjects\Dimlopniy project\silant\maintenance" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\natan\PycharmProjects\Dimlopniy project" />
       <recent name="C:\Users\natan\PycharmProjects\Dimlopniy project\silant\service" />
@@ -173,7 +189,23 @@
       <option name="project" value="LOCAL" />
       <updated>1726843611887</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="remove sstr date">
+      <option name="closed" value="true" />
+      <created>1726843965832</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1726843965832</updated>
+    </task>
+    <task id="LOCAL-00012" summary="remove sstr date">
+      <option name="closed" value="true" />
+      <created>1726844165193</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1726844165193</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -187,6 +219,7 @@
     <MESSAGE value="add admin fields" />
     <MESSAGE value="add pp" />
     <MESSAGE value="add data" />
-    <option name="LAST_COMMIT_MESSAGE" value="add data" />
+    <MESSAGE value="remove sstr date" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove sstr date" />
   </component>
 </project>
