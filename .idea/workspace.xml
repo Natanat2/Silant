@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="remove sstr date">
-      <change afterPath="$PROJECT_DIR$/silant/complaints/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/silant/complaints/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/silant/maintenance/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/silant/maintenance/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/silant/service/serializers.py" afterDir="false" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add drf">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/complaints/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/maintenance/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/maintenance/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/complaints/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/maintenance/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/maintenance/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/silant/service/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/silant/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/silant/silant/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -205,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726844165193</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add drf">
+      <option name="closed" value="true" />
+      <created>1727162709458</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1727162709458</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -220,6 +222,7 @@
     <MESSAGE value="add pp" />
     <MESSAGE value="add data" />
     <MESSAGE value="remove sstr date" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove sstr date" />
+    <MESSAGE value="add drf" />
+    <option name="LAST_COMMIT_MESSAGE" value="add drf" />
   </component>
 </project>
