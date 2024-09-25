@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add rights">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add machine api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/complaints/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/complaints/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/service/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/maintenance/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/maintenance/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/maintenance/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/maintenance/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/silant/service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/silant/silant/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/silant/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727208374099</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="add machine api">
+      <option name="closed" value="true" />
+      <created>1727213937678</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1727213937678</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -249,6 +262,7 @@
     <MESSAGE value="add drf + jwt" />
     <MESSAGE value="add frontend" />
     <MESSAGE value="add rights" />
-    <option name="LAST_COMMIT_MESSAGE" value="add rights" />
+    <MESSAGE value="add machine api" />
+    <option name="LAST_COMMIT_MESSAGE" value="add machine api" />
   </component>
 </project>

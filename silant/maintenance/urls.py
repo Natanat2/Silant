@@ -1,7 +1,10 @@
-from django.urls import path
-from .views import MaintenanceListCreateView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import MaintenanceViewSet
 
+router = DefaultRouter()
+router.register(r'maintenances', MaintenanceViewSet)
 
 urlpatterns = [
-    path('', MaintenanceListCreateView.as_view(), name = 'maintenance-list-create'),
+    path('', include(router.urls)),
 ]

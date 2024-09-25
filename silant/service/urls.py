@@ -1,7 +1,10 @@
-from django.urls import path
-from .views import MachineListCreateView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import MachineViewSet
 
+router = DefaultRouter()
+router.register(r'machines', MachineViewSet)
 
 urlpatterns = [
-    path('', MachineListCreateView.as_view(), name = 'machine-list-create'),
+    path('', include(router.urls)),
 ]

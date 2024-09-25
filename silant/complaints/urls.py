@@ -1,7 +1,10 @@
-from django.urls import path
-from .views import ComplaintsListCreateView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import ComplaintsViewSet
 
+router = DefaultRouter()
+router.register(r'complaints', ComplaintsViewSet)
 
 urlpatterns = [
-    path('', ComplaintsListCreateView.as_view(), name = 'complaints-list-create'),
+    path('', include(router.urls)),
 ]
