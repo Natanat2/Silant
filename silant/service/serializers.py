@@ -45,11 +45,11 @@ class ControlledBridgeModelSerializer(serializers.ModelSerializer):
 
 
 class MachinePublicSerializer(serializers.ModelSerializer):
-    machine_model = serializers.PrimaryKeyRelatedField(queryset = MachineModel.objects.all())
-    engine_model = serializers.PrimaryKeyRelatedField(queryset = EngineModel.objects.all())
-    transmission_model = serializers.PrimaryKeyRelatedField(queryset = TransmissionModel.objects.all())
-    lead_bridge_model = serializers.PrimaryKeyRelatedField(queryset = LeadBridgeModel.objects.all())
-    controlled_bridge_model = serializers.PrimaryKeyRelatedField(queryset = ControlledBridgeModel.objects.all())
+    machine_model = MachineModelSerializer()
+    engine_model = EngineModelSerializer()
+    transmission_model = TransmissionModelSerializer()
+    lead_bridge_model = LeadBridgeModelSerializer()
+    controlled_bridge_model = ControlledBridgeModelSerializer()
 
     class Meta:
         model = Machine
@@ -68,13 +68,11 @@ class MachinePublicSerializer(serializers.ModelSerializer):
 
 
 class MachineDetailedSerializer(serializers.ModelSerializer):
-    machine_model = serializers.PrimaryKeyRelatedField(queryset = MachineModel.objects.all())
-    engine_model = serializers.PrimaryKeyRelatedField(queryset = EngineModel.objects.all())
-    transmission_model = serializers.PrimaryKeyRelatedField(queryset = TransmissionModel.objects.all())
-    lead_bridge_model = serializers.PrimaryKeyRelatedField(queryset = LeadBridgeModel.objects.all())
-    controlled_bridge_model = serializers.PrimaryKeyRelatedField(queryset = ControlledBridgeModel.objects.all())
-    client = serializers.PrimaryKeyRelatedField(queryset = UserDirectory.objects.all())
-    service_company = serializers.PrimaryKeyRelatedField(queryset = UserDirectory.objects.all())
+    machine_model = MachineModelSerializer()
+    engine_model = EngineModelSerializer()
+    transmission_model = TransmissionModelSerializer()
+    lead_bridge_model = LeadBridgeModelSerializer()
+    controlled_bridge_model = ControlledBridgeModelSerializer()
 
     class Meta:
         model = Machine
