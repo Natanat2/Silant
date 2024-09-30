@@ -73,6 +73,8 @@ class MachineDetailedSerializer(serializers.ModelSerializer):
     transmission_model = TransmissionModelSerializer()
     lead_bridge_model = LeadBridgeModelSerializer()
     controlled_bridge_model = ControlledBridgeModelSerializer()
+    client = UserDirectorySerializer()
+    service_company = UserDirectorySerializer()
 
     class Meta:
         model = Machine
