@@ -68,13 +68,13 @@ class MachinePublicSerializer(serializers.ModelSerializer):
 
 
 class MachineDetailedSerializer(serializers.ModelSerializer):
-    machine_model = MachineModelSerializer()
-    engine_model = EngineModelSerializer()
-    transmission_model = TransmissionModelSerializer()
-    lead_bridge_model = LeadBridgeModelSerializer()
-    controlled_bridge_model = ControlledBridgeModelSerializer()
-    client = UserDirectorySerializer()
-    service_company = UserDirectorySerializer()
+    machine_model = MachineModelSerializer(read_only = True)
+    engine_model = EngineModelSerializer(read_only = True)
+    transmission_model = TransmissionModelSerializer(read_only = True)
+    lead_bridge_model = LeadBridgeModelSerializer(read_only = True)
+    controlled_bridge_model = ControlledBridgeModelSerializer(read_only = True)
+    client = UserDirectorySerializer(read_only = True)
+    service_company = UserDirectorySerializer(read_only = True)
 
     class Meta:
         model = Machine
