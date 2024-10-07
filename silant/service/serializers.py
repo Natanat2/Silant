@@ -67,14 +67,46 @@ class MachinePublicSerializer(serializers.ModelSerializer):
         ]
 
 
+class MachineWriteSerializer(serializers.ModelSerializer):
+    machine_model = serializers.PrimaryKeyRelatedField(queryset = MachineModel.objects.all())
+    engine_model = serializers.PrimaryKeyRelatedField(queryset = EngineModel.objects.all())
+    transmission_model = serializers.PrimaryKeyRelatedField(queryset = TransmissionModel.objects.all())
+    lead_bridge_model = serializers.PrimaryKeyRelatedField(queryset = LeadBridgeModel.objects.all())
+    controlled_bridge_model = serializers.PrimaryKeyRelatedField(queryset = ControlledBridgeModel.objects.all())
+    client = serializers.PrimaryKeyRelatedField(queryset = UserDirectory.objects.all())
+    service_company = serializers.PrimaryKeyRelatedField(queryset = UserDirectory.objects.all())
+
+    class Meta:
+        model = Machine
+        fields = [
+            'machine_factory_number',
+            'machine_model',
+            'engine_model',
+            'engine_factory_number',
+            'transmission_model',
+            'transmission_factory_number',
+            'lead_bridge_model',
+            'lead_bridge_factory_number',
+            'controlled_bridge_model',
+            'controlled_bridge_factory_number',
+            'client',
+            'service_company',
+            'supply_contract_number_date',
+            'date_shipment_from_factory',
+            'consumer',
+            'delivery_address',
+            'configuration',
+        ]
+
+
 class MachineDetailedSerializer(serializers.ModelSerializer):
-    machine_model = MachineModelSerializer(read_only = True)
-    engine_model = EngineModelSerializer(read_only = True)
-    transmission_model = TransmissionModelSerializer(read_only = True)
-    lead_bridge_model = LeadBridgeModelSerializer(read_only = True)
-    controlled_bridge_model = ControlledBridgeModelSerializer(read_only = True)
-    client = UserDirectorySerializer(read_only = True)
-    service_company = UserDirectorySerializer(read_only = True)
+    machine_model = MachineModelSerializer()
+    engine_model = EngineModelSerializer()
+    transmission_model = TransmissionModelSerializer()
+    lead_bridge_model = LeadBridgeModelSerializer()
+    controlled_bridge_model = ControlledBridgeModelSerializer()
+    client = UserDirectorySerializer()
+    service_company = UserDirectorySerializer()
 
     class Meta:
         model = Machine
