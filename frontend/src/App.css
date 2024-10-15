@@ -1,38 +1,98 @@
 .App {
-  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 4vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App-header {
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logo-container img {
+  height: 50px;
+}
+
+.contact-info {
+  font-size: 2vmin;
+}
+
+
+
+.header-bottom {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 3vmin;
+  color: #1f1f1f;
+  text-align: center;
+}
+
+.App-footer {
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.App-body {
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  gap: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+
+.search-title {
+  display: block;
+  margin-bottom: 20px; /* Отступ снизу */
+  font-size: 3vmin;
+  text-align: center;
+  color: #1f1f1f;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  
 }
+
+.search-form {
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.search-input {
+  text-align: right;
+}
+
