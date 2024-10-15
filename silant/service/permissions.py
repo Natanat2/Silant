@@ -6,8 +6,7 @@ class IsClientOrServiceCompanyOrManager(BasePermission):
     def has_permission(self, request, view):
         if request.method in SAFE_METHODS:
             if (not request.user.is_authenticated or request.user.groups.filter(
-                    name = 'Client').exists() or request.user.groups.filter(
-                name = 'ServiceCompany').exists()):
+                    name = 'Client').exists() or request.user.groups.filter(name = 'ServiceCompany').exists()):
                 return True
 
         if request.user.groups.filter(name = 'Manager').exists():

@@ -1,7 +1,7 @@
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticatedOrReadOnly
 from rest_framework import viewsets
 from .models import Machine
-from .serializers import MachinePublicSerializer, MachineDetailedSerializer, MachineWriteSerializer
+from .serializers import MachinePublicSerializer, MachineDetailedSerializer, MachineCreateUpdateSerializer
 from .permissions import IsClientOrServiceCompanyOrManager
 
 
@@ -29,7 +29,7 @@ class MachineViewSet(viewsets.ModelViewSet):
         user = self.request.user
 
         if user.groups.filter(name = 'Manager').exists():
-            return MachineWriteSerializer
+            return MachineCreateUpdateSerializer
 
         if user.groups.filter(name = 'Client').exists() or user.groups.filter(name = 'ServiceCompany').exists():
             return MachineDetailedSerializer

@@ -67,7 +67,7 @@ class MachinePublicSerializer(serializers.ModelSerializer):
         ]
 
 
-class MachineWriteSerializer(serializers.ModelSerializer):
+class MachineCreateUpdateSerializer(serializers.ModelSerializer):
     machine_model = serializers.PrimaryKeyRelatedField(queryset = MachineModel.objects.all())
     engine_model = serializers.PrimaryKeyRelatedField(queryset = EngineModel.objects.all())
     transmission_model = serializers.PrimaryKeyRelatedField(queryset = TransmissionModel.objects.all())
