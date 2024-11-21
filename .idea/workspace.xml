@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add only param">
-      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/PT-Astra-Sans_Bold-Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/PT-Astra-Sans_Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/PT-Astra-Sans_Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/PT-Astra-Sans_Regular.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/search.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/search.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
-    </list>
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add search" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -341,12 +330,19 @@
       <option name="project" value="LOCAL" />
       <updated>1732191192306</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="add search">
+      <option name="closed" value="true" />
+      <created>1732200639290</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1732200639291</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add rus" />
     <MESSAGE value="add rus lang" />
     <MESSAGE value="add to" />
     <MESSAGE value="add 3 apps" />
@@ -371,6 +367,7 @@
     <MESSAGE value="add front" />
     <MESSAGE value="add filter param" />
     <MESSAGE value="add only param" />
-    <option name="LAST_COMMIT_MESSAGE" value="add only param" />
+    <MESSAGE value="add search" />
+    <option name="LAST_COMMIT_MESSAGE" value="add search" />
   </component>
 </project>
