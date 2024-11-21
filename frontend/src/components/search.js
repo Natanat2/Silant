@@ -1,15 +1,16 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { Form, InputGroup, Button, Table } from "react-bootstrap";
+import axios from "axios";
+import "./search.css";
 
-const MainSearch = () => {
+const Search = () => {
   const [factoryNumber, setFactoryNumber] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/service/`, {
-        params: { factoryNumber },
+      const response = await axios.get("http://127.0.0.1:8000/api/service/", {
+        params: { machine_factory_number: factoryNumber },
       });
       setSearchResults(response.data);
     } catch (error) {
@@ -18,17 +19,15 @@ const MainSearch = () => {
   };
 
   return (
-    <>
-      <div className="search-title">
-        <span>
+    <div className="search-container">
+      <div className="search-header">
+        <h2>
           Проверьте комплектацию и технические характеристики техники Силант
-        </span>
+        </h2>
       </div>
-      <div className="search">
+      <div className="search-form-container">
         <InputGroup className="search-form">
-          <InputGroup.Text id="basic-addon1">
-            Введите Заводской номер:
-          </InputGroup.Text>
+          <InputGroup.Text>Введите Заводской номер:</InputGroup.Text>
           <Form.Control
             type="text"
             value={factoryNumber}
@@ -38,14 +37,14 @@ const MainSearch = () => {
         </InputGroup>
         <Button
           variant="primary"
-          className="search-button"
           onClick={handleSearch}
+          className="search-button"
         >
           Поиск
         </Button>
       </div>
       <div className="search-result">
-        <span>Результат поиска:</span>
+        <h3>Результат поиска:</h3>
       </div>
       <div className="table-result">
         {searchResults.length > 0 ? (
@@ -87,8 +86,8 @@ const MainSearch = () => {
           <span>Нет данных для отображения</span>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
-export default MainSearch;
+export default Search;

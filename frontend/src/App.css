@@ -11,12 +11,15 @@
   pointer-events: none;
 }
 
-.App-header {
+.App-header, .App-footer, .App-body {
   border-radius: 5px;
   padding: 10px 20px;
-  margin-bottom: 20px;
   background-color: #f0f0f0;
   border: 1px solid #f0f0f0;
+}
+
+.App-header {
+  margin-bottom: 20px;
 }
 
 .header-top {
@@ -34,8 +37,6 @@
   font-size: 2vmin;
 }
 
-
-
 .header-bottom {
   margin-top: 10px;
   text-align: center;
@@ -48,21 +49,12 @@
 }
 
 .App-footer {
-  border-radius: 5px;
-  padding: 10px 20px;
-  background-color: #f0f0f0;
-  border: 1px solid #f0f0f0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .App-body {
-  border-radius: 5px;
-  padding: 10px 20px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  border: 1px solid #f0f0f0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,62 +62,11 @@
   gap: 20px;
 }
 
-
-.search-title {
+.search-title, .search-result {
   display: block;
   width: 90%;
   margin-bottom: 20px;
   font-size: 3vmin;
   text-align: left;
   color: #1f1f1f;
-}
-
-.search {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  
-}
-
-.search-form {
-  border-radius: 5px;
-  margin-right: 20px;
-}
-
-.search-input {
-  text-align: right;
-}
-
-.search-result {
-  display: block;
-  width: 90%;
-  margin-bottom: 20px;
-  font-size: 3vmin;
-  text-align: left;
-  color: #1f1f1f;
-}
-
-.info-result {
-  display: block;
-  width: 90%;
-  border-radius: 5px;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-}
-
-.table-result {
-  display: block;
-  width: 90%;
-  border-radius: 5px;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
 }
