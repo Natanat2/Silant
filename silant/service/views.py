@@ -1,23 +1,29 @@
-from rest_framework.permissions import SAFE_METHODS, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import SAFE_METHODS
 from rest_framework import viewsets
-from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi
+from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from .models import Machine
-from .serializers import MachinePublicSerializer, MachineDetailedSerializer, MachineCreateUpdateSerializer
-from .permissions import IsClientOrServiceCompanyOrManager
+from .serializers import (
+    MachinePublicSerializer,
+    MachineCreateUpdateSerializer,
+    MachineDetailedSerializer,
+)
 
 
 class MachineViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticatedOrReadOnly, IsClientOrServiceCompanyOrManager]
+    queryset = Machine.objects.all()
+    serializer_class = MachinePublicSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['machine_factory_number']
 
-    @swagger_auto_schema(
-        manual_parameters=[
-            openapi.Parameter(
-                'machine_factory_number',
-                openapi.IN_QUERY,
-                description="Filter by machine factory number",
-                type=openapi.TYPE_STRING,
-            )
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name='machine_factory_number',
+                description='Filter by machine factory number',
+                required=False,
+                type=str,
+            ),
         ]
     )
     def list(self, request, *args, **kwargs):
@@ -27,20 +33,13 @@ class MachineViewSet(viewsets.ModelViewSet):
         user = self.request.user
         queryset = Machine.objects.all()
 
-        # Получение параметра фильтрации из строки запроса
-        machine_factory_number = self.request.query_params.get('machine_factory_number')
-        if machine_factory_number:
-            queryset = queryset.filter(machine_factory_number=machine_factory_number)
-
         if self.request.method in SAFE_METHODS:
             return queryset
 
         if user.groups.filter(name='Manager').exists():
             return queryset
-
         elif user.groups.filter(name='Client').exists():
             return queryset.filter(client=user.userdirectory)
-
         elif user.groups.filter(name='ServiceCompany').exists():
             return queryset.filter(service_company=user.userdirectory)
 
@@ -51,8 +50,9 @@ class MachineViewSet(viewsets.ModelViewSet):
 
         if user.groups.filter(name='Manager').exists():
             return MachineCreateUpdateSerializer
-
-        if user.groups.filter(name='Client').exists() or user.groups.filter(name='ServiceCompany').exists():
+        elif user.groups.filter(name='Client').exists():
             return MachineDetailedSerializer
-
-        return MachinePublicSerializer
+        elif user.groups.filter(name='ServiceCompany').exists():
+            return MachineDetailedSerializer
+        else:
+            return MachinePublicSerializer
