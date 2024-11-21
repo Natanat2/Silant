@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import "./search.css";
 import { Form, InputGroup, Button, Table } from "react-bootstrap";
 import axios from "axios";
-import "./search.css";
 
 const Search = () => {
   const [factoryNumber, setFactoryNumber] = useState("");

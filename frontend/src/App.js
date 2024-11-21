@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import logo from "./Logotype.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import MainSearch from "./components/search";
 
-import { Form, InputGroup, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 function App() {
   return (
@@ -27,9 +27,11 @@ function App() {
           <h2>Электронная сервисная книжка "Мой Силант"</h2>
         </div>
       </header>
-      <body className="App-body">
+
+      <main className="App-body">
         <MainSearch />
-      </body>
+      </main>
+
       <footer className="App-footer">
         <div className="contact-info">
           <span>+7-8352-20-12-09, telegram</span>

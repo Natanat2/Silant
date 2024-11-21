@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add filter param">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add only param">
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/PT-Astra-Sans_Bold-Italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/PT-Astra-Sans_Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/PT-Astra-Sans_Italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/PT-Astra-Sans_Regular.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/search.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/search.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/silant/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -329,12 +333,19 @@
       <option name="project" value="LOCAL" />
       <updated>1732188419367</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="add only param">
+      <option name="closed" value="true" />
+      <created>1732191192306</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1732191192306</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="init" />
     <MESSAGE value="add rus" />
     <MESSAGE value="add rus lang" />
     <MESSAGE value="add to" />
@@ -359,6 +370,7 @@
     <MESSAGE value="add api all" />
     <MESSAGE value="add front" />
     <MESSAGE value="add filter param" />
-    <option name="LAST_COMMIT_MESSAGE" value="add filter param" />
+    <MESSAGE value="add only param" />
+    <option name="LAST_COMMIT_MESSAGE" value="add only param" />
   </component>
 </project>
