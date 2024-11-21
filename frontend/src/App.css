@@ -16,7 +16,7 @@
   padding: 10px 20px;
   margin-bottom: 20px;
   background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  border: 1px solid #f0f0f0;
 }
 
 .header-top {
@@ -27,7 +27,7 @@
 }
 
 .logo-container img {
-  height: 50px;
+  height: 4vmin;
 }
 
 .contact-info {
@@ -51,7 +51,7 @@
   border-radius: 5px;
   padding: 10px 20px;
   background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  border: 1px solid #f0f0f0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,7 +62,7 @@
   padding: 10px 20px;
   margin-bottom: 20px;
   background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  border: 1px solid #f0f0f0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,9 +73,10 @@
 
 .search-title {
   display: block;
-  margin-bottom: 20px; /* Отступ снизу */
+  width: 90%;
+  margin-bottom: 20px;
   font-size: 3vmin;
-  text-align: center;
+  text-align: left;
   color: #1f1f1f;
 }
 
@@ -96,3 +97,35 @@
   text-align: right;
 }
 
+.search-result {
+  display: block;
+  width: 90%;
+  margin-bottom: 20px;
+  font-size: 3vmin;
+  text-align: left;
+  color: #1f1f1f;
+}
+
+.info-result {
+  display: block;
+  width: 90%;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.table-result {
+  display: block;
+  width: 90%;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}

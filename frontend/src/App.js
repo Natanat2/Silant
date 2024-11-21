@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
+import logo from "./Logotype.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Form } from "react-bootstrap";
-import { InputGroup } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import MainSearch from "./components/search";
+
+import { Form, InputGroup, Button } from "react-bootstrap";
 
 function App() {
-  const [factoryNumber, setFactoryNumber] = useState("");
-
-  const handleSearch = () => {
-    console.log("Поиск по заводскому номеру:", factoryNumber);
-  };
-
   return (
     <div className="App">
       <header className="App-header">
@@ -34,31 +28,7 @@ function App() {
         </div>
       </header>
       <body className="App-body">
-        <div className="search-title">
-          <span>
-            Проверьте комплектацию и технические характеристики техники Силант
-          </span>
-        </div>
-        <div className="search">
-          <InputGroup className="search-form">
-            <InputGroup.Text id="basic-addon1">
-              Введите Заводской номер:
-            </InputGroup.Text>
-            <Form.Control
-              type="text"
-              value={factoryNumber}
-              onChange={(e) => setFactoryNumber(e.target.value)}
-              className="search-input"
-            />
-          </InputGroup>
-          <Button
-            variant="primary"
-            className="search-button"
-            onClick={handleSearch}
-          >
-            Поиск
-          </Button>
-        </div>
+        <MainSearch />
       </body>
       <footer className="App-footer">
         <div className="contact-info">
