@@ -31,14 +31,13 @@
 
 .App-header, .App-footer, .App-body {
   
-  border-radius: 5px;
+  
   padding: 1rem 2rem;
-  background-color: #f0f0f0;
-  border: 1px solid #f0f0f0;
+  background-color: #EBE6D6;
 }
 
 .App-header {
-  margin-bottom: 20px;
+  width: 100%;
 }
 
 .header-top {
@@ -71,6 +70,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #163E6C;
+  color: #ffffff;
 }
 
 .App-body {

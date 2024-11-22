@@ -16,10 +16,10 @@ function App() {
             <img src={logo} className="App-logo" alt="logo" />
           </div>
           <div className="contact-info">
-            <span>+7-8352-20-12-09, telegram</span>
+            <Button variant="light">+7-8352-20-12-09, telegram</Button>
           </div>
           <div className="auth-button">
-            <Button variant="primary">Авторизация</Button>
+            <Button variant="danger">Авторизация</Button>
           </div>
         </div>
 
@@ -34,10 +34,10 @@ function App() {
 
       <footer className="App-footer">
         <div className="contact-info">
-          <span>+7-8352-20-12-09, telegram</span>
+          <Button variant="light">+7-8352-20-12-09, telegram</Button>
         </div>
         <div className="auth-button">
-          <Button variant="primary">Мой Силант 2022</Button>
+          <Button variant="light">Мой Силант 2022</Button>
         </div>
       </footer>
     </div>

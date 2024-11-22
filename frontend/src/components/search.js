@@ -36,7 +36,7 @@ const Search = () => {
           />
         </InputGroup>
         <Button
-          variant="primary"
+          variant="danger"
           onClick={handleSearch}
           className="search-button"
         >
