@@ -36,9 +36,7 @@
   width: 100%;
   text-align: center;
   overflow-x: auto;
-  border-radius: 10px;
-  border: 1px solid #EBE6D6;
-  background-color: #EBE6D6;
+  background-color: #ffffff;
   margin-top: 20px;
   display: block;
 }

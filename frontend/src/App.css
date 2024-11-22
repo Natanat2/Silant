@@ -29,11 +29,19 @@
   pointer-events: none;
 }
 
-.App-header, .App-footer, .App-body {
+.App-header, .App-footer {
   
   
   padding: 1rem 2rem;
   background-color: #EBE6D6;
+}
+
+.App-body {
+  
+  
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  border: #EBE6D6;
 }
 
 .App-header {
