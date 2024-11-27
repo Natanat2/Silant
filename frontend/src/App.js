@@ -1,46 +1,25 @@
 import React from "react";
-import logo from "./Logotype.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import MainSearch from "./components/search";
-
-import { Button } from "react-bootstrap";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import Login from "./components/Login";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="header-top">
-          <div className="logo-container">
-            <img src={logo} className="App-logo" alt="logo" />
-          </div>
-          <div className="contact-info">
-            <Button variant="light">+7-8352-20-12-09, telegram</Button>
-          </div>
-          <div className="auth-button">
-            <Button variant="danger">Авторизация</Button>
-          </div>
-        </div>
-
-        <div className="header-title">
-          <h2>Электронная сервисная книжка "Мой Силант"</h2>
-        </div>
-      </header>
-
-      <main className="App-body">
-        <MainSearch />
-      </main>
-
-      <footer className="App-footer">
-        <div className="contact-info">
-          <Button variant="light">+7-8352-20-12-09, telegram</Button>
-        </div>
-        <div className="auth-button">
-          <Button variant="light">Мой Силант 2022</Button>
-        </div>
-      </footer>
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<MainSearch />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

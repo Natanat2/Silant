@@ -1,0 +1,21 @@
+.App-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #163E6C;
+    color: #ffffff;
+  }
+  
+  @media (max-width: 768px) {
+    .App-footer {
+      padding: 1rem 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .App-footer {
+      padding: 1rem;
+    }
+  }
+  

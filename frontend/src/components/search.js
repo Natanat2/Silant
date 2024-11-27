@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./search.css";
+import "../styles/search.css";
 import { Form, InputGroup, Button, Table } from "react-bootstrap";
 import axios from "axios";
 
