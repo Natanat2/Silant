@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Login = ({ setIsAutheticated }) => {
+const Login = ({ setIsAuthenticated }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,7 +18,7 @@ const Login = ({ setIsAutheticated }) => {
       localStorage.setItem("access_token", response.data.access);
       localStorage.setItem("refresh_token", response.data.refresh);
 
-      setIsAutheticated(true);
+      setIsAuthenticated(true);
     } catch (err) {
       setError("Неверный логин или пароль");
     }
@@ -35,6 +35,7 @@ const Login = ({ setIsAutheticated }) => {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            placeholder="Введите логин"
           />
         </div>
         <div>
@@ -44,11 +45,12 @@ const Login = ({ setIsAutheticated }) => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Введите пароль"
           />
         </div>
         <button type="submit">Войти</button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainSearch from "./components/search";
 import Header from "./components/header";
 import Footer from "./components/footer";
-import Login from "./components/Login";
+import Login from "./components/login";
 
 function App() {
   return (

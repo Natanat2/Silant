@@ -3,7 +3,7 @@ import "../styles/header.css";
 import logo from "./Logotype.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
-import Login from "./Login";
+import Login from "./login";
 
 const Header = () => {
   const [showLogin, setShowLogin] = useState(false);
