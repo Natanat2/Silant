@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name']
 
 
-class UserDirectorySerializer(serializers.ModelSerializer):
+class MaintenanceUserDirectorySerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
     class Meta:
@@ -18,7 +18,7 @@ class UserDirectorySerializer(serializers.ModelSerializer):
         fields = ['id', 'user']
 
 
-class MachineSerializer(serializers.ModelSerializer):
+class MaintenanceMachineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Machine
         fields = ['id', 'machine_factory_number']
@@ -37,10 +37,10 @@ class OrganizationCarriedMaintenanceSerializer(serializers.ModelSerializer):
 
 
 class MaintenanceSerializer(serializers.ModelSerializer):
-    machine = MachineSerializer()
+    machine = MaintenanceMachineSerializer()
     type_of_maintenance = TypeOfMaintenanceSerializer()
     organization_carried_maintenance = OrganizationCarriedMaintenanceSerializer()
-    service_company_maintenance = UserDirectorySerializer()
+    service_company_maintenance = MaintenanceUserDirectorySerializer()
 
     class Meta:
         model = Maintenance

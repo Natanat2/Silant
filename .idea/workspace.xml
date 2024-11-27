@@ -4,19 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add styles">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Logotype.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/header.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/logo.svg" afterDir="false" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="split components">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Logotype.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/complaints/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/maintenance/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/maintenance/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/silant/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -375,12 +369,19 @@
       <option name="project" value="LOCAL" />
       <updated>1732286354886</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="split components">
+      <option name="closed" value="true" />
+      <created>1732714436804</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1732714436805</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add to" />
     <MESSAGE value="add 3 apps" />
     <MESSAGE value="add time zone" />
     <MESSAGE value="add admin fields" />
@@ -405,6 +406,7 @@
     <MESSAGE value="add only param" />
     <MESSAGE value="add search" />
     <MESSAGE value="add styles" />
-    <option name="LAST_COMMIT_MESSAGE" value="add styles" />
+    <MESSAGE value="split components" />
+    <option name="LAST_COMMIT_MESSAGE" value="split components" />
   </component>
 </project>

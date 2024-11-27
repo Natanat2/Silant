@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name']
 
 
-class UserDirectorySerializer(serializers.ModelSerializer):
+class ComplaintsUserDirectorySerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
     class Meta:
@@ -19,7 +19,7 @@ class UserDirectorySerializer(serializers.ModelSerializer):
         fields = ['id', 'user']
 
 
-class MachineSerializer(serializers.ModelSerializer):
+class ComplaintsMachineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Machine
         fields = ['id', 'machine_factory_number']
@@ -38,10 +38,10 @@ class MethodsOfRecoverySerializer(serializers.ModelSerializer):
 
 
 class ComplaintsSerializer(serializers.ModelSerializer):
-    machine = MachineSerializer()
+    machine = ComplaintsMachineSerializer()
     failure_node = NodesSerializer()
     method_of_recovery = MethodsOfRecoverySerializer()
-    service_company_maintenance = UserDirectorySerializer()
+    service_company_maintenance = ComplaintsUserDirectorySerializer()
 
     class Meta:
         model = Complaints
