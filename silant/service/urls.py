@@ -7,5 +7,5 @@ router.register(r'', MachineViewSet, basename='machine')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('api/current_user', current_user, name='current_user')
+    path('current_user', current_user, name='current_user')
 ]
