@@ -17,7 +17,17 @@
 
 .contact-info {
   font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
+
+.contact-info button {
+  padding: 8px 16px;
+  font-size: 1rem;
+}
+
 
 .header-bottom {
   margin-top: 10px;
@@ -70,7 +80,9 @@
 
 
 .auth-button {
-  margin-left: auto;
+  display: flex;
+  align-items: center;
+  margin: 0;
 }
 
 .auth-button button {

@@ -28,7 +28,6 @@ const Header = () => {
         <h2>Электронная сервисная книжка "Мой Силант"</h2>
       </div>
 
-      {}
       {showLogin && <Login />}
     </header>
   );

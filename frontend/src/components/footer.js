@@ -10,7 +10,7 @@ const Footer = () => {
         <Button variant="light">+7-8352-20-12-09, telegram</Button>
       </div>
       <div className="auth-button">
-        <Button variant="light">Мой Силант 2022</Button>
+        <Button variant="danger">Мой Силант 2022</Button>
       </div>
     </footer>
   );

@@ -1,4 +1,7 @@
 from rest_framework.permissions import SAFE_METHODS
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema, OpenApiParameter
@@ -8,6 +11,20 @@ from .serializers import (
     MachineCreateUpdateSerializer,
     MachineDetailedSerializer,
 )
+
+
+@api_view(['GET'])
+def current_user(request):
+    user = request.user
+    if user.is_authenticated:
+        return Response({
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'groups': [group.name for group in user.groups.all()]
+        })
+    else:
+        return Response({'error': 'User is not authenticated'}, status = 401)
 
 
 class MachineViewSet(viewsets.ModelViewSet):

@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="split components">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add login">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/panel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/userinfo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/styles/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/styles/panel.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -383,12 +391,19 @@
       <option name="project" value="LOCAL" />
       <updated>1732722909847</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="add login">
+      <option name="closed" value="true" />
+      <created>1732731817334</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1732731817334</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add 3 apps" />
     <MESSAGE value="add time zone" />
     <MESSAGE value="add admin fields" />
     <MESSAGE value="add pp" />
@@ -413,6 +428,7 @@
     <MESSAGE value="add search" />
     <MESSAGE value="add styles" />
     <MESSAGE value="split components" />
-    <option name="LAST_COMMIT_MESSAGE" value="split components" />
+    <MESSAGE value="add login" />
+    <option name="LAST_COMMIT_MESSAGE" value="add login" />
   </component>
 </project>
