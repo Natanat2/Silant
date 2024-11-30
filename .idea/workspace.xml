@@ -6,11 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add logout">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/protectedroute.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/protectedroute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/userinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/userinfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/schema.yml" beforeDir="false" afterPath="$PROJECT_DIR$/silant/schema.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/silant/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -417,7 +418,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732990135540</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="add logout">
+      <option name="closed" value="true" />
+      <created>1732994425982</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1732994425982</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

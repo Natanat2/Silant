@@ -16,7 +16,7 @@ const CurrentUser = () => {
             },
           }
         );
-        setName(response.data.name);
+        setName(response.data.username);
       } catch (err) {
         setError("Не удалось получить данные пользователя");
       }

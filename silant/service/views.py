@@ -1,9 +1,12 @@
 from rest_framework.permissions import SAFE_METHODS
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.views import APIView
+from rest_framework import viewsets, status
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework_simplejwt.tokens import AccessToken
+from django.http import JsonResponse
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from .models import Machine
 from .serializers import (
@@ -13,19 +16,24 @@ from .serializers import (
 )
 
 
-@api_view(['GET'])
-def current_user(request):
-    user = request.user
-    if user.is_authenticated:
-        return Response({
-            'id': user.id,
-            'username': user.username,
-            'email': user.email,
-            'name': user.first_name,
-            'groups': [group.name for group in user.groups.all()]
-        })
-    else:
-        return Response({'error': 'User is not authenticated'}, status = 401)
+class CurrentUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({'id': user.id, 'username': user.first_name})
+
+
+class ValidateTokenView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        token = request.data.get('token')
+        try:
+            access_token = AccessToken(token)
+            return Response({"valid": True})
+        except Exception as e:
+            return Response({"valid": False, "error": str(e)}, status=400)
 
 
 class MachineViewSet(viewsets.ModelViewSet):
