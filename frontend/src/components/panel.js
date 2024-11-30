@@ -6,9 +6,9 @@ const Panel = () => {
   return (
     <div className="userinfo">
       <CurrentUser />
-      <h3>
+      <h4>
         Информация о комплектации и технических характеристиках Вашей техники
-      </h3>
+      </h4>
     </div>
   );
 };

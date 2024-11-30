@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -8,12 +8,25 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Panel from "./components/panel";
 import ProtectedRoute from "./components/protectedroute";
+import Login from "./components/login";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("access_token");
+    if (accessToken) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header
+          isAuthenticated={isAuthenticated}
+          setIsAuthenticated={setIsAuthenticated}
+        />
         <Routes>
           <Route path="/" element={<MainSearch />} />
           <Route
@@ -23,6 +36,10 @@ function App() {
                 <Panel />
               </ProtectedRoute>
             }
+          />
+          <Route
+            path="/login"
+            element={<Login setIsAuthenticated={setIsAuthenticated} />}
           />
         </Routes>
         <Footer />

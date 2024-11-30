@@ -4,9 +4,22 @@ import logo from "./Logotype.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 import Login from "./login";
+import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ isAuthenticated, setIsAuthenticated }) => {
   const [showLogin, setShowLogin] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    setIsAuthenticated(false);
+    navigate("/");
+  };
+
+  const closeLoginWindow = () => {
+    setShowLogin(false);
+  };
 
   return (
     <header className="App-header">
@@ -18,9 +31,15 @@ const Header = () => {
           <Button variant="light">+7-8352-20-12-09, telegram</Button>
         </div>
         <div className="auth-button">
-          <Button variant="danger" onClick={() => setShowLogin(!showLogin)}>
-            {showLogin ? "Закрыть" : "Авторизация"}
-          </Button>
+          {isAuthenticated ? (
+            <Button variant="danger" onClick={handleLogout}>
+              Выйти
+            </Button>
+          ) : (
+            <Button variant="danger" onClick={() => setShowLogin(!showLogin)}>
+              {showLogin ? "Закрыть" : "Авторизация"}
+            </Button>
+          )}
         </div>
       </div>
 
@@ -28,7 +47,12 @@ const Header = () => {
         <h2>Электронная сервисная книжка "Мой Силант"</h2>
       </div>
 
-      {showLogin && <Login />}
+      {showLogin && (
+        <Login
+          setIsAuthenticated={setIsAuthenticated}
+          closeLoginWindow={closeLoginWindow}
+        />
+      )}
     </header>
   );
 };
