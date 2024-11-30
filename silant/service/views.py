@@ -21,6 +21,7 @@ def current_user(request):
             'id': user.id,
             'username': user.username,
             'email': user.email,
+            'name': user.first_name,
             'groups': [group.name for group in user.groups.all()]
         })
     else:
