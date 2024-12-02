@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add route user_machines">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add panel tables">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/panel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -446,12 +445,19 @@
       <option name="project" value="LOCAL" />
       <updated>1733146466864</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="add panel tables">
+      <option name="closed" value="true" />
+      <created>1733148809229</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1733148809229</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remove sstr date" />
     <MESSAGE value="add drf" />
     <MESSAGE value="add drf + jwt" />
     <MESSAGE value="add frontend" />
@@ -476,6 +482,7 @@
     <MESSAGE value="add logout" />
     <MESSAGE value="add validate user" />
     <MESSAGE value="add route user_machines" />
-    <option name="LAST_COMMIT_MESSAGE" value="add route user_machines" />
+    <MESSAGE value="add panel tables" />
+    <option name="LAST_COMMIT_MESSAGE" value="add panel tables" />
   </component>
 </project>
