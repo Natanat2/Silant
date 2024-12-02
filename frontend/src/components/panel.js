@@ -79,40 +79,42 @@ const Panel = () => {
       ];
 
       return (
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              {columns.map((column, index) => (
-                <th key={index}>{column}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((row, rowIndex) => (
-              <tr key={rowIndex}>
-                <td>{row.machine_factory_number}</td>
-                <td>{row.machine_model?.machine_model_name}</td>
-                <td>{row.engine_model?.engine_model_name}</td>
-                <td>{row.transmission_model?.transmission_model_name}</td>
-                <td>{row.lead_bridge_model?.lead_bridge_model_name}</td>
-                <td>
-                  {row.controlled_bridge_model?.controlled_bridge_model_name}
-                </td>
-                <td>{row.client?.user_full_name}</td>
-                <td>{row.service_company?.user_full_name}</td>
-                <td>{row.engine_factory_number}</td>
-                <td>{row.transmission_factory_number}</td>
-                <td>{row.lead_bridge_factory_number}</td>
-                <td>{row.controlled_bridge_factory_number}</td>
-                <td>{row.supply_contract_number_date}</td>
-                <td>{row.date_shipment_from_factory}</td>
-                <td>{row.consumer}</td>
-                <td>{row.delivery_address}</td>
-                <td>{row.configuration}</td>
+        <div style={{ overflowX: "auto" }}>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                {columns.map((column, index) => (
+                  <th key={index}>{column}</th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {data.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  <td>{row.machine_factory_number}</td>
+                  <td>{row.machine_model?.machine_model_name}</td>
+                  <td>{row.engine_model?.engine_model_name}</td>
+                  <td>{row.transmission_model?.transmission_model_name}</td>
+                  <td>{row.lead_bridge_model?.lead_bridge_model_name}</td>
+                  <td>
+                    {row.controlled_bridge_model?.controlled_bridge_model_name}
+                  </td>
+                  <td>{row.client?.user_full_name}</td>
+                  <td>{row.service_company?.user_full_name}</td>
+                  <td>{row.engine_factory_number}</td>
+                  <td>{row.transmission_factory_number}</td>
+                  <td>{row.lead_bridge_factory_number}</td>
+                  <td>{row.controlled_bridge_factory_number}</td>
+                  <td>{row.supply_contract_number_date}</td>
+                  <td>{row.date_shipment_from_factory}</td>
+                  <td>{row.consumer}</td>
+                  <td>{row.delivery_address}</td>
+                  <td>{row.configuration}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       );
     }
 
@@ -201,17 +203,27 @@ const Panel = () => {
 
   return (
     <div className="container mt-4">
-      <ButtonGroup>
-        <Button variant="primary" onClick={() => setActiveTable("table1")}>
-          Общая информация
-        </Button>
-        <Button variant="secondary" onClick={() => setActiveTable("table2")}>
-          ТО
-        </Button>
-        <Button variant="success" onClick={() => setActiveTable("table3")}>
-          Рекламации
-        </Button>
-      </ButtonGroup>
+      <div className="d-flex justify-content-center mb-4">
+        <ButtonGroup>
+          <Button
+            variant="light"
+            onClick={() => setActiveTable("table1")}
+            className="me-3"
+          >
+            Общая информация
+          </Button>
+          <Button
+            variant="success"
+            onClick={() => setActiveTable("table2")}
+            className="me-3"
+          >
+            ТО
+          </Button>
+          <Button variant="warning" onClick={() => setActiveTable("table3")}>
+            Рекламации
+          </Button>
+        </ButtonGroup>
+      </div>
       <div className="mt-4">{renderTable()}</div>
     </div>
   );
