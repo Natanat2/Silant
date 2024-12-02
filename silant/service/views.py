@@ -33,7 +33,7 @@ class ValidateTokenView(APIView):
             access_token = AccessToken(token)
             return Response({"valid": True})
         except Exception as e:
-            return Response({"valid": False, "error": str(e)}, status=400)
+            return Response({"valid": False, "error": str(e)}, status = 400)
 
 
 class MachineViewSet(viewsets.ModelViewSet):
@@ -85,3 +85,27 @@ class MachineViewSet(viewsets.ModelViewSet):
             return MachineDetailedSerializer
         else:
             return MachinePublicSerializer
+
+
+class UserMachinesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    @extend_schema(
+        description = "Retrieve all machines available for the current user",
+        responses = {200: MachinePublicSerializer(many = True)},
+    )
+    def get(self, request):
+        user = request.user
+        queryset = Machine.objects.all()
+
+        if user.groups.filter(name = 'Manager').exists():
+            pass
+        elif user.groups.filter(name = 'Client').exists():
+            queryset = queryset.filter(client = user.userdirectory)
+        elif user.groups.filter(name = 'ServiceCompany').exists():
+            queryset = queryset.filter(service_company = user.userdirectory)
+        else:
+            queryset = Machine.objects.none()
+
+        serializer = MachinePublicSerializer(queryset, many = True)
+        return Response(serializer.data)
