@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add panel tables">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add tables">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/panel.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -453,12 +455,27 @@
       <option name="project" value="LOCAL" />
       <updated>1733148809229</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="add tables">
+      <option name="closed" value="true" />
+      <created>1733152531292</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1733152531292</updated>
+    </task>
+    <task id="LOCAL-00046" summary="add tables">
+      <option name="closed" value="true" />
+      <created>1733153604366</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1733153604366</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add drf" />
     <MESSAGE value="add drf + jwt" />
     <MESSAGE value="add frontend" />
     <MESSAGE value="add rights" />
@@ -483,6 +500,7 @@
     <MESSAGE value="add validate user" />
     <MESSAGE value="add route user_machines" />
     <MESSAGE value="add panel tables" />
-    <option name="LAST_COMMIT_MESSAGE" value="add panel tables" />
+    <MESSAGE value="add tables" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tables" />
   </component>
 </project>

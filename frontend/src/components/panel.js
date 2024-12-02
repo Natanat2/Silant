@@ -5,6 +5,7 @@ const Panel = () => {
   const [activeTable, setActiveTable] = useState("table1");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [sortConfig, setSortConfig] = useState({ key: "", direction: "asc" });
 
   const apiUrls = useMemo(
     () => ({
@@ -44,6 +45,28 @@ const Panel = () => {
     fetchData(activeTable);
   }, [activeTable, fetchData]);
 
+  const handleSort = (key) => {
+    let direction = "asc";
+    if (sortConfig.key === key && sortConfig.direction === "asc") {
+      direction = "desc";
+    }
+    setSortConfig({ key, direction });
+  };
+
+  const sortData = (data) => {
+    if (sortConfig.key) {
+      return data.sort((a, b) => {
+        const aValue = a[sortConfig.key];
+        const bValue = b[sortConfig.key];
+
+        if (aValue < bValue) return sortConfig.direction === "asc" ? -1 : 1;
+        if (aValue > bValue) return sortConfig.direction === "asc" ? 1 : -1;
+        return 0;
+      });
+    }
+    return data;
+  };
+
   const renderTable = () => {
     if (isLoading) {
       return (
@@ -78,18 +101,31 @@ const Panel = () => {
         "Конфигурация",
       ];
 
+      let tableData = sortData([...data]);
+
       return (
         <div style={{ overflowX: "auto" }}>
           <Table striped bordered hover>
             <thead>
               <tr>
                 {columns.map((column, index) => (
-                  <th key={index}>{column}</th>
+                  <th
+                    key={index}
+                    onClick={() => handleSort(column)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {column}{" "}
+                    {sortConfig.key === column
+                      ? sortConfig.direction === "asc"
+                        ? "▲"
+                        : "▼"
+                      : ""}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {data.map((row, rowIndex) => (
+              {tableData.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                   <td>{row.machine_factory_number}</td>
                   <td>{row.machine_model?.machine_model_name}</td>
@@ -129,17 +165,30 @@ const Panel = () => {
         "Организация, проводившая ТО",
       ];
 
+      let tableData = sortData([...data]);
+
       return (
         <Table striped bordered hover>
           <thead>
             <tr>
               {columns.map((column, index) => (
-                <th key={index}>{column}</th>
+                <th
+                  key={index}
+                  onClick={() => handleSort(column)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {column}{" "}
+                  {sortConfig.key === column
+                    ? sortConfig.direction === "asc"
+                      ? "▲"
+                      : "▼"
+                    : ""}
+                </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {data.map((row, rowIndex) => (
+            {tableData.map((row, rowIndex) => (
               <tr key={rowIndex}>
                 <td>{row.machine?.machine_factory_number}</td>
                 <td>{row.type_of_maintenance?.type_of_maintenance_name}</td>
@@ -170,17 +219,30 @@ const Panel = () => {
         "Время",
       ];
 
+      let tableData = sortData([...data]);
+
       return (
         <Table striped bordered hover>
           <thead>
             <tr>
               {columns.map((column, index) => (
-                <th key={index}>{column}</th>
+                <th
+                  key={index}
+                  onClick={() => handleSort(column)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {column}{" "}
+                  {sortConfig.key === column
+                    ? sortConfig.direction === "asc"
+                      ? "▲"
+                      : "▼"
+                    : ""}
+                </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {data.map((row, rowIndex) => (
+            {tableData.map((row, rowIndex) => (
               <tr key={rowIndex}>
                 <td>{row.machine?.machine_factory_number}</td>
                 <td>{row.date_of_refusal}</td>
@@ -208,23 +270,27 @@ const Panel = () => {
           <Button
             variant="light"
             onClick={() => setActiveTable("table1")}
-            className="me-3"
+            className="me-2"
           >
-            Общая информация
+            Машины
           </Button>
           <Button
-            variant="success"
+            variant="light"
             onClick={() => setActiveTable("table2")}
-            className="me-3"
+            className="me-2"
           >
             ТО
           </Button>
-          <Button variant="warning" onClick={() => setActiveTable("table3")}>
-            Рекламации
+          <Button
+            variant="light"
+            onClick={() => setActiveTable("table3")}
+            className="me-2"
+          >
+            Отказы
           </Button>
         </ButtonGroup>
       </div>
-      <div className="mt-4">{renderTable()}</div>
+      {renderTable()}
     </div>
   );
 };
