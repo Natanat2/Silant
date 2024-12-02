@@ -91,21 +91,29 @@ class UserMachinesView(APIView):
     permission_classes = [IsAuthenticated]
 
     @extend_schema(
-        description = "Retrieve all machines available for the current user",
-        responses = {200: MachinePublicSerializer(many = True)},
+        description="Retrieve all machines available for the current user",
+        responses={
+            200: MachinePublicSerializer(many=True),  # Базовый ответ для Swagger
+        },
     )
     def get(self, request):
         user = request.user
         queryset = Machine.objects.all()
 
-        if user.groups.filter(name = 'Manager').exists():
-            pass
-        elif user.groups.filter(name = 'Client').exists():
-            queryset = queryset.filter(client = user.userdirectory)
-        elif user.groups.filter(name = 'ServiceCompany').exists():
-            queryset = queryset.filter(service_company = user.userdirectory)
+        # Фильтруем список машин в зависимости от группы пользователя
+        if user.groups.filter(name='Manager').exists():
+            # Менеджеры видят все машины
+            serializer_class = MachineDetailedSerializer
+        elif user.groups.filter(name='Client').exists():
+            queryset = queryset.filter(client=user.userdirectory)
+            serializer_class = MachineDetailedSerializer
+        elif user.groups.filter(name='ServiceCompany').exists():
+            queryset = queryset.filter(service_company=user.userdirectory)
+            serializer_class = MachineDetailedSerializer
         else:
             queryset = Machine.objects.none()
+            serializer_class = MachinePublicSerializer  # Пустой список для остальных
 
-        serializer = MachinePublicSerializer(queryset, many = True)
+        # Применяем соответствующий сериализатор
+        serializer = serializer_class(queryset, many=True)
         return Response(serializer.data)
