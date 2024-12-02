@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Button, ButtonGroup, Table, Spinner } from "react-bootstrap";
+import { useTable, useSortBy } from "react-table"; // Импортируем необходимые хуки
 
 const Panel = () => {
   const [activeTable, setActiveTable] = useState("table1");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [sortConfig, setSortConfig] = useState({ key: "", direction: "asc" });
 
   const apiUrls = useMemo(
     () => ({
@@ -27,12 +27,12 @@ const Panel = () => {
           },
         });
         if (!response.ok) {
-          throw new Error("Failed to fetch data");
+          throw new Error("Ошибка при загрузке данных");
         }
         const result = await response.json();
         setData(result);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Ошибка при загрузке данных:", error);
         setData([]);
       } finally {
         setIsLoading(false);
@@ -45,27 +45,95 @@ const Panel = () => {
     fetchData(activeTable);
   }, [activeTable, fetchData]);
 
-  const handleSort = (key) => {
-    let direction = "asc";
-    if (sortConfig.key === key && sortConfig.direction === "asc") {
-      direction = "desc";
+  const columns = useMemo(() => {
+    if (activeTable === "table1") {
+      return [
+        { Header: "Зав. № машины", accessor: "machine_factory_number" },
+        {
+          Header: "Модель машины",
+          accessor: "machine_model.machine_model_name",
+        },
+        {
+          Header: "Модель двигателя",
+          accessor: "engine_model.engine_model_name",
+        },
+        {
+          Header: "Модель трансмиссии",
+          accessor: "transmission_model.transmission_model_name",
+        },
+        {
+          Header: "Модель ведущего моста",
+          accessor: "lead_bridge_model.lead_bridge_model_name",
+        },
+        {
+          Header: "Модель управляемого моста",
+          accessor: "controlled_bridge_model.controlled_bridge_model_name",
+        },
+        { Header: "Клиент", accessor: "client.user_full_name" },
+        {
+          Header: "Компания обслуживания",
+          accessor: "service_company.user_full_name",
+        },
+        { Header: "Зав. № двигателя", accessor: "engine_factory_number" },
+        {
+          Header: "Зав. № трансмиссии",
+          accessor: "transmission_factory_number",
+        },
+        {
+          Header: "Зав. № ведущего моста",
+          accessor: "lead_bridge_factory_number",
+        },
+        {
+          Header: "Зав. № управляемого моста",
+          accessor: "controlled_bridge_factory_number",
+        },
+        { Header: "Контракт", accessor: "supply_contract_number_date" },
+        { Header: "Дата отгрузки", accessor: "date_shipment_from_factory" },
+        { Header: "Потребитель", accessor: "consumer" },
+        { Header: "Адрес доставки", accessor: "delivery_address" },
+        { Header: "Конфигурация", accessor: "configuration" },
+      ];
+    } else if (activeTable === "table2") {
+      return [
+        { Header: "Зав. № машины", accessor: "machine.machine_factory_number" },
+        {
+          Header: "Вид ТО",
+          accessor: "type_of_maintenance.type_of_maintenance_name",
+        },
+        { Header: "Дата проведения ТО", accessor: "date_of_maintenance" },
+        { Header: "Наработка, м/час", accessor: "operating_time" },
+        { Header: "№ заказ-наряда", accessor: "order_number" },
+        { Header: "Дата заказ-наряда", accessor: "order_date" },
+        {
+          Header: "Организация, проводившая ТО",
+          accessor: "organization_carried_maintenance.name_organization",
+        },
+      ];
+    } else if (activeTable === "table3") {
+      return [
+        { Header: "Зав. № машины", accessor: "machine.machine_factory_number" },
+        { Header: "Дата отказа", accessor: "date_of_refusal" },
+        { Header: "Наработка", accessor: "operating_time_refusal" },
+        { Header: "Узел отказа", accessor: "failure_node.name_of_node" },
+        { Header: "Описание отказа", accessor: "description_of_refusal" },
+        { Header: "Способ", accessor: "method_of_recovery.name_of_method" },
+        { Header: "Используемые", accessor: "spare_parts_used" },
+        { Header: "Дата восстановления", accessor: "restoration_date" },
+        { Header: "Время", accessor: "downtime" },
+      ];
     }
-    setSortConfig({ key, direction });
-  };
+    return [];
+  }, [activeTable]);
 
-  const sortData = (data) => {
-    if (sortConfig.key) {
-      return data.sort((a, b) => {
-        const aValue = a[sortConfig.key];
-        const bValue = b[sortConfig.key];
-
-        if (aValue < bValue) return sortConfig.direction === "asc" ? -1 : 1;
-        if (aValue > bValue) return sortConfig.direction === "asc" ? 1 : -1;
-        return 0;
-      });
-    }
-    return data;
-  };
+  // Используем хук useTable с функциями сортировки
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable(
+      {
+        columns,
+        data,
+      },
+      useSortBy // Хук для сортировки
+    );
 
   const renderTable = () => {
     if (isLoading) {
@@ -80,187 +148,44 @@ const Panel = () => {
       return <div className="text-center">Нет данных для отображения</div>;
     }
 
-    if (activeTable === "table1") {
-      const columns = [
-        "Зав. № машины",
-        "Модель машины",
-        "Модель двигателя",
-        "Модель трансмиссии",
-        "Модель ведущего моста",
-        "Модель управляемого моста",
-        "Клиент",
-        "Компания обслуживания",
-        "Зав. № двигателя",
-        "Зав. № трансмиссии",
-        "Зав. № ведущего моста",
-        "Зав. № управляемого моста",
-        "Контракт",
-        "Дата отгрузки",
-        "Потребитель",
-        "Адрес доставки",
-        "Конфигурация",
-      ];
-
-      let tableData = sortData([...data]);
-
-      return (
-        <div style={{ overflowX: "auto" }}>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                {columns.map((column, index) => (
-                  <th
-                    key={index}
-                    onClick={() => handleSort(column)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    {column}{" "}
-                    {sortConfig.key === column
-                      ? sortConfig.direction === "asc"
-                        ? "▲"
-                        : "▼"
-                      : ""}
+    return (
+      <div style={{ overflowX: "auto" }}>
+        <Table striped bordered hover {...getTableProps()}>
+          <thead>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    {column.render("Header")}
+                    <span>
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? " ▼"
+                          : " ▲"
+                        : ""}
+                    </span>
                   </th>
                 ))}
               </tr>
-            </thead>
-            <tbody>
-              {tableData.map((row, rowIndex) => (
-                <tr key={rowIndex}>
-                  <td>{row.machine_factory_number}</td>
-                  <td>{row.machine_model?.machine_model_name}</td>
-                  <td>{row.engine_model?.engine_model_name}</td>
-                  <td>{row.transmission_model?.transmission_model_name}</td>
-                  <td>{row.lead_bridge_model?.lead_bridge_model_name}</td>
-                  <td>
-                    {row.controlled_bridge_model?.controlled_bridge_model_name}
-                  </td>
-                  <td>{row.client?.user_full_name}</td>
-                  <td>{row.service_company?.user_full_name}</td>
-                  <td>{row.engine_factory_number}</td>
-                  <td>{row.transmission_factory_number}</td>
-                  <td>{row.lead_bridge_factory_number}</td>
-                  <td>{row.controlled_bridge_factory_number}</td>
-                  <td>{row.supply_contract_number_date}</td>
-                  <td>{row.date_shipment_from_factory}</td>
-                  <td>{row.consumer}</td>
-                  <td>{row.delivery_address}</td>
-                  <td>{row.configuration}</td>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    return (
+                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    );
+                  })}
                 </tr>
-              ))}
-            </tbody>
-          </Table>
-        </div>
-      );
-    }
-
-    if (activeTable === "table2") {
-      const columns = [
-        "Зав. № машины",
-        "Вид ТО",
-        "Дата проведения ТО",
-        "Наработка, м/час",
-        "№ заказ-наряда",
-        "Дата заказ-наряда",
-        "Организация, проводившая ТО",
-      ];
-
-      let tableData = sortData([...data]);
-
-      return (
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              {columns.map((column, index) => (
-                <th
-                  key={index}
-                  onClick={() => handleSort(column)}
-                  style={{ cursor: "pointer" }}
-                >
-                  {column}{" "}
-                  {sortConfig.key === column
-                    ? sortConfig.direction === "asc"
-                      ? "▲"
-                      : "▼"
-                    : ""}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((row, rowIndex) => (
-              <tr key={rowIndex}>
-                <td>{row.machine?.machine_factory_number}</td>
-                <td>{row.type_of_maintenance?.type_of_maintenance_name}</td>
-                <td>{row.date_of_maintenance}</td>
-                <td>{row.operating_time}</td>
-                <td>{row.order_number}</td>
-                <td>{row.order_date}</td>
-                <td>
-                  {row.organization_carried_maintenance?.name_organization}
-                </td>
-              </tr>
-            ))}
+              );
+            })}
           </tbody>
         </Table>
-      );
-    }
-
-    if (activeTable === "table3") {
-      const columns = [
-        "Зав. № машины",
-        "Дата отказа",
-        "Наработка",
-        "Узел отказа",
-        "Описание отказа",
-        "Способ",
-        "Используемые",
-        "Дата восстановления",
-        "Время",
-      ];
-
-      let tableData = sortData([...data]);
-
-      return (
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              {columns.map((column, index) => (
-                <th
-                  key={index}
-                  onClick={() => handleSort(column)}
-                  style={{ cursor: "pointer" }}
-                >
-                  {column}{" "}
-                  {sortConfig.key === column
-                    ? sortConfig.direction === "asc"
-                      ? "▲"
-                      : "▼"
-                    : ""}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((row, rowIndex) => (
-              <tr key={rowIndex}>
-                <td>{row.machine?.machine_factory_number}</td>
-                <td>{row.date_of_refusal}</td>
-                <td>{row.operating_time_refusal}</td>
-                <td>{row.failure_node?.name_of_node}</td>
-                <td>{row.description_of_refusal}</td>
-                <td>{row.method_of_recovery?.name_of_method}</td>
-                <td>{row.spare_parts_used}</td>
-                <td>{row.restoration_date}</td>
-                <td>{row.downtime}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      );
-    }
-
-    return null;
+      </div>
+    );
   };
 
   return (
