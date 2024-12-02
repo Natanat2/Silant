@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
-import { Button, ButtonGroup, Table, Spinner } from "react-bootstrap";
-import { useTable, useSortBy } from "react-table"; // Импортируем необходимые хуки
+import { Button, ButtonGroup, Table, Spinner, Form } from "react-bootstrap";
+import { useTable, useFilters, useSortBy } from "react-table";
 
 const Panel = () => {
   const [activeTable, setActiveTable] = useState("table1");
@@ -125,15 +125,25 @@ const Panel = () => {
     return [];
   }, [activeTable]);
 
-  // Используем хук useTable с функциями сортировки
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable(
-      {
-        columns,
-        data,
-      },
-      useSortBy // Хук для сортировки
-    );
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    setFilter,
+  } = useTable(
+    {
+      columns,
+      data,
+    },
+    useFilters,
+    useSortBy
+  );
+
+  const handleFilterChange = (e, columnId) => {
+    setFilter(columnId, e.target.value || undefined);
+  };
 
   const renderTable = () => {
     if (isLoading) {
@@ -164,6 +174,13 @@ const Panel = () => {
                           : " ▲"
                         : ""}
                     </span>
+                    {}
+                    <Form.Control
+                      type="text"
+                      placeholder="Фильтровать"
+                      onChange={(e) => handleFilterChange(e, column.id)}
+                      style={{ marginTop: "5px" }}
+                    />
                   </th>
                 ))}
               </tr>
