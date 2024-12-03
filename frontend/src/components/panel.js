@@ -41,57 +41,88 @@ const Panel = () => {
     [apiUrls]
   );
 
+  // Загрузка данных только при изменении активной таблицы
   useEffect(() => {
     fetchData(activeTable);
   }, [activeTable, fetchData]);
 
+  const handleMachineClick = (row) => {
+    alert(`Вы выбрали машину: ${row.index + 1}`);
+  };
+
   const columns = useMemo(() => {
+    const clickableColumn = {
+      Header: "Машины",
+      accessor: "machine_factory_number",
+      id: "clickable_machine",
+      Cell: ({ row }) => (
+        <a
+          href={`#машина-${row.index + 1}`}
+          onClick={() => handleMachineClick(row)}
+        >
+          Машина {row.index + 1}
+        </a>
+      ),
+    };
+
     if (activeTable === "table1") {
       return [
+        clickableColumn,
         { Header: "Зав. № машины", accessor: "machine_factory_number" },
         {
           Header: "Модель машины",
           accessor: "machine_model.machine_model_name",
         },
+        { Header: "ID модели машины", accessor: "machine_model.id" },
+        { Header: "Зав. № двигателя", accessor: "engine_factory_number" },
         {
           Header: "Модель двигателя",
           accessor: "engine_model.engine_model_name",
         },
+        { Header: "ID модели двигателя", accessor: "engine_model.id" },
+        {
+          Header: "Зав. № трансмиссии",
+          accessor: "transmission_factory_number",
+        },
         {
           Header: "Модель трансмиссии",
           accessor: "transmission_model.transmission_model_name",
+        },
+        { Header: "ID модели трансмиссии", accessor: "transmission_model.id" },
+        {
+          Header: "Зав. № ведущего моста",
+          accessor: "lead_bridge_factory_number",
         },
         {
           Header: "Модель ведущего моста",
           accessor: "lead_bridge_model.lead_bridge_model_name",
         },
         {
-          Header: "Модель управляемого моста",
-          accessor: "controlled_bridge_model.controlled_bridge_model_name",
-        },
-        { Header: "Клиент", accessor: "client.user_full_name" },
-        {
-          Header: "Компания обслуживания",
-          accessor: "service_company.user_full_name",
-        },
-        { Header: "Зав. № двигателя", accessor: "engine_factory_number" },
-        {
-          Header: "Зав. № трансмиссии",
-          accessor: "transmission_factory_number",
-        },
-        {
-          Header: "Зав. № ведущего моста",
-          accessor: "lead_bridge_factory_number",
+          Header: "ID модели ведущего моста",
+          accessor: "lead_bridge_model.id",
         },
         {
           Header: "Зав. № управляемого моста",
           accessor: "controlled_bridge_factory_number",
         },
-        { Header: "Контракт", accessor: "supply_contract_number_date" },
-        { Header: "Дата отгрузки", accessor: "date_shipment_from_factory" },
+        {
+          Header: "Модель управляемого моста",
+          accessor: "controlled_bridge_model.controlled_bridge_model_name",
+        },
+        {
+          Header: "ID модели управляемого моста",
+          accessor: "controlled_bridge_model.id",
+        },
+        {
+          Header: "Дата отгрузки с завода",
+          accessor: "date_shipment_from_factory",
+        },
         { Header: "Потребитель", accessor: "consumer" },
-        { Header: "Адрес доставки", accessor: "delivery_address" },
-        { Header: "Конфигурация", accessor: "configuration" },
+        { Header: "Клиент", accessor: "client.user_full_name" },
+        {
+          Header: "Компания обслуживания",
+          accessor: "service_company.user_full_name",
+        },
       ];
     } else if (activeTable === "table2") {
       return [
@@ -174,10 +205,9 @@ const Panel = () => {
                           : " ▲"
                         : ""}
                     </span>
-                    {}
                     <Form.Control
                       type="text"
-                      placeholder="Фильтровать"
+                      placeholder="Фильтр"
                       onChange={(e) => handleFilterChange(e, column.id)}
                       style={{ marginTop: "5px" }}
                     />
@@ -228,7 +258,7 @@ const Panel = () => {
             onClick={() => setActiveTable("table3")}
             className="me-2"
           >
-            Отказы
+            Рекламации
           </Button>
         </ButtonGroup>
       </div>
