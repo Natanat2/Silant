@@ -9,9 +9,12 @@ const Search = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/api/service/", {
-        params: { machine_factory_number: factoryNumber },
-      });
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/service/public_machines",
+        {
+          params: { machine_factory_number: factoryNumber },
+        }
+      );
       setSearchResults(response.data);
     } catch (error) {
       console.error("Ошибка при выполнении поиска:", error);

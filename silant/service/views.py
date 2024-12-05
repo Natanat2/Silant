@@ -1,5 +1,6 @@
 from rest_framework.permissions import SAFE_METHODS
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
@@ -39,6 +40,7 @@ class ValidateTokenView(APIView):
 class MachineViewSet(viewsets.ModelViewSet):
     queryset = Machine.objects.all()
     serializer_class = MachinePublicSerializer
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['machine_factory_number']
 
@@ -58,8 +60,13 @@ class MachineViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         queryset = Machine.objects.all()
-        machine_factory_number = self.request.query_params.get('machine_factory_number')
 
+        # Проверяем, это запрос к списку или объекту
+        if self.action == "retrieve":
+            return queryset
+
+        # Фильтрация для списка
+        machine_factory_number = self.request.query_params.get('machine_factory_number')
         if not machine_factory_number:
             return Machine.objects.none()
 
@@ -115,3 +122,44 @@ class UserMachinesView(APIView):
 
         serializer = serializer_class(queryset, many = True)
         return Response(serializer.data)
+
+
+class PublicMachineListView(ListAPIView):
+    queryset = Machine.objects.all()
+    permission_classes = [AllowAny]  # Открытая ручка для неавторизованных
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['machine_factory_number']
+
+    def get_serializer_class(self):
+        # Для авторизованных пользователей возвращаем полный набор данных
+        if self.request.user.is_authenticated:
+            return MachineDetailedSerializer
+        # Для неавторизованных пользователей — ограниченный набор данных
+        return MachinePublicSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = self.queryset
+
+        # Фильтрация по machine_factory_number, если передан параметр
+        machine_factory_number = self.request.query_params.get('machine_factory_number')
+
+        # Если параметр отсутствует, возвращаем пустой список
+        if not machine_factory_number:
+            return Machine.objects.none()
+
+        queryset = queryset.filter(machine_factory_number = machine_factory_number)
+
+        # Добавляем фильтрацию по группе пользователя, если необходимо
+        if self.request.user.is_authenticated:
+            if user.groups.filter(name = 'Manager').exists():
+                # Для менеджеров — все объекты
+                return queryset
+            elif user.groups.filter(name = 'Client').exists():
+                # Для клиентов — фильтрация по клиенту
+                queryset = queryset.filter(client = user.userdirectory)
+            elif user.groups.filter(name = 'ServiceCompany').exists():
+                # Для сервисных компаний — фильтрация по сервисной компании
+                queryset = queryset.filter(service_company = user.userdirectory)
+
+        return queryset
