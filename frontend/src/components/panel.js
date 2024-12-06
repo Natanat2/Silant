@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Button, ButtonGroup, Table, Spinner, Form } from "react-bootstrap";
 import { useTable, useFilters, useSortBy } from "react-table";
+import { useNavigate } from "react-router-dom";
 
 const Panel = () => {
+  const navigate = useNavigate();
   const [activeTable, setActiveTable] = useState("table1");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,14 +43,17 @@ const Panel = () => {
     [apiUrls]
   );
 
-  // Загрузка данных только при изменении активной таблицы
   useEffect(() => {
     fetchData(activeTable);
   }, [activeTable, fetchData]);
 
-  const handleMachineClick = (row) => {
-    alert(`Вы выбрали машину: ${row.index + 1}`);
-  };
+  const handleMachineClick = useCallback(
+    (row) => {
+      const machineId = row.original.id;
+      navigate(`/machine/${machineId}`);
+    },
+    [navigate]
+  );
 
   const columns = useMemo(() => {
     const clickableColumn = {
@@ -60,7 +65,7 @@ const Panel = () => {
           href={`#машина-${row.index + 1}`}
           onClick={() => handleMachineClick(row)}
         >
-          Машина {row.index + 1}
+          {row.original.machine_factory_number}
         </a>
       ),
     };
@@ -154,7 +159,7 @@ const Panel = () => {
       ];
     }
     return [];
-  }, [activeTable]);
+  }, [activeTable, handleMachineClick]);
 
   const {
     getTableProps,
@@ -194,9 +199,12 @@ const Panel = () => {
         <Table striped bordered hover {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+              <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  <th
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                    key={column.id}
+                  >
                     {column.render("Header")}
                     <span>
                       {column.isSorted
@@ -220,12 +228,15 @@ const Panel = () => {
             {rows.map((row) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                    );
-                  })}
+                <tr {...row.getRowProps()} key={row.original.id}>
+                  {row.cells.map((cell) => (
+                    <td
+                      {...cell.getCellProps()}
+                      key={cell.column.id + row.original.id}
+                    >
+                      {cell.render("Cell")}
+                    </td>
+                  ))}
                 </tr>
               );
             })}
@@ -258,10 +269,11 @@ const Panel = () => {
             onClick={() => setActiveTable("table3")}
             className="me-2"
           >
-            Рекламации
+            Отказы
           </Button>
         </ButtonGroup>
       </div>
+
       {renderTable()}
     </div>
   );

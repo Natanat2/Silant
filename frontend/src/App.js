@@ -9,6 +9,7 @@ import Footer from "./components/footer";
 import Panel from "./components/panel";
 import ProtectedRoute from "./components/protectedroute";
 import Login from "./components/login";
+import CurrentMachine from "./components/currentmachine";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -37,6 +38,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/machine/:id" element={<CurrentMachine />} />
           <Route
             path="/login"
             element={<Login setIsAuthenticated={setIsAuthenticated} />}
