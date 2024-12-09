@@ -10,11 +10,7 @@ from rest_framework_simplejwt.tokens import AccessToken
 from django.http import JsonResponse
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from .models import Machine
-from .serializers import (
-    MachinePublicSerializer,
-    MachineCreateUpdateSerializer,
-    MachineDetailedSerializer,
-)
+from .serializers import *
 
 
 class CurrentUserView(APIView):
@@ -163,3 +159,34 @@ class PublicMachineListView(ListAPIView):
                 queryset = queryset.filter(service_company = user.userdirectory)
 
         return queryset
+
+
+class MachineDependenciesAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        machine_models = MachineModelSerializer(MachineModel.objects.all(), many = True).data
+        engine_models = EngineModelSerializer(EngineModel.objects.all(), many = True).data
+        transmission_models = TransmissionModelSerializer(TransmissionModel.objects.all(), many = True).data
+        lead_bridge_models = LeadBridgeModelSerializer(LeadBridgeModel.objects.all(), many = True).data
+        controlled_bridge_models = ControlledBridgeModelSerializer(ControlledBridgeModel.objects.all(),
+                                                                   many = True).data
+
+        clients = UserDirectorySerializer(
+            UserDirectory.objects.filter(groups__name = "Client").distinct(),
+            many = True
+        ).data
+        service_companies = UserDirectorySerializer(
+            UserDirectory.objects.filter(groups__name = "ServiceCompany").distinct(),
+            many = True
+        ).data
+
+        return Response({
+            "machine_models": machine_models,
+            "engine_models": engine_models,
+            "transmission_models": transmission_models,
+            "lead_bridge_models": lead_bridge_models,
+            "controlled_bridge_models": controlled_bridge_models,
+            "clients": clients,
+            "service_companies": service_companies,
+        })

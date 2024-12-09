@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add crud to currentmachine">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add api option">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,22 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00008" summary="add pp">
-      <option name="closed" value="true" />
-      <created>1726826733778</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1726826733778</updated>
-    </task>
-    <task id="LOCAL-00009" summary="add pp">
-      <option name="closed" value="true" />
-      <created>1726834902617</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1726834902617</updated>
     </task>
     <task id="LOCAL-00010" summary="add data">
       <option name="closed" value="true" />
@@ -494,12 +478,27 @@
       <option name="project" value="LOCAL" />
       <updated>1733756353174</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="add api option">
+      <option name="closed" value="true" />
+      <created>1733757186452</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1733757186452</updated>
+    </task>
+    <task id="LOCAL-00058" summary="add api option">
+      <option name="closed" value="true" />
+      <created>1733757198545</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1733757198545</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="change serializers.py" />
     <MESSAGE value="add logging" />
     <MESSAGE value="log del" />
     <MESSAGE value="add permissions.py to machine" />
@@ -524,6 +523,7 @@
     <MESSAGE value="add endpoints for ids" />
     <MESSAGE value="add component currentmachine" />
     <MESSAGE value="add crud to currentmachine" />
-    <option name="LAST_COMMIT_MESSAGE" value="add crud to currentmachine" />
+    <MESSAGE value="add api option" />
+    <option name="LAST_COMMIT_MESSAGE" value="add api option" />
   </component>
 </project>
