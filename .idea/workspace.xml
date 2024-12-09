@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add component currentmachine">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add crud to currentmachine">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,14 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00007" summary="add admin fields">
-      <option name="closed" value="true" />
-      <created>1726818206442</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1726818206442</updated>
     </task>
     <task id="LOCAL-00008" summary="add pp">
       <option name="closed" value="true" />
@@ -492,12 +486,19 @@
       <option name="project" value="LOCAL" />
       <updated>1733505363681</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="add crud to currentmachine">
+      <option name="closed" value="true" />
+      <created>1733756353174</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1733756353174</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add jwt timer" />
     <MESSAGE value="change serializers.py" />
     <MESSAGE value="add logging" />
     <MESSAGE value="log del" />
@@ -522,6 +523,7 @@
     <MESSAGE value="add endpoints new filters" />
     <MESSAGE value="add endpoints for ids" />
     <MESSAGE value="add component currentmachine" />
-    <option name="LAST_COMMIT_MESSAGE" value="add component currentmachine" />
+    <MESSAGE value="add crud to currentmachine" />
+    <option name="LAST_COMMIT_MESSAGE" value="add crud to currentmachine" />
   </component>
 </project>
