@@ -1,39 +1,27 @@
-.modal-form {
+/* Обеспечиваем правильное расположение элементов внутри модального окна */
+.modal-edit-machine .modal-body {
   display: flex;
-  flex-direction: column; /* Вертикальное расположение полей */
-  gap: 20px; /* Увеличиваем отступы между полями */
+  flex-direction: column;  /* Вертикальное расположение */
+  gap: 15px;  /* Промежутки между элементами формы */
 }
 
-.modal-form .form-row {
+/* Позиционирование всех формовых элементов вертикально */
+.modal-edit-machine .form-group {
   display: flex;
-  align-items: center; /* Выравнивание элементов по центру по вертикали */
-  gap: 15px; /* Увеличиваем отступ между меткой и полем */
+  flex-direction: column;  /* Каждый элемент внутри формы по вертикали */
+  width: 100%;
 }
 
-.modal-form label {
-  width: 180px; /* Увеличиваем ширину для меток */
-  font-size: 16px; /* Увеличиваем размер шрифта */
-  font-weight: bold; /* Делаем шрифт жирным */
+.modal-edit-machine .form-control {
+  width: 100%;  /* Все текстовые поля растягиваются на всю ширину */
 }
 
-.modal-form input,
-.modal-form select {
-  padding: 12px; /* Увеличиваем отступы внутри поля */
-  font-size: 16px; /* Увеличиваем размер шрифта */
-  width: 100%; /* Поле растягивается на всю оставшуюся ширину */
-  box-sizing: border-box; /* Учитываем паддинги и границы в ширину */
-  border-radius: 5px; /* Скругление углов полей */
-  border: 1px solid #ccc; /* Цвет границы */
+.modal-edit-machine .form-select {
+  width: 100%;  /* Все выпадающие списки также растягиваются */
 }
 
-.modal-form input:focus,
-.modal-form select:focus {
-  border-color: #007bff; /* Изменяем цвет границы при фокусе */
-  outline: none; /* Убираем стандартный outline */
-}
-
-
-.modal-dialog {
-  width: 80%; /* Увеличиваем ширину модального окна на 80% от экрана */
-  max-width: 1000px; /* Ограничиваем максимальную ширину */
+/* Настройки для кнопок в футере */
+.modal-edit-machine .modal-footer {
+  display: flex;
+  justify-content: flex-end;  /* Располагаем кнопки справа */
 }
