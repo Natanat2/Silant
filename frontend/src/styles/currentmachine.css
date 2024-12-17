@@ -1,6 +1,39 @@
-.custom-modal {
-    max-width: 90%; /* Увеличение ширины */
-    margin: auto; /* Центрирование */
-    padding-top: 20px;
-  }
-  
+.modal-form {
+  display: flex;
+  flex-direction: column; /* Вертикальное расположение полей */
+  gap: 20px; /* Увеличиваем отступы между полями */
+}
+
+.modal-form .form-row {
+  display: flex;
+  align-items: center; /* Выравнивание элементов по центру по вертикали */
+  gap: 15px; /* Увеличиваем отступ между меткой и полем */
+}
+
+.modal-form label {
+  width: 180px; /* Увеличиваем ширину для меток */
+  font-size: 16px; /* Увеличиваем размер шрифта */
+  font-weight: bold; /* Делаем шрифт жирным */
+}
+
+.modal-form input,
+.modal-form select {
+  padding: 12px; /* Увеличиваем отступы внутри поля */
+  font-size: 16px; /* Увеличиваем размер шрифта */
+  width: 100%; /* Поле растягивается на всю оставшуюся ширину */
+  box-sizing: border-box; /* Учитываем паддинги и границы в ширину */
+  border-radius: 5px; /* Скругление углов полей */
+  border: 1px solid #ccc; /* Цвет границы */
+}
+
+.modal-form input:focus,
+.modal-form select:focus {
+  border-color: #007bff; /* Изменяем цвет границы при фокусе */
+  outline: none; /* Убираем стандартный outline */
+}
+
+
+.modal-dialog {
+  width: 80%; /* Увеличиваем ширину модального окна на 80% от экрана */
+  max-width: 1000px; /* Ограничиваем максимальную ширину */
+}

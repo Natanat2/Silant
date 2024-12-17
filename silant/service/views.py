@@ -18,7 +18,12 @@ class CurrentUserView(APIView):
 
     def get(self, request):
         user = request.user
-        return Response({'id': user.id, 'username': user.first_name})
+        groups = user.groups.values_list('name', flat=True)
+        return Response({
+            'id': user.id,
+            'username': user.first_name,
+            'groups': groups,
+        })
 
 
 class ValidateTokenView(APIView):

@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Spinner, Table, Button, Form, Modal } from "react-bootstrap";
+import { Spinner, Table, Button, Modal, Form } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "../styles/currentmachine.css";
 
 const CurrentMachine = () => {
-  const { id } = useParams(); // Получаем ID из URL
+  const { id } = useParams();
   const [machineData, setMachineData] = useState(null);
+  const [dependencies, setDependencies] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [formData, setFormData] = useState({}); // Для хранения данных формы
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [formData, setFormData] = useState({});
 
-  // Получение данных машины
   useEffect(() => {
     const fetchMachineData = async () => {
       try {
-        const response = await fetch(
+        const machineResponse = await fetch(
           `http://127.0.0.1:8000/api/service/${id}/`,
           {
             headers: {
@@ -23,15 +25,28 @@ const CurrentMachine = () => {
             },
           }
         );
-        if (!response.ok) {
+        const dependenciesResponse = await fetch(
+          `http://127.0.0.1:8000/api/service/machine-dependencies`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          }
+        );
+
+        if (!machineResponse.ok || !dependenciesResponse.ok) {
           throw new Error("Ошибка при загрузке данных");
         }
-        const data = await response.json();
-        setMachineData(data);
-        setFormData(data); // Инициализация формы данными
+
+        const machineData = await machineResponse.json();
+        const dependenciesData = await dependenciesResponse.json();
+
+        setMachineData(machineData);
+        setDependencies(dependenciesData);
+        setFormData(machineData); // Устанавливаем данные формы
       } catch (error) {
         console.error("Ошибка:", error);
-        setMachineData(null);
       } finally {
         setIsLoading(false);
       }
@@ -40,8 +55,22 @@ const CurrentMachine = () => {
     fetchMachineData();
   }, [id]);
 
-  // Обновление записи
-  const handleUpdate = async () => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleDateChange = (date) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      date_shipment_from_factory: date,
+    }));
+  };
+
+  const handleSaveChanges = async () => {
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/service/${id}/`, {
         method: "PUT",
@@ -53,48 +82,15 @@ const CurrentMachine = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Ошибка при обновлении данных");
+        throw new Error("Ошибка при сохранении изменений");
       }
 
       const updatedData = await response.json();
       setMachineData(updatedData);
-      setShowEditModal(false); // Закрыть модальное окно
+      setIsEditModalOpen(false);
     } catch (error) {
-      console.error("Ошибка при обновлении данных:", error);
+      console.error("Ошибка при сохранении:", error);
     }
-  };
-
-  // Удаление записи
-  const handleDelete = async () => {
-    if (window.confirm("Вы уверены, что хотите удалить эту машину?")) {
-      try {
-        const response = await fetch(
-          `http://127.0.0.1:8000/api/service/${id}/`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Ошибка при удалении");
-        }
-
-        alert("Машина успешно удалена");
-        // Перенаправить обратно на список машин
-        window.location.href = "/machines";
-      } catch (error) {
-        console.error("Ошибка при удалении:", error);
-      }
-    }
-  };
-
-  // Обработка изменений в форме
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
   };
 
   if (isLoading) {
@@ -105,7 +101,7 @@ const CurrentMachine = () => {
     );
   }
 
-  if (!machineData) {
+  if (!machineData || !dependencies) {
     return <div>Данные не найдены</div>;
   }
 
@@ -125,16 +121,16 @@ const CurrentMachine = () => {
             <td>{machineData.machine_factory_number}</td>
           </tr>
           <tr>
-            <td>Модель машины</td>
+            <td>Модель техники</td>
             <td>{machineData.machine_model.machine_model_name}</td>
-          </tr>
-          <tr>
-            <td>Зав. № двигателя</td>
-            <td>{machineData.engine_factory_number}</td>
           </tr>
           <tr>
             <td>Модель двигателя</td>
             <td>{machineData.engine_model.engine_model_name}</td>
+          </tr>
+          <tr>
+            <td>Зав. № двигателя</td>
+            <td>{machineData.engine_factory_number}</td>
           </tr>
           <tr>
             <td>Модель трансмиссии</td>
@@ -162,120 +158,236 @@ const CurrentMachine = () => {
             <td>Зав. № управляемого моста</td>
             <td>{machineData.controlled_bridge_factory_number}</td>
           </tr>
+          <tr>
+            <td>Договор поставки №, дата</td>
+            <td>{machineData.supply_contract_number_date}</td>
+          </tr>
+          <tr>
+            <td>Дата отгрузки с завода</td>
+            <td>{machineData.date_shipment_from_factory}</td>
+          </tr>
+          <tr>
+            <td>Грузополучатель</td>
+            <td>{machineData.consumer}</td>
+          </tr>
+          <tr>
+            <td>Адрес поставки</td>
+            <td>{machineData.delivery_address}</td>
+          </tr>
+          <tr>
+            <td>Комплектация</td>
+            <td>{machineData.configuration}</td>
+          </tr>
         </tbody>
       </Table>
-
-      <Button variant="primary" onClick={() => setShowEditModal(true)}>
+      <Button variant="primary" onClick={() => setIsEditModalOpen(true)}>
         Редактировать
       </Button>
-      <Button variant="danger" className="ms-2" onClick={handleDelete}>
-        Удалить
-      </Button>
 
-      {/* Модальное окно для редактирования */}
       <Modal
-        show={showEditModal}
-        onHide={() => setShowEditModal(false)}
-        dialogClassName="custom-modal"
+        show={isEditModalOpen}
+        onHide={() => setIsEditModalOpen(false)}
+        className="modal-edit-machine"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Редактирование данных</Modal.Title>
+          <Modal.Title>Редактировать данные</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group controlId="formMachineFactoryNumber">
+            <Form.Group controlId="machineFactoryNumber">
               <Form.Label>Зав. № машины</Form.Label>
               <Form.Control
                 type="text"
                 name="machine_factory_number"
                 value={formData.machine_factory_number || ""}
-                onChange={handleChange}
+                onChange={handleInputChange}
               />
             </Form.Group>
-            <Form.Group controlId="formEngineFactoryNumber">
+            <Form.Group controlId="machineModel">
+              <Form.Label>Модель техники</Form.Label>
+              <Form.Select
+                name="machine_model"
+                value={formData.machine_model || ""}
+                onChange={handleInputChange}
+              >
+                {dependencies.machine_models.map((model) => (
+                  <option key={model.id} value={model.id}>
+                    {model.machine_model_name}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+            <Form.Group controlId="engineModel">
+              <Form.Label>Модель двигателя</Form.Label>
+              <Form.Select
+                name="engine_model"
+                value={formData.engine_model || ""}
+                onChange={handleInputChange}
+              >
+                {dependencies.engine_models.map((model) => (
+                  <option key={model.id} value={model.id}>
+                    {model.engine_model_name}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+            <Form.Group controlId="engineFactoryNumber">
               <Form.Label>Зав. № двигателя</Form.Label>
               <Form.Control
                 type="text"
                 name="engine_factory_number"
                 value={formData.engine_factory_number || ""}
-                onChange={handleChange}
+                onChange={handleInputChange}
               />
             </Form.Group>
-            <Form.Group controlId="formEngineModel">
-              <Form.Label>Модель двигателя</Form.Label>
-              <Form.Control
-                type="text"
-                name="engine_model"
-                value={formData.engine_model?.engine_model_name || ""}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="formTransmissionModel">
+            <Form.Group controlId="transmissionModel">
               <Form.Label>Модель трансмиссии</Form.Label>
-              <Form.Control
-                type="text"
+              <Form.Select
                 name="transmission_model"
-                value={
-                  formData.transmission_model?.transmission_model_name || ""
-                }
-                onChange={handleChange}
-              />
+                value={formData.transmission_model || ""}
+                onChange={handleInputChange}
+              >
+                {dependencies.transmission_models.map((model) => (
+                  <option key={model.id} value={model.id}>
+                    {model.transmission_model_name}
+                  </option>
+                ))}
+              </Form.Select>
             </Form.Group>
-            <Form.Group controlId="formTransmissionFactoryNumber">
+            <Form.Group controlId="transmissionFactoryNumber">
               <Form.Label>Зав. № трансмиссии</Form.Label>
               <Form.Control
                 type="text"
                 name="transmission_factory_number"
                 value={formData.transmission_factory_number || ""}
-                onChange={handleChange}
+                onChange={handleInputChange}
               />
             </Form.Group>
-            <Form.Group controlId="formLeadBridgeModel">
+            <Form.Group controlId="leadBridgeModel">
               <Form.Label>Модель ведущего моста</Form.Label>
-              <Form.Control
-                type="text"
+              <Form.Select
                 name="lead_bridge_model"
-                value={formData.lead_bridge_model?.lead_bridge_model_name || ""}
-                onChange={handleChange}
-              />
+                value={formData.lead_bridge_model || ""}
+                onChange={handleInputChange}
+              >
+                {dependencies.lead_bridge_models.map((model) => (
+                  <option key={model.id} value={model.id}>
+                    {model.lead_bridge_model_name}
+                  </option>
+                ))}
+              </Form.Select>
             </Form.Group>
-            <Form.Group controlId="formLeadBridgeFactoryNumber">
+            <Form.Group controlId="leadBridgeFactoryNumber">
               <Form.Label>Зав. № ведущего моста</Form.Label>
               <Form.Control
                 type="text"
                 name="lead_bridge_factory_number"
                 value={formData.lead_bridge_factory_number || ""}
-                onChange={handleChange}
+                onChange={handleInputChange}
               />
             </Form.Group>
-            <Form.Group controlId="formControlledBridgeModel">
+            <Form.Group controlId="controlledBridgeModel">
               <Form.Label>Модель управляемого моста</Form.Label>
-              <Form.Control
-                type="text"
+              <Form.Select
                 name="controlled_bridge_model"
-                value={
-                  formData.controlled_bridge_model
-                    ?.controlled_bridge_model_name || ""
-                }
-                onChange={handleChange}
-              />
+                value={formData.controlled_bridge_model || ""}
+                onChange={handleInputChange}
+              >
+                {dependencies.controlled_bridge_models.map((model) => (
+                  <option key={model.id} value={model.id}>
+                    {model.controlled_bridge_model_name}
+                  </option>
+                ))}
+              </Form.Select>
             </Form.Group>
-            <Form.Group controlId="formControlledBridgeFactoryNumber">
+            <Form.Group controlId="controlledBridgeFactoryNumber">
               <Form.Label>Зав. № управляемого моста</Form.Label>
               <Form.Control
                 type="text"
                 name="controlled_bridge_factory_number"
                 value={formData.controlled_bridge_factory_number || ""}
-                onChange={handleChange}
+                onChange={handleInputChange}
               />
+            </Form.Group>
+            <Form.Group controlId="supplyContractNumberDate">
+              <Form.Label>Договор поставки №, дата</Form.Label>
+              <Form.Control
+                type="text"
+                name="supply_contract_number_date"
+                value={formData.supply_contract_number_date || ""}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="dateShipmentFromFactory">
+              <Form.Label>Дата отгрузки с завода</Form.Label>
+              <DatePicker
+                selected={formData.date_shipment_from_factory}
+                onChange={handleDateChange}
+                className="form-control"
+              />
+            </Form.Group>
+            <Form.Group controlId="consumer">
+              <Form.Label>Грузополучатель</Form.Label>
+              <Form.Control
+                type="text"
+                name="consumer"
+                value={formData.consumer || ""}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="deliveryAddress">
+              <Form.Label>Адрес поставки</Form.Label>
+              <Form.Control
+                type="text"
+                name="delivery_address"
+                value={formData.delivery_address || ""}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="configuration">
+              <Form.Label>Комплектация</Form.Label>
+              <Form.Control
+                type="text"
+                name="configuration"
+                value={formData.configuration || ""}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="client">
+              <Form.Label>Клиент</Form.Label>
+              <Form.Select
+                name="client"
+                value={formData.client || ""}
+                onChange={handleInputChange}
+              >
+                {dependencies.clients?.map((client) => (
+                  <option key={client.id} value={client.id}>
+                    {client.name}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+            <Form.Group controlId="serviceCompany">
+              <Form.Label>Сервисная компания</Form.Label>
+              <Form.Select
+                name="service_company"
+                value={formData.service_company || ""}
+                onChange={handleInputChange}
+              >
+                {dependencies.service_companies?.map((company) => (
+                  <option key={company.id} value={company.id}>
+                    {company.name}
+                  </option>
+                ))}
+              </Form.Select>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+          <Button variant="secondary" onClick={() => setIsEditModalOpen(false)}>
             Отмена
           </Button>
-          <Button variant="primary" onClick={handleUpdate}>
+          <Button variant="primary" onClick={handleSaveChanges}>
             Сохранить
           </Button>
         </Modal.Footer>
