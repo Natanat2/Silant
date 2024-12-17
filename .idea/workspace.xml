@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add info groups">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/MachineModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/MainForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/useMachineData.js" afterDir="false" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add split component currentmachine">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Buttons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/CreateMachineModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/TableWithMachineData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MachineModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MachineModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/currentmachine.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/currentmachine.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/service/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,14 +105,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00012" summary="remove sstr date">
-      <option name="closed" value="true" />
-      <created>1726844165193</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1726844165193</updated>
     </task>
     <task id="LOCAL-00013" summary="add drf">
       <option name="closed" value="true" />
@@ -499,12 +490,19 @@
       <option name="project" value="LOCAL" />
       <updated>1734451326084</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="add split component currentmachine">
+      <option name="closed" value="true" />
+      <created>1734455317534</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1734455317534</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="log del" />
     <MESSAGE value="add permissions.py to machine" />
     <MESSAGE value="add api all" />
     <MESSAGE value="add front" />
@@ -529,6 +527,7 @@
     <MESSAGE value="add crud to currentmachine" />
     <MESSAGE value="add api option" />
     <MESSAGE value="add info groups" />
-    <option name="LAST_COMMIT_MESSAGE" value="add info groups" />
+    <MESSAGE value="add split component currentmachine" />
+    <option name="LAST_COMMIT_MESSAGE" value="add split component currentmachine" />
   </component>
 </project>
