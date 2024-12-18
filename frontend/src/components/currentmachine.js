@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import TableWithMachineData from "./TableWithMachineData";
@@ -35,7 +35,7 @@ const CurrentMachine = () => {
     }
   };
 
-  const fetchMachineData = async () => {
+  const fetchMachineData = useCallback(async () => {
     try {
       const token = localStorage.getItem("access_token");
       if (!token) {
@@ -54,12 +54,12 @@ const CurrentMachine = () => {
     } catch (error) {
       console.error("Ошибка при получении данных о машине", error);
     }
-  };
+  }, [id]); // Добавляем id в зависимости, чтобы функция вызывалась при изменении id
 
   useEffect(() => {
     fetchUserGroup();
     fetchMachineData();
-  }, [id]);
+  }, [id, fetchMachineData]); // Добавляем fetchMachineData в зависимости
 
   if (!machineData) {
     return <div>Загрузка...</div>;
@@ -88,13 +88,16 @@ const CurrentMachine = () => {
       <CreateMachineModal
         showModal={showCreateModal}
         handleClose={() => setShowCreateModal(false)} // Закрываем модальное окно для создания
+        formData={machineData} // Передаем данные для формы
+        setFormData={setMachineData} // Передаем setMachineData для изменения данных машины
       />
       <MachineModal
         showModal={showModal}
         handleClose={() => setShowModal(false)} // Закрываем модальное окно для редактирования
-        formData={machineData}
-        setFormData={setMachineData}
+        formData={machineData} // Передаем данные для редактирования
+        setFormData={setMachineData} // Используем setMachineData для изменения данных машины
       />
+
       {/* Отображаем таблицу с данными машины */}
       <TableWithMachineData machineData={machineData} />
     </div>

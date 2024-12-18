@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add create component">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add upd panel">
+      <change afterPath="$PROJECT_DIR$/frontend/src/styles/createmachinemodal.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/CreateMachineModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CreateMachineModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/panel.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,14 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00014" summary="add drf + jwt">
-      <option name="closed" value="true" />
-      <created>1727174072758</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1727174072758</updated>
     </task>
     <task id="LOCAL-00015" summary="add frontend">
       <option name="closed" value="true" />
@@ -494,12 +486,19 @@
       <option name="project" value="LOCAL" />
       <updated>1734461659129</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="add upd panel">
+      <option name="closed" value="true" />
+      <created>1734507054584</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1734507054585</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add api all" />
     <MESSAGE value="add front" />
     <MESSAGE value="add filter param" />
     <MESSAGE value="add only param" />
@@ -524,6 +523,7 @@
     <MESSAGE value="add info groups" />
     <MESSAGE value="add split component currentmachine" />
     <MESSAGE value="add create component" />
-    <option name="LAST_COMMIT_MESSAGE" value="add create component" />
+    <MESSAGE value="add upd panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="add upd panel" />
   </component>
 </project>

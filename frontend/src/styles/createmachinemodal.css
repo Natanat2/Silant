@@ -1,0 +1,4 @@
+.modal-content * {
+    box-sizing: content-box; /* Устанавливаем нужное значение */
+  }
+  

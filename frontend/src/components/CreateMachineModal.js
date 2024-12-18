@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import axios from "axios";
+import "../styles/createmachinemodal.css";
 
 const CreateMachineModal = ({
   showModal,
@@ -23,19 +24,11 @@ const CreateMachineModal = ({
     setLoading(true);
     try {
       const token = localStorage.getItem("access_token");
-
-      if (!token) {
-        console.error("Отсутствует токен");
-        return;
-      }
+      if (!token) return console.error("Отсутствует токен");
 
       const response = await axios.get(
         "http://127.0.0.1:8000/api/service/machine-dependencies",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       setDependencies({
@@ -70,22 +63,6 @@ const CreateMachineModal = ({
   };
 
   const safeFormData = formData || {};
-  const {
-    machine_factory_number = "",
-    machine_model = "",
-    engine_factory_number = "",
-    engine_model = "",
-    transmission_factory_number = "",
-    transmission_model = "",
-    lead_bridge_factory_number = "",
-    lead_bridge_model = "",
-    controlled_bridge_factory_number = "",
-    controlled_bridge_model = "",
-    factory_shipping_date = "",
-    consumer = "",
-    client = "",
-    service_company = "",
-  } = safeFormData;
 
   return (
     <Modal show={showModal} onHide={handleClose} centered>
@@ -102,29 +79,24 @@ const CreateMachineModal = ({
         ) : (
           <Form onSubmit={handleSubmit}>
             <div className="row">
-              {/* Левая колонка */}
               <div className="col-md-6">
-                <Form.Group
-                  className="mb-3"
-                  controlId="formMachineFactoryNumber"
-                >
+                <Form.Group className="mb-3">
                   <Form.Label>Зав. № машины</Form.Label>
                   <Form.Control
                     type="text"
                     name="machine_factory_number"
-                    value={machine_factory_number}
+                    value={safeFormData.machine_factory_number || ""}
                     onChange={handleChange}
                     required
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formMachineModel">
+                <Form.Group className="mb-3">
                   <Form.Label>Модель машины</Form.Label>
                   <Form.Select
                     name="machine_model"
-                    value={machine_model}
+                    value={safeFormData.machine_model || ""}
                     onChange={handleChange}
-                    required
                   >
                     <option value="">Выберите модель...</option>
                     {dependencies.machineModels.map((model) => (
@@ -135,66 +107,22 @@ const CreateMachineModal = ({
                   </Form.Select>
                 </Form.Group>
 
-                <Form.Group
-                  className="mb-3"
-                  controlId="formTransmissionFactoryNumber"
-                >
-                  <Form.Label>Зав. № трансмиссии</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="transmission_factory_number"
-                    value={transmission_factory_number}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formLeadBridgeNumber">
-                  <Form.Label>Зав. № ведущего моста</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="lead_bridge_factory_number"
-                    value={lead_bridge_factory_number}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formConsumer">
-                  <Form.Label>Потребитель</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="consumer"
-                    value={consumer}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </div>
-
-              {/* Правая колонка */}
-              <div className="col-md-6">
-                <Form.Group
-                  className="mb-3"
-                  controlId="formEngineFactoryNumber"
-                >
+                <Form.Group className="mb-3">
                   <Form.Label>Зав. № двигателя</Form.Label>
                   <Form.Control
                     type="text"
                     name="engine_factory_number"
-                    value={engine_factory_number}
+                    value={safeFormData.engine_factory_number || ""}
                     onChange={handleChange}
-                    required
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formEngineModel">
+                <Form.Group className="mb-3">
                   <Form.Label>Модель двигателя</Form.Label>
                   <Form.Select
                     name="engine_model"
-                    value={engine_model}
+                    value={safeFormData.engine_model || ""}
                     onChange={handleChange}
-                    required
                   >
                     <option value="">Выберите модель...</option>
                     {dependencies.engineModels.map((model) => (
@@ -205,49 +133,133 @@ const CreateMachineModal = ({
                   </Form.Select>
                 </Form.Group>
 
-                <Form.Group
-                  className="mb-3"
-                  controlId="formControlledBridgeNumber"
-                >
-                  <Form.Label>Зав. № управляемого моста</Form.Label>
+                <Form.Group className="mb-3">
+                  <Form.Label>Зав. № трансмиссии</Form.Label>
                   <Form.Control
                     type="text"
-                    name="controlled_bridge_factory_number"
-                    value={controlled_bridge_factory_number}
+                    name="transmission_factory_number"
+                    value={safeFormData.transmission_factory_number || ""}
                     onChange={handleChange}
-                    required
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formClient">
-                  <Form.Label>Клиент</Form.Label>
+                <Form.Group className="mb-3">
+                  <Form.Label>Модель трансмиссии</Form.Label>
                   <Form.Select
-                    name="client"
-                    value={client}
+                    name="transmission_model"
+                    value={safeFormData.transmission_model || ""}
                     onChange={handleChange}
-                    required
                   >
-                    <option value="">Выберите клиента...</option>
-                    {dependencies.clients.map((client) => (
-                      <option key={client.id} value={client.id}>
-                        {client.name}
+                    <option value="">Выберите модель...</option>
+                    {dependencies.transmissionModels.map((model) => (
+                      <option key={model.id} value={model.id}>
+                        {model.transmission_model_name}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </div>
+
+              <div className="col-md-6">
+                <Form.Group className="mb-3">
+                  <Form.Label>Зав. № ведущего моста</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="lead_bridge_factory_number"
+                    value={safeFormData.lead_bridge_factory_number || ""}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label>Модель ведущего моста</Form.Label>
+                  <Form.Select
+                    name="lead_bridge_model"
+                    value={safeFormData.lead_bridge_model || ""}
+                    onChange={handleChange}
+                  >
+                    <option value="">Выберите модель...</option>
+                    {dependencies.leadBridgeModels.map((model) => (
+                      <option key={model.id} value={model.id}>
+                        {model.lead_bridge_model_name}
                       </option>
                     ))}
                   </Form.Select>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formServiceCompany">
-                  <Form.Label>Сервисная компания</Form.Label>
+                <Form.Group className="mb-3">
+                  <Form.Label>Зав. № управляемого моста</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="controlled_bridge_factory_number"
+                    value={safeFormData.controlled_bridge_factory_number || ""}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label>Модель управляемого моста</Form.Label>
+                  <Form.Select
+                    name="controlled_bridge_model"
+                    value={safeFormData.controlled_bridge_model || ""}
+                    onChange={handleChange}
+                  >
+                    <option value="">Выберите модель...</option>
+                    {dependencies.controlledBridgeModels.map((model) => (
+                      <option key={model.id} value={model.id}>
+                        {model.controlled_bridge_model_name}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label>Дата отгрузки с завода</Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="factory_shipping_date"
+                    value={safeFormData.factory_shipping_date || ""}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label>Потребитель</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="consumer"
+                    value={safeFormData.consumer || ""}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label>Клиент</Form.Label>
+                  <Form.Select
+                    name="client"
+                    value={safeFormData.client || ""}
+                    onChange={handleChange}
+                  >
+                    <option value="">Выберите клиента...</option>
+                    {dependencies.clients.map((client) => (
+                      <option key={client.id} value={client.id}>
+                        {client.user_full_name}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label>Компания обслуживания</Form.Label>
                   <Form.Select
                     name="service_company"
-                    value={service_company}
+                    value={safeFormData.service_company || ""}
                     onChange={handleChange}
-                    required
                   >
                     <option value="">Выберите компанию...</option>
                     {dependencies.serviceCompanies.map((company) => (
                       <option key={company.id} value={company.id}>
-                        {company.name}
+                        {company.user_full_name}
                       </option>
                     ))}
                   </Form.Select>
