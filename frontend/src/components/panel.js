@@ -61,11 +61,8 @@ const Panel = () => {
       accessor: "machine_factory_number",
       id: "clickable_machine",
       Cell: ({ row }) => (
-        <a
-          href={`#машина-${row.index + 1}`}
-          onClick={() => handleMachineClick(row)}
-        >
-          {row.original.machine_factory_number}
+        <a href={row.index + 1} onClick={() => handleMachineClick(row)}>
+          {`Машина-${row.index + 1}`}
         </a>
       ),
     };
@@ -78,13 +75,13 @@ const Panel = () => {
           Header: "Модель машины",
           accessor: "machine_model.machine_model_name",
         },
-        { Header: "ID модели машины", accessor: "machine_model.id" },
+
         { Header: "Зав. № двигателя", accessor: "engine_factory_number" },
         {
           Header: "Модель двигателя",
           accessor: "engine_model.engine_model_name",
         },
-        { Header: "ID модели двигателя", accessor: "engine_model.id" },
+
         {
           Header: "Зав. № трансмиссии",
           accessor: "transmission_factory_number",
@@ -93,7 +90,7 @@ const Panel = () => {
           Header: "Модель трансмиссии",
           accessor: "transmission_model.transmission_model_name",
         },
-        { Header: "ID модели трансмиссии", accessor: "transmission_model.id" },
+
         {
           Header: "Зав. № ведущего моста",
           accessor: "lead_bridge_factory_number",
@@ -102,10 +99,7 @@ const Panel = () => {
           Header: "Модель ведущего моста",
           accessor: "lead_bridge_model.lead_bridge_model_name",
         },
-        {
-          Header: "ID модели ведущего моста",
-          accessor: "lead_bridge_model.id",
-        },
+
         {
           Header: "Зав. № управляемого моста",
           accessor: "controlled_bridge_factory_number",
@@ -114,10 +108,7 @@ const Panel = () => {
           Header: "Модель управляемого моста",
           accessor: "controlled_bridge_model.controlled_bridge_model_name",
         },
-        {
-          Header: "ID модели управляемого моста",
-          accessor: "controlled_bridge_model.id",
-        },
+
         {
           Header: "Дата отгрузки с завода",
           accessor: "date_shipment_from_factory",
