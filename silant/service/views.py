@@ -86,7 +86,7 @@ class MachineViewSet(viewsets.ModelViewSet):
         user = self.request.user
 
         if user.groups.filter(name = 'Manager').exists():
-            return MachineDetailedSerializer
+            return MachineCreateUpdateSerializer
         elif user.groups.filter(name = 'Client').exists():
             return MachineDetailedSerializer
         elif user.groups.filter(name = 'ServiceCompany').exists():
