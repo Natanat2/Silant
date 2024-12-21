@@ -1,7 +1,22 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-const TableWithMachineData = ({ machineData }) => {
+const resolveDependency = (id, list, key) => {
+  const item = list.find((el) => el.id === id);
+  return item ? item[key] : "Не указано";
+};
+
+const TableWithMachineData = ({ machineData, dependencies }) => {
+  const {
+    machine_models,
+    engine_models,
+    transmission_models,
+    lead_bridge_models,
+    controlled_bridge_models,
+    clients,
+    service_companies,
+  } = dependencies;
+
   return (
     <Table striped bordered hover>
       <thead>
@@ -12,13 +27,14 @@ const TableWithMachineData = ({ machineData }) => {
       </thead>
       <tbody>
         {[
-          {
-            label: "Зав. № машины",
-            value: machineData.machine_factory_number,
-          },
+          { label: "Зав. № машины", value: machineData.machine_factory_number },
           {
             label: "Модель машины",
-            value: machineData.machine_model.machine_model_name,
+            value: resolveDependency(
+              machineData.machine_model,
+              machine_models,
+              "machine_model_name"
+            ),
           },
           {
             label: "Зав. № двигателя",
@@ -26,7 +42,11 @@ const TableWithMachineData = ({ machineData }) => {
           },
           {
             label: "Модель двигателя",
-            value: machineData.engine_model.engine_model_name,
+            value: resolveDependency(
+              machineData.engine_model,
+              engine_models,
+              "engine_model_name"
+            ),
           },
           {
             label: "Зав. № трансмиссии",
@@ -34,7 +54,11 @@ const TableWithMachineData = ({ machineData }) => {
           },
           {
             label: "Модель трансмиссии",
-            value: machineData.transmission_model.transmission_model_name,
+            value: resolveDependency(
+              machineData.transmission_model,
+              transmission_models,
+              "transmission_model_name"
+            ),
           },
           {
             label: "Зав. № ведущего моста",
@@ -42,7 +66,11 @@ const TableWithMachineData = ({ machineData }) => {
           },
           {
             label: "Модель ведущего моста",
-            value: machineData.lead_bridge_model.lead_bridge_model_name,
+            value: resolveDependency(
+              machineData.lead_bridge_model,
+              lead_bridge_models,
+              "lead_bridge_model_name"
+            ),
           },
           {
             label: "Зав. № управляемого моста",
@@ -50,18 +78,35 @@ const TableWithMachineData = ({ machineData }) => {
           },
           {
             label: "Модель управляемого моста",
-            value:
-              machineData.controlled_bridge_model.controlled_bridge_model_name,
+            value: resolveDependency(
+              machineData.controlled_bridge_model,
+              controlled_bridge_models,
+              "controlled_bridge_model_name"
+            ),
           },
           {
             label: "Дата отгрузки с завода",
             value: machineData.date_shipment_from_factory,
           },
-          { label: "Потребитель", value: machineData.consumer },
-          { label: "Клиент", value: machineData.client.user_full_name },
+          {
+            label: "Потребитель",
+            value: machineData.consumer,
+          },
+          {
+            label: "Клиент",
+            value: resolveDependency(
+              machineData.client,
+              clients,
+              "user_full_name"
+            ),
+          },
           {
             label: "Компания обслуживания",
-            value: machineData.service_company.user_full_name,
+            value: resolveDependency(
+              machineData.service_company,
+              service_companies,
+              "user_full_name"
+            ),
           },
         ].map((row, index) => (
           <tr key={index}>

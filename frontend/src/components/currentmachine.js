@@ -4,23 +4,19 @@ import { useParams } from "react-router-dom";
 import TableWithMachineData from "./TableWithMachineData";
 import Buttons from "./Buttons";
 import MachineModal from "./MachineModal";
-import CreateMachineModal from "./CreateMachineModal"; // Импортируем новый компонент
+import CreateMachineModal from "./CreateMachineModal";
 
 const CurrentMachine = () => {
   const [showModal, setShowModal] = useState(false);
-  const [showCreateModal, setShowCreateModal] = useState(false); // Новый стейт для отображения модального окна для создания
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const [machineData, setMachineData] = useState(null);
+  const [dependencies, setDependencies] = useState(null);
   const [userGroup, setUserGroup] = useState(null);
   const { id } = useParams();
 
-  const fetchUserGroup = async () => {
+  const fetchUserGroup = async (token) => {
     try {
-      const token = localStorage.getItem("access_token");
-      if (!token) {
-        console.error("Отсутствует токен");
-        return;
-      }
-      const userResponse = await axios.get(
+      const response = await axios.get(
         "http://127.0.0.1:8000/api/service/current_user",
         {
           headers: {
@@ -28,10 +24,25 @@ const CurrentMachine = () => {
           },
         }
       );
-      const group = userResponse.data.groups;
-      setUserGroup(group);
+      setUserGroup(response.data.groups);
     } catch (error) {
-      console.error("Ошибка при получении информации о пользователе", error);
+      console.error("Ошибка при загрузке информации о пользователе", error);
+    }
+  };
+
+  const fetchDependencies = async (token) => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/service/machine-dependencies",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setDependencies(response.data);
+    } catch (error) {
+      console.error("Ошибка при загрузке зависимостей", error);
     }
   };
 
@@ -42,6 +53,8 @@ const CurrentMachine = () => {
         console.error("Отсутствует токен");
         return;
       }
+      await fetchUserGroup(token);
+      await fetchDependencies(token);
       const response = await axios.get(
         `http://127.0.0.1:8000/api/service/${id}/`,
         {
@@ -54,14 +67,13 @@ const CurrentMachine = () => {
     } catch (error) {
       console.error("Ошибка при получении данных о машине", error);
     }
-  }, [id]); // Добавляем id в зависимости, чтобы функция вызывалась при изменении id
+  }, [id]);
 
   useEffect(() => {
-    fetchUserGroup();
     fetchMachineData();
-  }, [id, fetchMachineData]); // Добавляем fetchMachineData в зависимости
+  }, [fetchMachineData]);
 
-  if (!machineData) {
+  if (!machineData || !dependencies) {
     return <div>Загрузка...</div>;
   }
 
@@ -69,37 +81,39 @@ const CurrentMachine = () => {
 
   const handleEdit = () => setShowModal(true);
   const handleDelete = () => {
-    // Логика для удаления машины
     console.log("Машина удалена");
   };
-
-  const handleCreate = () => setShowCreateModal(true); // Открываем модальное окно для создания новой машины
+  const handleCreate = () => setShowCreateModal(true);
 
   return (
     <div>
-      {/* Кнопки отображаются в нужном порядке */}
+      {/* Кнопки для менеджеров */}
       <Buttons
         isManager={isManager}
-        onCreate={handleCreate} // Обработчик для кнопки "Создать"
-        onEdit={handleEdit} // Обработчик для кнопки "Редактировать"
-        onDelete={handleDelete} // Обработчик для кнопки "Удалить"
+        onCreate={handleCreate}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
       />
-      {/* Модальные окна для создания/редактирования */}
+
+      {/* Модальные окна */}
       <CreateMachineModal
         showModal={showCreateModal}
-        handleClose={() => setShowCreateModal(false)} // Закрываем модальное окно для создания
-        formData={machineData} // Передаем данные для формы
-        setFormData={setMachineData} // Передаем setMachineData для изменения данных машины
+        handleClose={() => setShowCreateModal(false)}
+        formData={machineData}
+        setFormData={setMachineData}
       />
       <MachineModal
         showModal={showModal}
-        handleClose={() => setShowModal(false)} // Закрываем модальное окно для редактирования
-        formData={machineData} // Передаем данные для редактирования
-        setFormData={setMachineData} // Используем setMachineData для изменения данных машины
+        handleClose={() => setShowModal(false)}
+        formData={machineData}
+        setFormData={setMachineData}
       />
 
-      {/* Отображаем таблицу с данными машины */}
-      <TableWithMachineData machineData={machineData} />
+      {/* Таблица с данными */}
+      <TableWithMachineData
+        machineData={machineData}
+        dependencies={dependencies}
+      />
     </div>
   );
 };
