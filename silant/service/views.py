@@ -60,39 +60,36 @@ class MachineViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        queryset = Machine.objects.all()
 
-        # Проверяем, это запрос к списку или объекту
-        if self.action == "retrieve":
-            return queryset
+        if self.action in ['retrieve', 'update', 'partial_update', 'destroy']:
+            # Возвращаем все объекты для действий с конкретным объектом
+            return Machine.objects.all()
 
         # Фильтрация для списка
+        queryset = Machine.objects.all()
         machine_factory_number = self.request.query_params.get('machine_factory_number')
-        if not machine_factory_number:
-            return Machine.objects.none()
 
-        if self.request.method not in SAFE_METHODS:
-            if user.groups.filter(name = 'Manager').exists():
-                return queryset.filter(machine_factory_number = machine_factory_number)
-            elif user.groups.filter(name = 'Client').exists():
-                return queryset.filter(client = user.userdirectory, machine_factory_number = machine_factory_number)
-            elif user.groups.filter(name = 'ServiceCompany').exists():
-                return queryset.filter(service_company = user.userdirectory,
-                                       machine_factory_number = machine_factory_number)
+        if machine_factory_number:
+            queryset = queryset.filter(machine_factory_number = machine_factory_number)
 
-        return queryset.filter(machine_factory_number = machine_factory_number)
+        # Применяем ограничения на доступ
+        if user.groups.filter(name = 'Manager').exists():
+            return queryset
+        elif user.groups.filter(name = 'Client').exists():
+            return queryset.filter(client = user.userdirectory)
+        elif user.groups.filter(name = 'ServiceCompany').exists():
+            return queryset.filter(service_company = user.userdirectory)
+
+        return Machine.objects.none()
 
     def get_serializer_class(self):
-        user = self.request.user
-
-        if user.groups.filter(name = 'Manager').exists():
+        if self.action in ['create', 'update', 'partial_update']:
             return MachineCreateUpdateSerializer
-        elif user.groups.filter(name = 'Client').exists():
+        elif self.request.user.groups.filter(name = 'Manager').exists():
             return MachineDetailedSerializer
-        elif user.groups.filter(name = 'ServiceCompany').exists():
+        elif self.request.user.groups.filter(name__in = ['Client', 'ServiceCompany']).exists():
             return MachineDetailedSerializer
-        else:
-            return MachinePublicSerializer
+        return MachinePublicSerializer
 
 
 class UserMachinesView(APIView):

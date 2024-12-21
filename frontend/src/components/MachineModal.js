@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Toast, Spinner } from "react-bootstrap";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 const MachineModal = ({
   showModal,
@@ -9,7 +8,6 @@ const MachineModal = ({
   formData,
   onMachineUpdated,
 }) => {
-  const { id } = useParams(); // Получаем ID из URL
   const [dependencies, setDependencies] = useState({
     machineModels: [],
     engineModels: [],
@@ -24,9 +22,19 @@ const MachineModal = ({
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [error, setError] = useState(null);
 
+  // Обновление данных формы при открытии модального окна
   useEffect(() => {
     if (formData) {
-      setLocalFormData({ ...formData, id }); // Обновляем данные, включая ID из URL
+      setLocalFormData({
+        ...formData,
+        machine_model: formData.machine_model.id,
+        engine_model: formData.engine_model.id,
+        transmission_model: formData.transmission_model.id,
+        lead_bridge_model: formData.lead_bridge_model.id,
+        controlled_bridge_model: formData.controlled_bridge_model.id,
+        client: formData.client.id,
+        service_company: formData.service_company.id,
+      });
     } else {
       setLocalFormData({
         machine_factory_number: "",
@@ -46,11 +54,11 @@ const MachineModal = ({
         configuration: "",
         client: "",
         service_company: "",
-        id, // ID из URL
       });
     }
-  }, [formData, id]);
+  }, [formData]);
 
+  // Загрузка зависимостей
   const fetchDependencies = async () => {
     setLoading(true);
     try {
@@ -97,7 +105,7 @@ const MachineModal = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
+    setError(null); // Сбрасываем ошибку перед началом запроса
 
     try {
       const token = localStorage.getItem("access_token");
@@ -107,7 +115,7 @@ const MachineModal = ({
       }
 
       if (!localFormData.id) {
-        setError("Отсутствует ID машины для обновления");
+        setError("ID машины отсутствует");
         return;
       }
 
@@ -122,12 +130,12 @@ const MachineModal = ({
         }
       );
 
-      setShowSuccessToast(true);
-      onMachineUpdated(localFormData);
+      setShowSuccessToast(true); // Показываем уведомление об успехе
+      setError(null); // Убираем сообщение об ошибке
       setTimeout(() => {
         setShowSuccessToast(false);
-        handleClose();
-      }, 2000);
+        handleClose(); // Закрываем окно
+      }, 500);
     } catch (error) {
       console.error("Ошибка при обновлении машины:", error);
       setError(
