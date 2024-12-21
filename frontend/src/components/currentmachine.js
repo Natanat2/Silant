@@ -87,15 +87,12 @@ const CurrentMachine = () => {
 
   return (
     <div>
-      {/* Кнопки для менеджеров */}
       <Buttons
         isManager={isManager}
         onCreate={handleCreate}
         onEdit={handleEdit}
         onDelete={handleDelete}
       />
-
-      {/* Модальные окна */}
       <CreateMachineModal
         showModal={showCreateModal}
         handleClose={() => setShowCreateModal(false)}
@@ -108,8 +105,6 @@ const CurrentMachine = () => {
         formData={machineData}
         setFormData={setMachineData}
       />
-
-      {/* Таблица с данными */}
       <TableWithMachineData
         machineData={machineData}
         dependencies={dependencies}

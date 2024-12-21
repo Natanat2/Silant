@@ -88,9 +88,11 @@ const TableWithMachineData = ({ machineData, dependencies }) => {
             label: "Дата отгрузки с завода",
             value: machineData.date_shipment_from_factory,
           },
+          { label: "Потребитель", value: machineData.consumer },
+          { label: "Адрес доставки", value: machineData.delivery_address },
           {
-            label: "Потребитель",
-            value: machineData.consumer,
+            label: "Номер договора поставки",
+            value: machineData.supply_contract_number_date,
           },
           {
             label: "Клиент",
@@ -108,6 +110,7 @@ const TableWithMachineData = ({ machineData, dependencies }) => {
               "user_full_name"
             ),
           },
+          { label: "Комплектация", value: machineData.configuration },
         ].map((row, index) => (
           <tr key={index}>
             <td>{row.label}</td>
