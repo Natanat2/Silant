@@ -1,0 +1,42 @@
+/* machinemodal.css */
+
+/* Общий стиль для модального окна */
+.modal-content {
+    padding: 20px;
+  }
+  
+  /* Разделение колонок в форме */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Добавляем отступы между колонками */
+  }
+  
+  .col-md-6 {
+    flex: 0 0 48%; /* Две равные колонки */
+    max-width: 48%;
+  }
+  
+  /* Стиль для кнопки сохранения */
+  .form-footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .form-footer .btn {
+    width: 100%; /* Кнопка на всю ширину */
+    max-width: 300px; /* Опционально: ограничение ширины */
+  }
+  
+  /* Для небольших экранов */
+  @media (max-width: 768px) {
+    .col-md-6 {
+      flex: 0 0 100%; /* Колонки занимают всю ширину */
+      max-width: 100%;
+    }
+  
+    .form-footer .btn {
+      max-width: none; /* Убираем ограничение ширины на мобильных */
+    }
+  }
+  
