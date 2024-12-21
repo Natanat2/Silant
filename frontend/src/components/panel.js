@@ -82,13 +82,11 @@ const Panel = () => {
           Header: "Модель машины",
           accessor: "machine_model.machine_model_name",
         },
-
         { Header: "Зав. № двигателя", accessor: "engine_factory_number" },
         {
           Header: "Модель двигателя",
           accessor: "engine_model.engine_model_name",
         },
-
         {
           Header: "Зав. № трансмиссии",
           accessor: "transmission_factory_number",
@@ -97,7 +95,6 @@ const Panel = () => {
           Header: "Модель трансмиссии",
           accessor: "transmission_model.transmission_model_name",
         },
-
         {
           Header: "Зав. № ведущего моста",
           accessor: "lead_bridge_factory_number",
@@ -106,7 +103,6 @@ const Panel = () => {
           Header: "Модель ведущего моста",
           accessor: "lead_bridge_model.lead_bridge_model_name",
         },
-
         {
           Header: "Зав. № управляемого моста",
           accessor: "controlled_bridge_factory_number",
@@ -115,11 +111,16 @@ const Panel = () => {
           Header: "Модель управляемого моста",
           accessor: "controlled_bridge_model.controlled_bridge_model_name",
         },
-
         {
           Header: "Дата отгрузки с завода",
           accessor: "date_shipment_from_factory",
         },
+        { Header: "Адрес доставки", accessor: "delivery_address" },
+        {
+          Header: "Номер договора поставки",
+          accessor: "supply_contract_number_date",
+        },
+        { Header: "Комплектация", accessor: "configuration" },
         { Header: "Потребитель", accessor: "consumer" },
         { Header: "Клиент", accessor: "client.user_full_name" },
         {
