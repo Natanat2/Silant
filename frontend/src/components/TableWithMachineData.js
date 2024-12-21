@@ -1,21 +1,21 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-const resolveDependency = (id, list, key) => {
-  const item = list.find((el) => el.id === id);
-  return item ? item[key] : "Не указано";
-};
+const TableWithMachineData = ({ machineData }) => {
+  if (!machineData) {
+    return <div>Данные отсутствуют</div>;
+  }
 
-const TableWithMachineData = ({ machineData, dependencies }) => {
+  // Проверяем, что machine_model и другие свойства существуют
   const {
-    machine_models,
-    engine_models,
-    transmission_models,
-    lead_bridge_models,
-    controlled_bridge_models,
-    clients,
-    service_companies,
-  } = dependencies;
+    machine_model = {},
+    engine_model = {},
+    transmission_model = {},
+    lead_bridge_model = {},
+    controlled_bridge_model = {},
+    client = {},
+    service_company = {},
+  } = machineData;
 
   return (
     <Table striped bordered hover>
@@ -28,37 +28,19 @@ const TableWithMachineData = ({ machineData, dependencies }) => {
       <tbody>
         {[
           { label: "Зав. № машины", value: machineData.machine_factory_number },
-          {
-            label: "Модель машины",
-            value: resolveDependency(
-              machineData.machine_model,
-              machine_models,
-              "machine_model_name"
-            ),
-          },
+          { label: "Модель машины", value: machine_model.machine_model_name },
           {
             label: "Зав. № двигателя",
             value: machineData.engine_factory_number,
           },
-          {
-            label: "Модель двигателя",
-            value: resolveDependency(
-              machineData.engine_model,
-              engine_models,
-              "engine_model_name"
-            ),
-          },
+          { label: "Модель двигателя", value: engine_model.engine_model_name },
           {
             label: "Зав. № трансмиссии",
             value: machineData.transmission_factory_number,
           },
           {
             label: "Модель трансмиссии",
-            value: resolveDependency(
-              machineData.transmission_model,
-              transmission_models,
-              "transmission_model_name"
-            ),
+            value: transmission_model.transmission_model_name,
           },
           {
             label: "Зав. № ведущего моста",
@@ -66,11 +48,7 @@ const TableWithMachineData = ({ machineData, dependencies }) => {
           },
           {
             label: "Модель ведущего моста",
-            value: resolveDependency(
-              machineData.lead_bridge_model,
-              lead_bridge_models,
-              "lead_bridge_model_name"
-            ),
+            value: lead_bridge_model.lead_bridge_model_name,
           },
           {
             label: "Зав. № управляемого моста",
@@ -78,43 +56,28 @@ const TableWithMachineData = ({ machineData, dependencies }) => {
           },
           {
             label: "Модель управляемого моста",
-            value: resolveDependency(
-              machineData.controlled_bridge_model,
-              controlled_bridge_models,
-              "controlled_bridge_model_name"
-            ),
+            value: controlled_bridge_model.controlled_bridge_model_name,
           },
           {
             label: "Дата отгрузки с завода",
             value: machineData.date_shipment_from_factory,
           },
           { label: "Потребитель", value: machineData.consumer },
-          { label: "Адрес доставки", value: machineData.delivery_address },
+          { label: "Клиент", value: client.user_full_name },
+          {
+            label: "Компания обслуживания",
+            value: service_company.user_full_name,
+          },
+          { label: "Адрес поставки", value: machineData.delivery_address },
           {
             label: "Номер договора поставки",
             value: machineData.supply_contract_number_date,
-          },
-          {
-            label: "Клиент",
-            value: resolveDependency(
-              machineData.client,
-              clients,
-              "user_full_name"
-            ),
-          },
-          {
-            label: "Компания обслуживания",
-            value: resolveDependency(
-              machineData.service_company,
-              service_companies,
-              "user_full_name"
-            ),
           },
           { label: "Комплектация", value: machineData.configuration },
         ].map((row, index) => (
           <tr key={index}>
             <td>{row.label}</td>
-            <td>{row.value}</td>
+            <td>{row.value || "Не указано"}</td>
           </tr>
         ))}
       </tbody>

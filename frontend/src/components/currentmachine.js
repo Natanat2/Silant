@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import TableWithMachineData from "./TableWithMachineData";
 import Buttons from "./Buttons";
 import MachineModal from "./MachineModal";
@@ -10,13 +10,18 @@ const CurrentMachine = () => {
   const [showModal, setShowModal] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [machineData, setMachineData] = useState(null);
-  const [dependencies, setDependencies] = useState(null);
   const [userGroup, setUserGroup] = useState(null);
+  const navigate = useNavigate();
   const { id } = useParams();
 
-  const fetchUserGroup = async (token) => {
+  const fetchUserGroup = async () => {
     try {
-      const response = await axios.get(
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        console.error("Отсутствует токен");
+        return;
+      }
+      const userResponse = await axios.get(
         "http://127.0.0.1:8000/api/service/current_user",
         {
           headers: {
@@ -24,25 +29,10 @@ const CurrentMachine = () => {
           },
         }
       );
-      setUserGroup(response.data.groups);
+      const group = userResponse.data.groups;
+      setUserGroup(group);
     } catch (error) {
-      console.error("Ошибка при загрузке информации о пользователе", error);
-    }
-  };
-
-  const fetchDependencies = async (token) => {
-    try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/service/machine-dependencies",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setDependencies(response.data);
-    } catch (error) {
-      console.error("Ошибка при загрузке зависимостей", error);
+      console.error("Ошибка при получении информации о пользователе", error);
     }
   };
 
@@ -53,8 +43,6 @@ const CurrentMachine = () => {
         console.error("Отсутствует токен");
         return;
       }
-      await fetchUserGroup(token);
-      await fetchDependencies(token);
       const response = await axios.get(
         `http://127.0.0.1:8000/api/service/${id}/`,
         {
@@ -70,45 +58,65 @@ const CurrentMachine = () => {
   }, [id]);
 
   useEffect(() => {
+    fetchUserGroup();
     fetchMachineData();
-  }, [fetchMachineData]);
+  }, [id, fetchMachineData]);
 
-  if (!machineData || !dependencies) {
-    return <div>Загрузка...</div>;
-  }
+  const handleDelete = async () => {
+    try {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        console.error("Отсутствует токен");
+        return;
+      }
+
+      // Подтверждение удаления
+      const confirmDelete = window.confirm(
+        "Вы уверены, что хотите удалить эту машину?"
+      );
+      if (!confirmDelete) return;
+
+      // DELETE-запрос
+      await axios.delete(`http://127.0.0.1:8000/api/service/${id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // Переход на главную страницу
+      navigate("/panel");
+    } catch (error) {
+      console.error("Ошибка при удалении машины:", error);
+      alert("Не удалось удалить машину. Попробуйте снова.");
+    }
+  };
 
   const isManager = userGroup && userGroup.includes("Manager");
-
-  const handleEdit = () => setShowModal(true);
-  const handleDelete = () => {
-    console.log("Машина удалена");
-  };
-  const handleCreate = () => setShowCreateModal(true);
 
   return (
     <div>
       <Buttons
         isManager={isManager}
-        onCreate={handleCreate}
-        onEdit={handleEdit}
+        onCreate={() => setShowCreateModal(true)}
+        onEdit={() => setShowModal(true)}
         onDelete={handleDelete}
       />
+
       <CreateMachineModal
         showModal={showCreateModal}
         handleClose={() => setShowCreateModal(false)}
         formData={machineData}
         setFormData={setMachineData}
       />
+
       <MachineModal
         showModal={showModal}
         handleClose={() => setShowModal(false)}
         formData={machineData}
-        setFormData={setMachineData}
+        onMachineUpdated={setMachineData}
       />
-      <TableWithMachineData
-        machineData={machineData}
-        dependencies={dependencies}
-      />
+
+      {machineData && <TableWithMachineData machineData={machineData} />}
     </div>
   );
 };

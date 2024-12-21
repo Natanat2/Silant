@@ -12,7 +12,11 @@ const Buttons = ({ isManager, onCreate, onEdit, onDelete }) => {
           <Button onClick={onEdit} style={{ marginRight: "10px" }}>
             Редактировать Машину
           </Button>
-          <Button onClick={onDelete} variant="danger">
+          <Button
+            onClick={onDelete}
+            variant="danger"
+            style={{ marginRight: "10px" }}
+          >
             Удалить Машину
           </Button>
         </>
