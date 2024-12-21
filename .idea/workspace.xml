@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add machine 17 row" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="panel 17 row">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MachineModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MachineModal.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,22 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00021" summary="change serializers.py">
-      <option name="closed" value="true" />
-      <created>1727711748520</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1727711748520</updated>
-    </task>
-    <task id="LOCAL-00022" summary="add logging">
-      <option name="closed" value="true" />
-      <created>1727712272681</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1727712272681</updated>
     </task>
     <task id="LOCAL-00023" summary="log del">
       <option name="closed" value="true" />
@@ -490,12 +477,27 @@
       <option name="project" value="LOCAL" />
       <updated>1734813040024</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="add machine 17 row">
+      <option name="closed" value="true" />
+      <created>1734813185244</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1734813185244</updated>
+    </task>
+    <task id="LOCAL-00071" summary="panel 17 row">
+      <option name="closed" value="true" />
+      <created>1734813364632</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1734813364632</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add styles" />
     <MESSAGE value="split components" />
     <MESSAGE value="add login" />
     <MESSAGE value="add userinfo api" />
@@ -520,6 +522,7 @@
     <MESSAGE value="take back MachineCreateUpdata serializer" />
     <MESSAGE value="update curmach" />
     <MESSAGE value="add machine 17 row" />
-    <option name="LAST_COMMIT_MESSAGE" value="add machine 17 row" />
+    <MESSAGE value="panel 17 row" />
+    <option name="LAST_COMMIT_MESSAGE" value="panel 17 row" />
   </component>
 </project>

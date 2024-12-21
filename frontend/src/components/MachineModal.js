@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Toast, Spinner } from "react-bootstrap";
 import axios from "axios";
-import "../styles/machinemodal.css";
+import { useParams } from "react-router-dom";
 
 const MachineModal = ({
   showModal,
@@ -9,6 +9,7 @@ const MachineModal = ({
   formData,
   onMachineUpdated,
 }) => {
+  const { id } = useParams(); // Получаем ID из URL
   const [dependencies, setDependencies] = useState({
     machineModels: [],
     engineModels: [],
@@ -25,7 +26,7 @@ const MachineModal = ({
 
   useEffect(() => {
     if (formData) {
-      setLocalFormData(formData);
+      setLocalFormData({ ...formData, id }); // Обновляем данные, включая ID из URL
     } else {
       setLocalFormData({
         machine_factory_number: "",
@@ -45,9 +46,10 @@ const MachineModal = ({
         configuration: "",
         client: "",
         service_company: "",
+        id, // ID из URL
       });
     }
-  }, [formData]);
+  }, [formData, id]);
 
   const fetchDependencies = async () => {
     setLoading(true);
@@ -101,6 +103,11 @@ const MachineModal = ({
       const token = localStorage.getItem("access_token");
       if (!token) {
         setError("Токен авторизации отсутствует");
+        return;
+      }
+
+      if (!localFormData.id) {
+        setError("Отсутствует ID машины для обновления");
         return;
       }
 
