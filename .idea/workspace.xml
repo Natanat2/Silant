@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="comp changemachine done" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="machine crud done">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MachineModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MachineModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/machinemodal.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/machinemodal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,14 +102,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00025" summary="add api all">
-      <option name="closed" value="true" />
-      <created>1728992098095</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1728992098095</updated>
     </task>
     <task id="LOCAL-00026" summary="add front">
       <option name="closed" value="true" />
@@ -490,12 +487,19 @@
       <option name="project" value="LOCAL" />
       <updated>1734815992906</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="machine crud done">
+      <option name="closed" value="true" />
+      <created>1734816704915</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1734816704915</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add userinfo api" />
     <MESSAGE value="add logout" />
     <MESSAGE value="add validate user" />
     <MESSAGE value="add route user_machines" />
@@ -520,6 +524,7 @@
     <MESSAGE value="panel 17 row" />
     <MESSAGE value="viewset change" />
     <MESSAGE value="comp changemachine done" />
-    <option name="LAST_COMMIT_MESSAGE" value="comp changemachine done" />
+    <MESSAGE value="machine crud done" />
+    <option name="LAST_COMMIT_MESSAGE" value="machine crud done" />
   </component>
 </project>

@@ -404,17 +404,15 @@ const MachineModal = ({
                     </Form.Group>
                   </div>
                 </div>
-
-                {/* Кнопка */}
-                <div className="form-footer mt-4">
-                  <Button variant="primary" type="submit" className="w-100">
-                    Сохранить изменения
-                  </Button>
-                </div>
               </Form>
             </>
           )}
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleSubmit} className="w-100">
+            Сохранить изменения
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
+import { Breadcrumb } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import TableWithMachineData from "./TableWithMachineData";
 import Buttons from "./Buttons";
@@ -14,6 +15,7 @@ const CurrentMachine = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  // Получение данных о группе пользователя
   const fetchUserGroup = async () => {
     try {
       const token = localStorage.getItem("access_token");
@@ -36,6 +38,7 @@ const CurrentMachine = () => {
     }
   };
 
+  // Получение данных о машине
   const fetchMachineData = useCallback(async () => {
     try {
       const token = localStorage.getItem("access_token");
@@ -62,6 +65,7 @@ const CurrentMachine = () => {
     fetchMachineData();
   }, [id, fetchMachineData]);
 
+  // Удаление машины
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("access_token");
@@ -94,29 +98,39 @@ const CurrentMachine = () => {
   const isManager = userGroup && userGroup.includes("Manager");
 
   return (
-    <div>
-      <Buttons
-        isManager={isManager}
-        onCreate={() => setShowCreateModal(true)}
-        onEdit={() => setShowModal(true)}
-        onDelete={handleDelete}
-      />
+    <div className="current-machine">
+      {/* Breadcrumb */}
+      <Breadcrumb>
+        <Breadcrumb.Item onClick={() => navigate("/panel")}>
+          Панель
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>Детали машины</Breadcrumb.Item>
+      </Breadcrumb>
 
-      <CreateMachineModal
-        showModal={showCreateModal}
-        handleClose={() => setShowCreateModal(false)}
-        formData={machineData}
-        setFormData={setMachineData}
-      />
+      <div>
+        <Buttons
+          isManager={isManager}
+          onCreate={() => setShowCreateModal(true)}
+          onEdit={() => setShowModal(true)}
+          onDelete={handleDelete}
+        />
 
-      <MachineModal
-        showModal={showModal}
-        handleClose={() => setShowModal(false)}
-        formData={machineData}
-        onMachineUpdated={setMachineData}
-      />
+        <CreateMachineModal
+          showModal={showCreateModal}
+          handleClose={() => setShowCreateModal(false)}
+          formData={machineData}
+          setFormData={setMachineData}
+        />
 
-      {machineData && <TableWithMachineData machineData={machineData} />}
+        <MachineModal
+          showModal={showModal}
+          handleClose={() => setShowModal(false)}
+          formData={machineData}
+          onMachineUpdated={setMachineData}
+        />
+
+        {machineData && <TableWithMachineData machineData={machineData} />}
+      </div>
     </div>
   );
 };
