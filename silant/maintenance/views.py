@@ -1,4 +1,5 @@
-from rest_framework.permissions import SAFE_METHODS
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from rest_framework import viewsets
 from .permissions import IsClientOrManagerOrServiceCompany
 from .models import Maintenance
@@ -19,14 +20,21 @@ class MaintenanceViewSet(viewsets.ModelViewSet):
         queryset = Maintenance.objects.all()
 
         if user.groups.filter(name='Manager').exists():
-            # Менеджеры видят все записи
             return queryset
         elif user.groups.filter(name='Client').exists():
-            # Клиенты видят только записи машин, привязанных к ним
             return queryset.filter(machine__client=user.userdirectory)
         elif user.groups.filter(name='ServiceCompany').exists():
-            # Сервисные компании видят только записи машин, привязанных к ним
             return queryset.filter(machine__service_company=user.userdirectory)
 
-        # Если пользователь не входит ни в одну из групп, возвращаем пустой набор данных
         return queryset.none()
+
+    @action(detail=False, methods=['get'], url_path='filter-by-machine')
+    def filter_by_machine(self, request):
+
+        machine_factory_number = request.query_params.get('machine_factory_number')
+        if not machine_factory_number:
+            return Response({"error": "machine_factory_number is required"}, status=400)
+
+        queryset = self.get_queryset().filter(machine__machine_factory_number=machine_factory_number)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)

@@ -49,8 +49,11 @@ const Panel = () => {
 
   const handleMachineClick = useCallback(
     (row) => {
-      const machineId = row.original.id; // Используем id объекта из строки данных
-      navigate(`/machine/${machineId}`); // Переход по маршруту /machine/:id
+      const machineId = row.original.id;
+      const machineIndex = `Машина-${row.index + 1}`; // Генерируем "Машина-1", "Машина-2"
+      navigate(`/machine/${machineId}`, {
+        state: { machineIndex }, // Передаем индекс машины в state
+      });
     },
     [navigate]
   );
@@ -58,18 +61,17 @@ const Panel = () => {
   const columns = useMemo(() => {
     const clickableColumn = {
       Header: "Машины",
-      accessor: "machine_factory_number", // Поле для отображения
+      accessor: "machine_factory_number",
       id: "clickable_machine",
       Cell: ({ row }) => (
         <a
-          href={`/machine/${row.original.id}`} // Подстановка ID объекта в ссылку
+          href={`/machine/${row.original.id}`}
           onClick={(e) => {
-            e.preventDefault(); // Предотвращает переход по ссылке через <a>
-            handleMachineClick(row); // Обрабатываем переход через React Router
+            e.preventDefault();
+            handleMachineClick(row, row.index); // Передаем индекс
           }}
         >
-          {`Машина-${row.index + 1}`}{" "}
-          {/* Отображаем "Машина-1", "Машина-2", и т.д. */}
+          {`Машина-${row.index + 1}`}
         </a>
       ),
     };

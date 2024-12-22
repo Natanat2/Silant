@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import "../styles/buttons.css";
 
 const Buttons = ({ isManager, onCreate, onEdit, onDelete }) => {
   return (
-    <div>
+    <div className="buttons">
       {isManager && (
         <>
           <Button onClick={onCreate} style={{ marginRight: "10px" }}>
