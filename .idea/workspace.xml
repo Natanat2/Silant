@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add breadcumps">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/MaintenanceTable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/styles/buttons.css" afterDir="false" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add to tabs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Buttons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MaintenanceEditModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MaintenanceEditModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MaintenanceTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MaintenanceTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/panel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/maintenance/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/maintenance/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,14 +102,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00027" summary="add filter param">
-      <option name="closed" value="true" />
-      <created>1732185416214</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1732185416214</updated>
     </task>
     <task id="LOCAL-00028" summary="add filter param">
       <option name="closed" value="true" />
@@ -499,12 +487,19 @@
       <option name="project" value="LOCAL" />
       <updated>1734874063891</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="add to tabs">
+      <option name="closed" value="true" />
+      <created>1734882332697</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1734882332697</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add validate user" />
     <MESSAGE value="add route user_machines" />
     <MESSAGE value="add panel tables" />
     <MESSAGE value="add tables" />
@@ -529,6 +524,7 @@
     <MESSAGE value="comp changemachine done" />
     <MESSAGE value="machine crud done" />
     <MESSAGE value="add breadcumps" />
-    <option name="LAST_COMMIT_MESSAGE" value="add breadcumps" />
+    <MESSAGE value="add to tabs" />
+    <option name="LAST_COMMIT_MESSAGE" value="add to tabs" />
   </component>
 </project>

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Table, Button, Spinner } from "react-bootstrap";
 import axios from "axios";
 
-const MaintenanceTable = ({ machineFactoryNumber }) => {
+const MaintenanceTable = ({ machineFactoryNumber, onEdit }) => {
   const [maintenanceData, setMaintenanceData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchMaintenanceData = async () => {
-      if (!machineFactoryNumber) return; // Если заводской номер отсутствует, запрос не делаем
+      if (!machineFactoryNumber) return;
 
       setLoading(true);
       setError(null);
@@ -80,7 +80,11 @@ const MaintenanceTable = ({ machineFactoryNumber }) => {
               {maintenance.organization_carried_maintenance.name_organization}
             </td>
             <td>
-              <Button variant="primary" size="sm">
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={() => onEdit(maintenance)} // Вызываем переданную функцию
+              >
                 Редактировать
               </Button>
             </td>

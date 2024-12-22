@@ -6,14 +6,18 @@ import TableWithMachineData from "./TableWithMachineData";
 import Buttons from "./Buttons";
 import MachineModal from "./MachineModal";
 import CreateMachineModal from "./CreateMachineModal";
-import MaintenanceTable from "./MaintenanceTable"; // Импорт нового компонента
+import MaintenanceTable from "./MaintenanceTable";
+import MaintenanceEditModal from "./MaintenanceEditModal";
 
 const CurrentMachine = () => {
   const [showModal, setShowModal] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditMaintenanceModal, setShowEditMaintenanceModal] =
+    useState(false);
+  const [selectedMaintenance, setSelectedMaintenance] = useState(null);
   const [machineData, setMachineData] = useState(null);
   const [userGroup, setUserGroup] = useState(null);
-  const [activeTab, setActiveTab] = useState("info"); // Текущая активная вкладка
+  const [activeTab, setActiveTab] = useState("info");
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -91,6 +95,11 @@ const CurrentMachine = () => {
     }
   };
 
+  const handleEditMaintenance = (maintenance) => {
+    setSelectedMaintenance(maintenance);
+    setShowEditMaintenanceModal(true);
+  };
+
   const isManager = userGroup && userGroup.includes("Manager");
 
   return (
@@ -104,8 +113,8 @@ const CurrentMachine = () => {
       </Breadcrumb>
 
       <h3>
-        Машина {machineData?.machine_model?.machine_model_name || "Неизвестно"}{" "}
-        - Заводской номер: {machineData?.machine_factory_number || "Неизвестно"}
+        Машина{machineData ? ` ${id}` : "Неизвестно"} - Заводской номер:{" "}
+        {machineData?.machine_factory_number || "Неизвестно"}
       </h3>
 
       {/* Вкладки */}
@@ -141,9 +150,10 @@ const CurrentMachine = () => {
         </Tab>
 
         <Tab eventKey="maintenance" title="ТО">
-          <h2>Информаци о проведенных ТО вашей техники</h2>
+          <h2>Информация о проведенных ТО вашей техники</h2>
           <MaintenanceTable
             machineFactoryNumber={machineData?.machine_factory_number}
+            onEdit={handleEditMaintenance} // Передаем функцию редактирования
           />
         </Tab>
 
@@ -152,6 +162,19 @@ const CurrentMachine = () => {
           <p>Раздел для отображения данных по рекламациям.</p>
         </Tab>
       </Tabs>
+
+      {/* Модальное окно для редактирования ТО */}
+      {selectedMaintenance && (
+        <MaintenanceEditModal
+          show={showEditMaintenanceModal}
+          onClose={() => setShowEditMaintenanceModal(false)}
+          maintenanceData={selectedMaintenance}
+          onSave={() => {
+            // Здесь можно вызвать fetchMachineData для обновления данных
+            fetchMachineData();
+          }}
+        />
+      )}
     </div>
   );
 };

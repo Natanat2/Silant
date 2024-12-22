@@ -1,79 +1,90 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button, Form, Spinner, Toast } from "react-bootstrap";
+import { Modal, Button, Form, Toast, Spinner } from "react-bootstrap";
 import axios from "axios";
 
-const MaintenanceEditModal = ({
-  showModal,
-  handleClose,
-  maintenanceData,
-  onUpdate,
-}) => {
-  const [formData, setFormData] = useState({});
+const MaintenanceEditModal = ({ show, onClose, maintenanceData, onSave }) => {
+  const [localFormData, setLocalFormData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [dependencies, setDependencies] = useState({
     maintenanceTypes: [],
-    organizations: [],
+    serviceCompanies: [],
   });
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [error, setError] = useState(null);
 
+  // Обновление данных формы при открытии модального окна
   useEffect(() => {
     if (maintenanceData) {
-      setFormData({
+      setLocalFormData({
         ...maintenanceData,
         type_of_maintenance: maintenanceData.type_of_maintenance.id,
         organization_carried_maintenance:
-          maintenanceData.organization_carried_maintenance.id,
+          maintenanceData.organization_carried_maintenance?.id || "",
+      });
+    } else {
+      setLocalFormData({
+        type_of_maintenance: "",
+        date_of_maintenance: "",
+        operating_time: "",
+        order_number: "",
+        order_date: "",
+        organization_carried_maintenance: "",
       });
     }
   }, [maintenanceData]);
 
-  const fetchDependencies = async () => {
-    try {
-      setLoading(true);
-      const token = localStorage.getItem("access_token");
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/maintenance/dependencies/",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setDependencies({
-        maintenanceTypes: response.data.maintenance_types,
-        organizations: response.data.organizations,
-      });
-    } catch (err) {
-      console.error("Ошибка при загрузке зависимостей ТО:", err);
-      setError("Не удалось загрузить данные. Попробуйте снова.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // Загрузка зависимостей
   useEffect(() => {
+    const fetchDependencies = async () => {
+      try {
+        const token = localStorage.getItem("access_token");
+        if (!token) {
+          setError("Токен авторизации отсутствует");
+          return;
+        }
+        const response = await axios.get(
+          "http://127.0.0.1:8000/api/service/machine-dependencies",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        setDependencies({
+          maintenanceTypes: response.data.maintenance_types || [],
+          serviceCompanies: response.data.service_companies || [],
+        });
+      } catch (err) {
+        console.error("Ошибка при загрузке зависимостей:", err);
+        setError("Не удалось загрузить данные зависимостей.");
+      }
+    };
+
     fetchDependencies();
   }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
+    setLocalFormData((prevData) => ({
+      ...prevData,
       [name]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     setError(null);
 
     try {
-      setLoading(true);
       const token = localStorage.getItem("access_token");
+      if (!token) {
+        setError("Токен авторизации отсутствует");
+        setLoading(false);
+        return;
+      }
+
       await axios.put(
-        `http://127.0.0.1:8000/api/maintenance/${formData.id}/`,
-        formData,
+        `http://127.0.0.1:8000/api/maintenance/${localFormData.id}/`,
+        localFormData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -81,12 +92,18 @@ const MaintenanceEditModal = ({
           },
         }
       );
-      setShowSuccessToast(true);
-      onUpdate(); // Callback для обновления данных в таблице
-      handleClose();
-    } catch (err) {
-      console.error("Ошибка при обновлении ТО:", err);
-      setError("Не удалось обновить данные. Проверьте введенные значения.");
+
+      setShowSuccessToast(true); // Показываем уведомление об успехе
+      onSave(); // Обновляем данные родителя
+      setTimeout(() => {
+        setShowSuccessToast(false);
+        onClose(); // Закрываем окно
+      }, 500);
+    } catch (error) {
+      console.error("Ошибка при обновлении данных ТО:", error);
+      setError(
+        "Не удалось обновить данные ТО. Проверьте введенные данные и попробуйте снова."
+      );
     } finally {
       setLoading(false);
     }
@@ -109,11 +126,11 @@ const MaintenanceEditModal = ({
           padding: "10px 15px",
         }}
       >
-        <Toast.Body>ТО успешно обновлено!</Toast.Body>
+        <Toast.Body>Данные ТО успешно обновлены!</Toast.Body>
       </Toast>
 
       {/* Модальное окно */}
-      <Modal show={showModal} onHide={handleClose} centered>
+      <Modal show={show} onHide={onClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Редактировать ТО</Modal.Title>
         </Modal.Header>
@@ -124,86 +141,100 @@ const MaintenanceEditModal = ({
               <p>Загрузка...</p>
             </div>
           ) : (
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3">
-                <Form.Label>Вид ТО</Form.Label>
-                <Form.Select
-                  name="type_of_maintenance"
-                  value={formData.type_of_maintenance || ""}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Выберите вид ТО...</option>
-                  {dependencies.maintenanceTypes.map((type) => (
-                    <option key={type.id} value={type.id}>
-                      {type.type_of_maintenance_name}
-                    </option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Дата ТО</Form.Label>
-                <Form.Control
-                  type="date"
-                  name="date_of_maintenance"
-                  value={formData.date_of_maintenance || ""}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Наработка (м/час)</Form.Label>
-                <Form.Control
-                  type="number"
-                  name="operating_time"
-                  value={formData.operating_time || ""}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Номер заказа</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="order_number"
-                  value={formData.order_number || ""}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Дата заказа</Form.Label>
-                <Form.Control
-                  type="date"
-                  name="order_date"
-                  value={formData.order_date || ""}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Организация</Form.Label>
-                <Form.Select
-                  name="organization_carried_maintenance"
-                  value={formData.organization_carried_maintenance || ""}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Выберите организацию...</option>
-                  {dependencies.organizations.map((org) => (
-                    <option key={org.id} value={org.id}>
-                      {org.name_organization}
-                    </option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
+            <>
+              {error && <div className="alert alert-danger">{error}</div>}
 
-              <Button variant="primary" type="submit" className="w-100">
-                Сохранить изменения
-              </Button>
-            </Form>
+              <Form onSubmit={handleSubmit}>
+                <div className="row">
+                  <div className="col-md-6">
+                    <Form.Group className="mb-3">
+                      <Form.Label>Вид ТО</Form.Label>
+                      <Form.Select
+                        name="type_of_maintenance"
+                        value={localFormData.type_of_maintenance || ""}
+                        onChange={handleChange}
+                        required
+                      >
+                        <option value="">Выберите вид ТО...</option>
+                        {dependencies.maintenanceTypes.map((type) => (
+                          <option key={type.id} value={type.id}>
+                            {type.type_of_maintenance_name}
+                          </option>
+                        ))}
+                      </Form.Select>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Дата ТО</Form.Label>
+                      <Form.Control
+                        type="date"
+                        name="date_of_maintenance"
+                        value={localFormData.date_of_maintenance || ""}
+                        onChange={handleChange}
+                        required
+                      />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Наработка (м/час)</Form.Label>
+                      <Form.Control
+                        type="number"
+                        name="operating_time"
+                        value={localFormData.operating_time || ""}
+                        onChange={handleChange}
+                        required
+                      />
+                    </Form.Group>
+                  </div>
+                  <div className="col-md-6">
+                    <Form.Group className="mb-3">
+                      <Form.Label>Номер заказа</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="order_number"
+                        value={localFormData.order_number || ""}
+                        onChange={handleChange}
+                        required
+                      />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Дата заказа</Form.Label>
+                      <Form.Control
+                        type="date"
+                        name="order_date"
+                        value={localFormData.order_date || ""}
+                        onChange={handleChange}
+                        required
+                      />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Организация</Form.Label>
+                      <Form.Select
+                        name="organization_carried_maintenance"
+                        value={
+                          localFormData.organization_carried_maintenance || ""
+                        }
+                        onChange={handleChange}
+                        required
+                      >
+                        <option value="">Выберите организацию...</option>
+                        {dependencies.serviceCompanies.map((org) => (
+                          <option key={org.id} value={org.id}>
+                            {org.user_full_name}
+                          </option>
+                        ))}
+                        <option value="self">Самостоятельно</option>
+                      </Form.Select>
+                    </Form.Group>
+                  </div>
+                </div>
+              </Form>
+            </>
           )}
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleSubmit} className="w-100">
+            Сохранить изменения
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );
