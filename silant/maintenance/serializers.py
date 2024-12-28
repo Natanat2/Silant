@@ -42,18 +42,29 @@ class MaintenanceSerializer(serializers.ModelSerializer):
     organization_carried_maintenance = OrganizationCarriedMaintenanceSerializer()
     service_company_maintenance = MaintenanceUserDirectorySerializer()
 
+    client_name = serializers.SerializerMethodField()
+
     class Meta:
         model = Maintenance
         fields = '__all__'
+
+    def get_client_name(self, obj):
+        return obj.machine.client.user.first_name if obj.machine.client else None
 
 
 class MaintenanceCreateUpdateSerializer(serializers.ModelSerializer):
     machine = serializers.PrimaryKeyRelatedField(queryset = Machine.objects.all())
     type_of_maintenance = serializers.PrimaryKeyRelatedField(queryset = TypeOfMaintenance.objects.all())
     organization_carried_maintenance = serializers.PrimaryKeyRelatedField(
-        queryset = OrganizationCarriedMaintenance.objects.all())
+        queryset = OrganizationCarriedMaintenance.objects.all(),
+        allow_null = True,
+        required = False
+    )
     service_company_maintenance = serializers.PrimaryKeyRelatedField(
-        queryset = UserDirectory.objects.filter(groups__name = 'ServiceCompany'))
+        queryset = UserDirectory.objects.filter(groups__name = 'ServiceCompany'),
+        allow_null = True,
+        required = False
+    )
 
     class Meta:
         model = Maintenance

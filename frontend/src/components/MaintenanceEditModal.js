@@ -12,27 +12,6 @@ const MaintenanceEditModal = ({ show, onClose, maintenanceData, onSave }) => {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [error, setError] = useState(null);
 
-  // Обновление данных формы при открытии модального окна
-  useEffect(() => {
-    if (maintenanceData) {
-      setLocalFormData({
-        ...maintenanceData,
-        type_of_maintenance: maintenanceData.type_of_maintenance.id,
-        organization_carried_maintenance:
-          maintenanceData.organization_carried_maintenance?.id || "",
-      });
-    } else {
-      setLocalFormData({
-        type_of_maintenance: "",
-        date_of_maintenance: "",
-        operating_time: "",
-        order_number: "",
-        order_date: "",
-        organization_carried_maintenance: "",
-      });
-    }
-  }, [maintenanceData]);
-
   // Загрузка зависимостей
   useEffect(() => {
     const fetchDependencies = async () => {
@@ -68,6 +47,23 @@ const MaintenanceEditModal = ({ show, onClose, maintenanceData, onSave }) => {
     fetchDependencies();
   }, []);
 
+  // Обновление данных формы
+  useEffect(() => {
+    if (maintenanceData && dependencies.serviceCompanies.length > 0) {
+      const organizationExists = dependencies.serviceCompanies.some(
+        (org) => org.id === maintenanceData.organization_carried_maintenance?.id
+      );
+
+      setLocalFormData({
+        ...maintenanceData,
+        type_of_maintenance: maintenanceData.type_of_maintenance?.id || "",
+        organization_carried_maintenance: organizationExists
+          ? maintenanceData.organization_carried_maintenance.id
+          : "",
+      });
+    }
+  }, [maintenanceData, dependencies.serviceCompanies]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLocalFormData((prevData) => ({
@@ -100,11 +96,11 @@ const MaintenanceEditModal = ({ show, onClose, maintenanceData, onSave }) => {
         }
       );
 
-      setShowSuccessToast(true); // Показываем уведомление об успехе
-      onSave(); // Обновляем данные родителя
+      setShowSuccessToast(true);
+      onSave();
       setTimeout(() => {
         setShowSuccessToast(false);
-        onClose(); // Закрываем окно
+        onClose();
       }, 500);
     } catch (error) {
       console.error("Ошибка при обновлении данных ТО:", error);
@@ -118,7 +114,6 @@ const MaintenanceEditModal = ({ show, onClose, maintenanceData, onSave }) => {
 
   return (
     <>
-      {/* Уведомление об успешном обновлении */}
       <Toast
         show={showSuccessToast}
         onClose={() => setShowSuccessToast(false)}
@@ -136,7 +131,6 @@ const MaintenanceEditModal = ({ show, onClose, maintenanceData, onSave }) => {
         <Toast.Body>Данные ТО успешно обновлены!</Toast.Body>
       </Toast>
 
-      {/* Модальное окно */}
       <Modal show={show} onHide={onClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Редактировать ТО</Modal.Title>
