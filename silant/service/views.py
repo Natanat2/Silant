@@ -15,6 +15,7 @@ from .serializers import *
 
 class CurrentUserView(APIView):
     permission_classes = [IsAuthenticated]
+    serializer_class = CurrentUserSerializer
 
     def get(self, request):
         user = request.user
@@ -28,6 +29,7 @@ class CurrentUserView(APIView):
 
 class ValidateTokenView(APIView):
     permission_classes = [AllowAny]
+    serializer_class = ValidateTokenSerializer
 
     def post(self, request):
         token = request.data.get('token')
@@ -165,6 +167,7 @@ class PublicMachineListView(ListAPIView):
 
 class MachineDependenciesAPIView(APIView):
     permission_classes = [IsAuthenticated]
+    serializer_class = MachineDependenciesSerializer
 
     def get(self, request, *args, **kwargs):
         machine_models = MachineModelSerializer(MachineModel.objects.all(), many = True).data
