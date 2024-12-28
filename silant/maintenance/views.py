@@ -2,8 +2,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import viewsets
 from .permissions import IsClientOrManagerOrServiceCompany
-from .models import Maintenance
-from .serializers import MaintenanceSerializer, MaintenanceCreateUpdateSerializer
+from .models import Maintenance, TypeOfMaintenance
+from .serializers import MaintenanceSerializer, MaintenanceCreateUpdateSerializer, TypeOfMaintenanceSerializer
 
 
 class MaintenanceViewSet(viewsets.ModelViewSet):
@@ -37,4 +37,10 @@ class MaintenanceViewSet(viewsets.ModelViewSet):
 
         queryset = self.get_queryset().filter(machine__machine_factory_number=machine_factory_number)
         serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @action(detail = False, methods = ['get'], url_path = 'types_of_maintenance')
+    def types_of_maintenance(self, request):
+        queryset = TypeOfMaintenance.objects.all()
+        serializer = TypeOfMaintenanceSerializer(queryset, many = True)
         return Response(serializer.data)

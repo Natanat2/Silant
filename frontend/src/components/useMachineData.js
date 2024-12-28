@@ -28,7 +28,7 @@ const useMachineData = (userGroup) => {
 
         // Получаем зависимости для машин
         const dependenciesResponse = await axios.get(
-          "http://127.0.0.1:8000/api/service/machine-dependencies",
+          "http://127.0.0.1:8000/api/service/machine_dependencies",
           { headers }
         );
         setDependencies(dependenciesResponse.data);

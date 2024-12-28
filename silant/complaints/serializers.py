@@ -5,14 +5,14 @@ from service.models import Machine, UserDirectory
 from django.contrib.auth.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
+class ComplaintsUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'first_name']
 
 
 class ComplaintsUserDirectorySerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+    user = ComplaintsUserSerializer()
 
     class Meta:
         model = UserDirectory

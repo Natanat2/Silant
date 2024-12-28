@@ -11,5 +11,5 @@ urlpatterns = [
     path('validate_user', ValidateTokenView.as_view(), name='validate_user'),
     path('user_machines', UserMachinesView.as_view(), name='user_machines'),
     path('public_machines', PublicMachineListView.as_view(), name='public_machines'),
-    path('machine-dependencies', MachineDependenciesAPIView.as_view(), name='machine-dependencies'),
+    path('machine_dependencies', MachineDependenciesAPIView.as_view(), name='machine_dependencies'),
 ]

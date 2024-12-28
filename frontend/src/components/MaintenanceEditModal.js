@@ -42,15 +42,22 @@ const MaintenanceEditModal = ({ show, onClose, maintenanceData, onSave }) => {
           setError("Токен авторизации отсутствует");
           return;
         }
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/service/machine-dependencies",
-          {
+
+        const [typesResponse, companiesResponse] = await Promise.all([
+          axios.get(
+            "http://127.0.0.1:8000/api/maintenance/types_of_maintenance/",
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          ),
+          axios.get("http://127.0.0.1:8000/api/service/machine_dependencies", {
             headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+          }),
+        ]);
+
         setDependencies({
-          maintenanceTypes: response.data.maintenance_types || [],
-          serviceCompanies: response.data.service_companies || [],
+          maintenanceTypes: typesResponse.data || [],
+          serviceCompanies: companiesResponse.data.service_companies || [],
         });
       } catch (err) {
         console.error("Ошибка при загрузке зависимостей:", err);
