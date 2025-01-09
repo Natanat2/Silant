@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add type to api">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceCreateModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceCreateModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceTable.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,14 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00037" summary="add userinfo api">
-      <option name="closed" value="true" />
-      <created>1732987249788</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1732987249788</updated>
     </task>
     <task id="LOCAL-00038" summary="add userinfo api">
       <option name="closed" value="true" />
@@ -492,7 +486,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736422601098</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="add type to api">
+      <option name="closed" value="true" />
+      <created>1736424780847</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1736424780848</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

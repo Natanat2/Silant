@@ -98,7 +98,6 @@ const MaintenanceTable = ({ machineFactoryNumber, onEdit }) => {
           Создать ТО
         </Button>
       </div>
-
       {maintenanceData.length === 0 ? (
         <div className="text-center">Данных о ТО пока нет.</div>
       ) : (
@@ -157,13 +156,14 @@ const MaintenanceTable = ({ machineFactoryNumber, onEdit }) => {
           </tbody>
         </Table>
       )}
-
       {/* Модальное окно создания ТО */}
       <MaintenanceCreateModal
         show={showCreateModal}
         onClose={handleCloseCreateModal}
         onSave={handleSaveMaintenance}
-        machineFactoryNumber={maintenanceData[0]?.machine?.id || null} // ID машины
+        machineId={
+          selectedMaintenanceId || maintenanceData[0]?.machine?.id || null
+        } // Вставляем selectedMaintenanceId
         serviceCompanyId={
           maintenanceData[0]?.service_company_maintenance?.id || null
         } // ID сервисной компании
