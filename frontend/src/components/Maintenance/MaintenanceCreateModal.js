@@ -7,6 +7,7 @@ const MaintenanceCreateModal = ({
   onClose,
   onSave,
   machineFactoryNumber,
+  serviceCompanyId, // ID текущей сервисной компании
 }) => {
   const [localFormData, setLocalFormData] = useState({
     type_of_maintenance: "",
@@ -82,7 +83,8 @@ const MaintenanceCreateModal = ({
 
       const requestData = {
         ...localFormData,
-        machine: machineFactoryNumber,
+        machine: machineFactoryNumber, // Добавляем ID машины
+        service_company_maintenance: serviceCompanyId, // Добавляем ID сервисной компании
       };
 
       await axios.post(`http://127.0.0.1:8000/api/maintenance/`, requestData, {
@@ -216,7 +218,6 @@ const MaintenanceCreateModal = ({
                             {org.user_full_name}
                           </option>
                         ))}
-                        <option value="self">Самостоятельно</option>
                       </Form.Select>
                     </Form.Group>
                   </div>
