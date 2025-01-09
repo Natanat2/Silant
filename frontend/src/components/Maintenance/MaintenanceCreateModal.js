@@ -77,9 +77,6 @@ const MaintenanceCreateModal = ({
         service_company_maintenance: serviceCompanyId, // Добавляем ID сервисной компании
       };
 
-      console.log("machineId перед отправкой:", machineId);
-      console.log("Данные для отправки:", requestData);
-
       await axios.post(`http://127.0.0.1:8000/api/maintenance/`, requestData, {
         headers: {
           Authorization: `Bearer ${token}`,

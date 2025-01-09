@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add type to api">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add create button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceCreateModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceCreateModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceEditModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceEditModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,14 +102,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00038" summary="add userinfo api">
-      <option name="closed" value="true" />
-      <created>1732987499718</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1732987499718</updated>
     </task>
     <task id="LOCAL-00039" summary="add logout">
       <option name="closed" value="true" />
@@ -494,12 +487,19 @@
       <option name="project" value="LOCAL" />
       <updated>1736424780848</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="add create button">
+      <option name="closed" value="true" />
+      <created>1736431887568</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1736431887568</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add endpoints for ids" />
     <MESSAGE value="add component currentmachine" />
     <MESSAGE value="add crud to currentmachine" />
     <MESSAGE value="add api option" />
@@ -524,6 +524,7 @@
     <MESSAGE value="add folder maintenance" />
     <MESSAGE value="add create maintenance" />
     <MESSAGE value="add type to api" />
-    <option name="LAST_COMMIT_MESSAGE" value="add type to api" />
+    <MESSAGE value="add create button" />
+    <option name="LAST_COMMIT_MESSAGE" value="add create button" />
   </component>
 </project>
