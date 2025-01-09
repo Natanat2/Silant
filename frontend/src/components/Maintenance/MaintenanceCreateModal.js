@@ -87,6 +87,8 @@ const MaintenanceCreateModal = ({
         service_company_maintenance: serviceCompanyId, // Добавляем ID сервисной компании
       };
 
+      console.log("Данные для отправки:", requestData);
+
       await axios.post(`http://127.0.0.1:8000/api/maintenance/`, requestData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -94,7 +96,7 @@ const MaintenanceCreateModal = ({
         },
       });
 
-      setShowSuccessToast(true);
+      setShowSuccessToast(true); // Показать уведомление об успешном добавлении
       onSave();
       setTimeout(() => {
         setShowSuccessToast(false);
@@ -112,6 +114,7 @@ const MaintenanceCreateModal = ({
 
   return (
     <>
+      {/* Уведомление об успешном добавлении */}
       <Toast
         show={showSuccessToast}
         onClose={() => setShowSuccessToast(false)}

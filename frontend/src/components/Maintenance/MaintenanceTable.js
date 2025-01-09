@@ -11,7 +11,6 @@ const MaintenanceTable = ({ machineFactoryNumber, onEdit }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedMaintenanceId, setSelectedMaintenanceId] = useState(null);
 
-  // Обернули fetchMaintenanceData в useCallback
   const fetchMaintenanceData = useCallback(async () => {
     if (!machineFactoryNumber) return;
 
@@ -39,20 +38,17 @@ const MaintenanceTable = ({ machineFactoryNumber, onEdit }) => {
     }
   }, [machineFactoryNumber]);
 
-  // useEffect использует fetchMaintenanceData
   useEffect(() => {
     fetchMaintenanceData();
   }, [fetchMaintenanceData]);
 
-  // Обработчики для модального окна
   const handleCreate = () => setShowCreateModal(true);
   const handleCloseCreateModal = () => setShowCreateModal(false);
   const handleSaveMaintenance = () => {
     setShowCreateModal(false);
-    fetchMaintenanceData(); // Перезагрузка данных после сохранения
+    fetchMaintenanceData();
   };
 
-  // Обработчики для удаления
   const handleOpenDeleteModal = (id) => {
     setSelectedMaintenanceId(id);
     setShowDeleteModal(true);
@@ -74,7 +70,7 @@ const MaintenanceTable = ({ machineFactoryNumber, onEdit }) => {
           },
         }
       );
-      fetchMaintenanceData(); // Перезагрузить данные после удаления
+      fetchMaintenanceData();
     } catch (err) {
       console.error("Ошибка при удалении записи ТО:", err);
     } finally {
@@ -167,7 +163,10 @@ const MaintenanceTable = ({ machineFactoryNumber, onEdit }) => {
         show={showCreateModal}
         onClose={handleCloseCreateModal}
         onSave={handleSaveMaintenance}
-        machineFactoryNumber={machineFactoryNumber}
+        machineFactoryNumber={maintenanceData[0]?.machine?.id || null} // ID машины
+        serviceCompanyId={
+          maintenanceData[0]?.service_company_maintenance?.id || null
+        } // ID сервисной компании
       />
 
       {/* Модальное окно подтверждения удаления */}
