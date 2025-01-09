@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Table, Button, Spinner } from "react-bootstrap";
 import axios from "axios";
 import MaintenanceCreateModal from "./MaintenanceCreateModal";
@@ -9,8 +9,8 @@ const MaintenanceTable = ({ machineFactoryNumber, onEdit }) => {
   const [error, setError] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
 
-  // Функция для загрузки данных ТО
-  const fetchMaintenanceData = async () => {
+  // Обернули fetchMaintenanceData в useCallback
+  const fetchMaintenanceData = useCallback(async () => {
     if (!machineFactoryNumber) return;
 
     setLoading(true);
@@ -35,12 +35,12 @@ const MaintenanceTable = ({ machineFactoryNumber, onEdit }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [machineFactoryNumber]); // Добавили machineFactoryNumber как зависимость
 
-  // Загрузка данных при изменении machineFactoryNumber
+  // useEffect использует fetchMaintenanceData
   useEffect(() => {
     fetchMaintenanceData();
-  }, [machineFactoryNumber]);
+  }, [fetchMaintenanceData]); // Указали fetchMaintenanceData как зависимость
 
   // Обработчики для модального окна
   const handleCreate = () => setShowCreateModal(true);

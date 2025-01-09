@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add create to">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/MaintenanceCreateModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceCreateModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceEditModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/MaintenanceTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MaintenanceTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MaintenanceCreateModal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MaintenanceEditModal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MaintenanceTable.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,14 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00032" summary="add styles">
-      <option name="closed" value="true" />
-      <created>1732283787172</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1732283787172</updated>
     </task>
     <task id="LOCAL-00033" summary="add styles">
       <option name="closed" value="true" />
@@ -494,7 +492,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735401194077</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="add create to">
+      <option name="closed" value="true" />
+      <created>1735404606300</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1735404606300</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

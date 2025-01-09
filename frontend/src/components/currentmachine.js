@@ -6,8 +6,8 @@ import TableWithMachineData from "./TableWithMachineData";
 import Buttons from "./Buttons";
 import MachineModal from "./MachineModal";
 import CreateMachineModal from "./CreateMachineModal";
-import MaintenanceTable from "./MaintenanceTable";
-import MaintenanceEditModal from "./MaintenanceEditModal";
+import MaintenanceTable from "./Maintenance/MaintenanceTable";
+import MaintenanceEditModal from "./Maintenance/MaintenanceEditModal";
 
 const CurrentMachine = () => {
   const [showModal, setShowModal] = useState(false);
