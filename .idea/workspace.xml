@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add create to">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceCreateModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceEditModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceTable.js" afterDir="false" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add folder maintenance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/MaintenanceCreateModal.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/MaintenanceEditModal.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/MaintenanceTable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Maintenance/MaintenanceTable.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,14 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00033" summary="add styles">
-      <option name="closed" value="true" />
-      <created>1732286354886</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1732286354886</updated>
     </task>
     <task id="LOCAL-00034" summary="split components">
       <option name="closed" value="true" />
@@ -500,12 +485,19 @@
       <option name="project" value="LOCAL" />
       <updated>1735404606300</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="add folder maintenance">
+      <option name="closed" value="true" />
+      <created>1736401189010</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1736401189010</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add filter for table" />
     <MESSAGE value="add filter" />
     <MESSAGE value="add endpoints new filters" />
     <MESSAGE value="add endpoints for ids" />
@@ -530,6 +522,7 @@
     <MESSAGE value="add serializers" />
     <MESSAGE value="add serializers service" />
     <MESSAGE value="add create to" />
-    <option name="LAST_COMMIT_MESSAGE" value="add create to" />
+    <MESSAGE value="add folder maintenance" />
+    <option name="LAST_COMMIT_MESSAGE" value="add folder maintenance" />
   </component>
 </project>
