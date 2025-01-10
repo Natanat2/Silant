@@ -1,8 +1,10 @@
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import Complaints
-from .serializers import ComplaintsSerializer, ComplaintsCreateUpdateSerializer
+from .models import Complaints, MethodsOfRecovery, Nodes
+from service.models import UserDirectory
+from .serializers import ComplaintsSerializer, ComplaintsCreateUpdateSerializer, NodesSerializer, \
+    MethodsOfRecoverySerializer, ComplaintsUserDirectorySerializer
 from .permissions import IsClientOrManagerOrServiceCompany
 
 
@@ -38,3 +40,17 @@ class ComplaintsViewSet(viewsets.ModelViewSet):
         complaints = self.get_queryset().filter(machine__machine_factory_number = machine_factory_number)
         serializer = self.get_serializer(complaints, many = True)
         return Response(serializer.data)
+
+    @action(detail = False, methods = ['get'], url_path = 'types_of_complaints')
+    def types_of_complaints(self, request):
+
+        nodes = Nodes.objects.all()
+        methods = MethodsOfRecovery.objects.all()
+        service_companies = UserDirectory.objects.filter(groups__name = "ServiceCompany")
+
+        data = {
+            "failure_nodes": NodesSerializer(nodes, many = True).data,
+            "methods_of_recovery": MethodsOfRecoverySerializer(methods, many = True).data,
+            "service_companies": ComplaintsUserDirectorySerializer(service_companies, many = True).data,
+        }
+        return Response(data)

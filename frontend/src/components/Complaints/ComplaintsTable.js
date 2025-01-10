@@ -1,22 +1,34 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Table, Button, Spinner, Modal } from "react-bootstrap";
+import { Table, Button, Spinner, Alert } from "react-bootstrap";
 import axios from "axios";
+import ComplaintsCreateModal from "./ComplaintsCreateModal";
+import ComplaintsEditModal from "./ComplaintsEditModal";
 
-const ComplaintsTable = ({ machineFactoryNumber, onEdit }) => {
+const ComplaintsTable = ({ machineFactoryNumber }) => {
   const [complaintsData, setComplaintsData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [selectedComplaintId, setSelectedComplaintId] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedComplaint, setSelectedComplaint] = useState(null);
 
   const fetchComplaintsData = useCallback(async () => {
-    if (!machineFactoryNumber) return;
+    if (!machineFactoryNumber) {
+      setError("Не указан заводской номер машины");
+      return;
+    }
 
     setLoading(true);
     setError(null);
 
     try {
       const token = localStorage.getItem("access_token");
+      if (!token) {
+        setError("Отсутствует токен авторизации");
+        setLoading(false);
+        return;
+      }
+
       const response = await axios.get(
         `http://127.0.0.1:8000/api/complaints/filter-by-machine/`,
         {
@@ -24,10 +36,11 @@ const ComplaintsTable = ({ machineFactoryNumber, onEdit }) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+
       setComplaintsData(response.data);
     } catch (err) {
-      console.error("Ошибка при загрузке данных рекламаций:", err);
-      setError("Не удалось загрузить данные рекламаций.");
+      console.error("Ошибка при загрузке данных жалоб:", err);
+      setError("Не удалось загрузить данные жалоб. Попробуйте снова.");
     } finally {
       setLoading(false);
     }
@@ -37,61 +50,56 @@ const ComplaintsTable = ({ machineFactoryNumber, onEdit }) => {
     fetchComplaintsData();
   }, [fetchComplaintsData]);
 
-  const handleOpenDeleteModal = (id) => {
-    setSelectedComplaintId(id);
-    setShowDeleteModal(true);
+  const handleCreate = () => setShowCreateModal(true);
+  const handleEdit = (complaint) => {
+    setSelectedComplaint(complaint);
+    setShowEditModal(true);
   };
 
-  const handleCloseDeleteModal = () => {
-    setSelectedComplaintId(null);
-    setShowDeleteModal(false);
-  };
+  const handleDelete = async (id) => {
+    if (!window.confirm("Вы уверены, что хотите удалить эту рекламацию?"))
+      return;
 
-  const handleDelete = async () => {
     try {
       const token = localStorage.getItem("access_token");
-      await axios.delete(
-        `http://127.0.0.1:8000/api/complaints/${selectedComplaintId}/`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      fetchComplaintsData(); // Обновляем данные после удаления
+      if (!token) {
+        setError("Отсутствует токен авторизации");
+        return;
+      }
+
+      await axios.delete(`http://127.0.0.1:8000/api/complaints/${id}/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      fetchComplaintsData();
     } catch (err) {
-      console.error("Ошибка при удалении записи рекламации:", err);
-    } finally {
-      handleCloseDeleteModal();
+      console.error("Ошибка при удалении жалобы:", err);
+      setError("Не удалось удалить жалобу. Попробуйте снова.");
     }
   };
-
-  const handleCreateComplaint = () => {
-    // Логика открытия модального окна создания рекламации
-  };
-
-  if (loading) {
-    return (
-      <div className="text-center">
-        <Spinner animation="border" />
-        <p>Загрузка данных...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return <div className="alert alert-danger">{error}</div>;
-  }
 
   return (
     <div>
       <div className="mb-3">
-        <Button variant="primary" onClick={handleCreateComplaint}>
+        <Button variant="primary" onClick={handleCreate}>
           Создать рекламацию
         </Button>
       </div>
 
-      {complaintsData.length === 0 ? (
-        <div className="text-center">Данных о рекламациях пока нет.</div>
-      ) : (
+      {loading && (
+        <div className="text-center">
+          <Spinner animation="border" />
+          <p>Загрузка данных...</p>
+        </div>
+      )}
+
+      {error && <Alert variant="danger">{error}</Alert>}
+
+      {!loading && complaintsData.length === 0 && (
+        <div className="text-center">Данных о жалобах пока нет.</div>
+      )}
+
+      {!loading && complaintsData.length > 0 && (
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -102,6 +110,7 @@ const ComplaintsTable = ({ machineFactoryNumber, onEdit }) => {
               <th>Способ восстановления</th>
               <th>Используемые запчасти</th>
               <th>Дата восстановления</th>
+              <th>Время простоя</th>
               <th>Сервисная компания</th>
               <th>Редактировать</th>
               <th>Удалить</th>
@@ -112,22 +121,18 @@ const ComplaintsTable = ({ machineFactoryNumber, onEdit }) => {
               <tr key={complaint.id}>
                 <td>{complaint.date_of_refusal}</td>
                 <td>{complaint.operating_time_refusal}</td>
-                <td>{complaint.failure_node?.name_of_node || "Не указано"}</td>
+                <td>{complaint.failure_node.name_of_node}</td>
                 <td>{complaint.description_of_refusal}</td>
-                <td>
-                  {complaint.method_of_recovery?.name_of_method || "Не указано"}
-                </td>
+                <td>{complaint.method_of_recovery.name_of_method}</td>
                 <td>{complaint.spare_parts_used || "Не указано"}</td>
                 <td>{complaint.restoration_date}</td>
-                <td>
-                  {complaint.service_company_maintenance?.user?.first_name ||
-                    "Не указано"}
-                </td>
+                <td>{complaint.downtime}</td>
+                <td>{complaint.service_company_maintenance.user.first_name}</td>
                 <td>
                   <Button
                     variant="primary"
                     size="sm"
-                    onClick={() => onEdit(complaint)}
+                    onClick={() => handleEdit(complaint)}
                   >
                     Редактировать
                   </Button>
@@ -136,7 +141,7 @@ const ComplaintsTable = ({ machineFactoryNumber, onEdit }) => {
                   <Button
                     variant="danger"
                     size="sm"
-                    onClick={() => handleOpenDeleteModal(complaint.id)}
+                    onClick={() => handleDelete(complaint.id)}
                   >
                     Удалить
                   </Button>
@@ -147,24 +152,23 @@ const ComplaintsTable = ({ machineFactoryNumber, onEdit }) => {
         </Table>
       )}
 
-      {/* Модальное окно подтверждения удаления */}
-      <Modal show={showDeleteModal} onHide={handleCloseDeleteModal} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Подтверждение удаления</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Вы уверены, что хотите удалить эту запись рекламации? Действие
-          необратимо.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseDeleteModal}>
-            Отмена
-          </Button>
-          <Button variant="danger" onClick={handleDelete}>
-            Удалить
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {/* Модальное окно создания жалобы */}
+      <ComplaintsCreateModal
+        show={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onSave={fetchComplaintsData}
+        machineId={complaintsData[0]?.machine.id || null}
+      />
+
+      {/* Модальное окно редактирования жалобы */}
+      {selectedComplaint && (
+        <ComplaintsEditModal
+          show={showEditModal}
+          onClose={() => setShowEditModal(false)}
+          complaintData={selectedComplaint}
+          onSave={fetchComplaintsData}
+        />
+      )}
     </div>
   );
 };

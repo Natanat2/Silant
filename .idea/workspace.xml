@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add complaints api">
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add complaints table">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/currentmachine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Complaints/ComplaintsCreateModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Complaints/ComplaintsCreateModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Complaints/ComplaintsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Complaints/ComplaintsTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/complaints/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/complaints/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,14 +103,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00041" summary="add validate user">
-      <option name="closed" value="true" />
-      <created>1733008342681</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1733008342681</updated>
     </task>
     <task id="LOCAL-00042" summary="add validate user">
       <option name="closed" value="true" />
@@ -493,12 +488,19 @@
       <option name="project" value="LOCAL" />
       <updated>1736525102495</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="add complaints table">
+      <option name="closed" value="true" />
+      <created>1736526930653</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1736526930653</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add crud to currentmachine" />
     <MESSAGE value="add api option" />
     <MESSAGE value="add info groups" />
     <MESSAGE value="add split component currentmachine" />
@@ -523,6 +525,7 @@
     <MESSAGE value="add type to api" />
     <MESSAGE value="add create button" />
     <MESSAGE value="add complaints api" />
-    <option name="LAST_COMMIT_MESSAGE" value="add complaints api" />
+    <MESSAGE value="add complaints table" />
+    <option name="LAST_COMMIT_MESSAGE" value="add complaints table" />
   </component>
 </project>
