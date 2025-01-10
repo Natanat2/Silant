@@ -9,14 +9,16 @@ import CreateMachineModal from "./CreateMachineModal";
 import MaintenanceTable from "./Maintenance/MaintenanceTable";
 import MaintenanceEditModal from "./Maintenance/MaintenanceEditModal";
 import ComplaintsTable from "./Complaints/ComplaintsTable";
-import
+import ComplaintsEditModal from "./Complaints/ComplaintsEditModal"; // Добавляем компонент редактирования рекламации
 
 const CurrentMachine = () => {
   const [showModal, setShowModal] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditMaintenanceModal, setShowEditMaintenanceModal] =
     useState(false);
+  const [showEditComplaintModal, setShowEditComplaintModal] = useState(false); // Новое состояние
   const [selectedMaintenance, setSelectedMaintenance] = useState(null);
+  const [selectedComplaint, setSelectedComplaint] = useState(null); // Новое состояние
   const [machineData, setMachineData] = useState(null);
   const [userGroup, setUserGroup] = useState(null);
   const [activeTab, setActiveTab] = useState("info");
@@ -102,6 +104,11 @@ const CurrentMachine = () => {
     setShowEditMaintenanceModal(true);
   };
 
+  const handleEditComplaint = (complaint) => {
+    setSelectedComplaint(complaint);
+    setShowEditComplaintModal(true);
+  };
+
   const isManager = userGroup && userGroup.includes("Manager");
 
   return (
@@ -160,10 +167,10 @@ const CurrentMachine = () => {
         </Tab>
 
         <Tab eventKey="complaints" title="Рекламации">
-          <h2>Информация о Рекламациях вашей техники</h2>
+          <h2>Информация о рекламациях вашей техники</h2>
           <ComplaintsTable
             machineFactoryNumber={machineData?.machine_factory_number}
-            onEdit={handleEditComplaints}
+            onEdit={handleEditComplaint}
           />
         </Tab>
       </Tabs>
@@ -174,10 +181,17 @@ const CurrentMachine = () => {
           show={showEditMaintenanceModal}
           onClose={() => setShowEditMaintenanceModal(false)}
           maintenanceData={selectedMaintenance}
-          onSave={() => {
-            // Здесь можно вызвать fetchMachineData для обновления данных
-            fetchMachineData();
-          }}
+          onSave={fetchMachineData}
+        />
+      )}
+
+      {/* Модальное окно для редактирования рекламаций */}
+      {selectedComplaint && (
+        <ComplaintsEditModal
+          show={showEditComplaintModal}
+          onClose={() => setShowEditComplaintModal(false)}
+          complaintData={selectedComplaint}
+          onSave={fetchMachineData}
         />
       )}
     </div>
