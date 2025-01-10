@@ -8,6 +8,8 @@ import MachineModal from "./MachineModal";
 import CreateMachineModal from "./CreateMachineModal";
 import MaintenanceTable from "./Maintenance/MaintenanceTable";
 import MaintenanceEditModal from "./Maintenance/MaintenanceEditModal";
+import ComplaintsTable from "./Complaints/ComplaintsTable";
+import
 
 const CurrentMachine = () => {
   const [showModal, setShowModal] = useState(false);
@@ -153,13 +155,16 @@ const CurrentMachine = () => {
           <h2>Информация о проведенных ТО вашей техники</h2>
           <MaintenanceTable
             machineFactoryNumber={machineData?.machine_factory_number}
-            onEdit={handleEditMaintenance} // Передаем функцию редактирования
+            onEdit={handleEditMaintenance}
           />
         </Tab>
 
         <Tab eventKey="complaints" title="Рекламации">
           <h2>Информация о Рекламациях вашей техники</h2>
-          <p>Раздел для отображения данных по рекламациям.</p>
+          <ComplaintsTable
+            machineFactoryNumber={machineData?.machine_factory_number}
+            onEdit={handleEditComplaints}
+          />
         </Tab>
       </Tabs>
 
