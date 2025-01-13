@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="done 90%">
-      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/silant/requirements.txt" afterDir="false" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="done 100%">
+      <change afterPath="$PROJECT_DIR$/frontend/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,22 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00047" summary="add tables">
-      <option name="closed" value="true" />
-      <created>1733157476606</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1733157476606</updated>
-    </task>
-    <task id="LOCAL-00048" summary="add sort">
-      <option name="closed" value="true" />
-      <created>1733157742714</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1733157742714</updated>
     </task>
     <task id="LOCAL-00049" summary="add sort">
       <option name="closed" value="true" />
@@ -493,12 +477,27 @@
       <option name="project" value="LOCAL" />
       <updated>1736784960845</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="done 90%">
+      <option name="closed" value="true" />
+      <created>1736785248282</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1736785248282</updated>
+    </task>
+    <task id="LOCAL-00097" summary="done 100%">
+      <option name="closed" value="true" />
+      <created>1736785444382</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1736785444382</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add create component" />
     <MESSAGE value="add upd panel" />
     <MESSAGE value="add create modal" />
     <MESSAGE value="take back MachineCreateUpdata serializer" />
@@ -523,6 +522,7 @@
     <MESSAGE value="add complaints create" />
     <MESSAGE value="add complaints full" />
     <MESSAGE value="done 90%" />
-    <option name="LAST_COMMIT_MESSAGE" value="done 90%" />
+    <MESSAGE value="done 100%" />
+    <option name="LAST_COMMIT_MESSAGE" value="done 100%" />
   </component>
 </project>
