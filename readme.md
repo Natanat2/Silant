@@ -21,6 +21,10 @@
 
 ## `pip install -r requirements.txt`
 
+заходим в папку с проектом
+
+## `cd Silant` 
+
 запускаем проект в IDE
 
 ## `py manage.py runserver`
@@ -31,7 +35,7 @@
 
 заходим в папку с проектом в IDE
 
-## `cd recipes/frontend/recipes`
+## `cd silant/frontend`
 
 устанавливаем зависимости
 
