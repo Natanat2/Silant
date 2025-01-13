@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add complaints full" />
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="done 90%">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/silant/silant/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/silant/silant/settings.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,14 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00045" summary="add tables">
-      <option name="closed" value="true" />
-      <created>1733152531292</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1733152531292</updated>
     </task>
     <task id="LOCAL-00046" summary="add tables">
       <option name="closed" value="true" />
@@ -490,12 +485,19 @@
       <option name="project" value="LOCAL" />
       <updated>1736535759290</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="done 90%">
+      <option name="closed" value="true" />
+      <created>1736782909510</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1736782909510</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add split component currentmachine" />
     <MESSAGE value="add create component" />
     <MESSAGE value="add upd panel" />
     <MESSAGE value="add create modal" />
@@ -520,6 +522,7 @@
     <MESSAGE value="add complaints table" />
     <MESSAGE value="add complaints create" />
     <MESSAGE value="add complaints full" />
-    <option name="LAST_COMMIT_MESSAGE" value="add complaints full" />
+    <MESSAGE value="done 90%" />
+    <option name="LAST_COMMIT_MESSAGE" value="done 90%" />
   </component>
 </project>
