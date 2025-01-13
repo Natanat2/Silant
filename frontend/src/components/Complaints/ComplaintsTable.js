@@ -4,13 +4,15 @@ import axios from "axios";
 import ComplaintsCreateModal from "./ComplaintsCreateModal";
 import ComplaintsEditModal from "./ComplaintsEditModal";
 
-const ComplaintsTable = ({ machineFactoryNumber }) => {
+const ComplaintsTable = ({ machineFactoryNumber, userGroup }) => {
   const [complaintsData, setComplaintsData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedComplaint, setSelectedComplaint] = useState(null);
+
+  const isClient = userGroup && userGroup.includes("Client");
 
   const fetchComplaintsData = useCallback(async () => {
     if (!machineFactoryNumber) {
@@ -80,11 +82,13 @@ const ComplaintsTable = ({ machineFactoryNumber }) => {
 
   return (
     <div>
-      <div className="mb-3">
-        <Button variant="primary" onClick={handleCreate}>
-          Создать рекламацию
-        </Button>
-      </div>
+      {!isClient && (
+        <div className="mb-3">
+          <Button variant="primary" onClick={handleCreate}>
+            Создать рекламацию
+          </Button>
+        </div>
+      )}
 
       {loading && (
         <div className="text-center">
@@ -112,8 +116,8 @@ const ComplaintsTable = ({ machineFactoryNumber }) => {
               <th>Дата восстановления</th>
               <th>Время простоя</th>
               <th>Сервисная компания</th>
-              <th>Редактировать</th>
-              <th>Удалить</th>
+              {!isClient && <th>Редактировать</th>}
+              {!isClient && <th>Удалить</th>}
             </tr>
           </thead>
           <tbody>
@@ -128,24 +132,28 @@ const ComplaintsTable = ({ machineFactoryNumber }) => {
                 <td>{complaint.restoration_date}</td>
                 <td>{complaint.downtime}</td>
                 <td>{complaint.service_company_maintenance.user.first_name}</td>
-                <td>
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    onClick={() => handleEdit(complaint)}
-                  >
-                    Редактировать
-                  </Button>
-                </td>
-                <td>
-                  <Button
-                    variant="danger"
-                    size="sm"
-                    onClick={() => handleDelete(complaint.id)}
-                  >
-                    Удалить
-                  </Button>
-                </td>
+                {!isClient && (
+                  <td>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={() => handleEdit(complaint)}
+                    >
+                      Редактировать
+                    </Button>
+                  </td>
+                )}
+                {!isClient && (
+                  <td>
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      onClick={() => handleDelete(complaint.id)}
+                    >
+                      Удалить
+                    </Button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

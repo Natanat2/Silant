@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add complaints create">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Complaints/ComplaintsEditModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Complaints/ComplaintsEditModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/silant/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/silant/db.sqlite3" afterDir="false" />
-    </list>
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="add complaints full" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,14 +97,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00044" summary="add panel tables">
-      <option name="closed" value="true" />
-      <created>1733148809229</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1733148809229</updated>
     </task>
     <task id="LOCAL-00045" summary="add tables">
       <option name="closed" value="true" />
@@ -494,12 +482,19 @@
       <option name="project" value="LOCAL" />
       <updated>1736533478434</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="add complaints full">
+      <option name="closed" value="true" />
+      <created>1736535759289</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1736535759290</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add info groups" />
     <MESSAGE value="add split component currentmachine" />
     <MESSAGE value="add create component" />
     <MESSAGE value="add upd panel" />
@@ -524,6 +519,7 @@
     <MESSAGE value="add complaints api" />
     <MESSAGE value="add complaints table" />
     <MESSAGE value="add complaints create" />
-    <option name="LAST_COMMIT_MESSAGE" value="add complaints create" />
+    <MESSAGE value="add complaints full" />
+    <option name="LAST_COMMIT_MESSAGE" value="add complaints full" />
   </component>
 </project>

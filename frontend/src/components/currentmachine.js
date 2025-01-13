@@ -170,6 +170,7 @@ const CurrentMachine = () => {
           <h2>Информация о рекламациях вашей техники</h2>
           <ComplaintsTable
             machineFactoryNumber={machineData?.machine_factory_number}
+            userGroup={userGroup}
             onEdit={handleEditComplaint}
           />
         </Tab>
