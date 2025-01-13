@@ -98,22 +98,6 @@
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
     </task>
-    <task id="LOCAL-00052" summary="add filter">
-      <option name="closed" value="true" />
-      <created>1733239283041</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1733239283041</updated>
-    </task>
-    <task id="LOCAL-00053" summary="add endpoints new filters">
-      <option name="closed" value="true" />
-      <created>1733328632508</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1733328632508</updated>
-    </task>
     <task id="LOCAL-00054" summary="add endpoints for ids">
       <option name="closed" value="true" />
       <created>1733421149830</created>
@@ -490,7 +474,23 @@
       <option name="project" value="LOCAL" />
       <updated>1736786006049</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="done 100%">
+      <option name="closed" value="true" />
+      <created>1736786059240</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1736786059240</updated>
+    </task>
+    <task id="LOCAL-00102" summary="done 100%">
+      <option name="closed" value="true" />
+      <created>1736786210886</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1736786210886</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

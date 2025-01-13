@@ -199,12 +199,15 @@ const Panel = () => {
       <div style={{ overflowX: "auto" }}>
         <Table striped bordered hover {...getTableProps()}>
           <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+            {headerGroups.map((headerGroup, index) => (
+              <tr
+                {...headerGroup.getHeaderGroupProps()}
+                key={`header-${index}`}
+              >
                 {headerGroup.headers.map((column) => (
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
-                    key={column.id}
+                    key={`header-${column.id}`}
                   >
                     {column.render("Header")}
                     <span>
@@ -229,11 +232,14 @@ const Panel = () => {
             {rows.map((row) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()} key={row.original.id}>
+                <tr
+                  {...row.getRowProps()}
+                  key={`row-${row.index}-${row.original.id}`}
+                >
                   {row.cells.map((cell) => (
                     <td
                       {...cell.getCellProps()}
-                      key={cell.column.id + row.original.id}
+                      key={`cell-${cell.column.id}-${row.original.id}`}
                     >
                       {cell.render("Cell")}
                     </td>
