@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="done 100%">
-      <change afterPath="$PROJECT_DIR$/frontend/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-    </list>
+    <list default="true" id="77313336-7e9d-4e77-8d86-d1381584673b" name="Changes" comment="done 100%" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,30 +97,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726632441899</updated>
-    </task>
-    <task id="LOCAL-00049" summary="add sort">
-      <option name="closed" value="true" />
-      <created>1733157746747</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1733157746747</updated>
-    </task>
-    <task id="LOCAL-00050" summary="add filter">
-      <option name="closed" value="true" />
-      <created>1733158218226</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1733158218226</updated>
-    </task>
-    <task id="LOCAL-00051" summary="add filter">
-      <option name="closed" value="true" />
-      <created>1733239237002</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1733239237003</updated>
     </task>
     <task id="LOCAL-00052" summary="add filter">
       <option name="closed" value="true" />
@@ -493,7 +466,31 @@
       <option name="project" value="LOCAL" />
       <updated>1736785444382</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="done 100%">
+      <option name="closed" value="true" />
+      <created>1736785630175</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1736785630175</updated>
+    </task>
+    <task id="LOCAL-00099" summary="done 100%">
+      <option name="closed" value="true" />
+      <created>1736785654327</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1736785654327</updated>
+    </task>
+    <task id="LOCAL-00100" summary="done 100%">
+      <option name="closed" value="true" />
+      <created>1736786006049</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1736786006049</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

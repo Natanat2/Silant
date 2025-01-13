@@ -21,7 +21,7 @@
 
 ## `pip install -r requirements.txt`
 
-заходим в папку с проектом
+заходим в папку с Django
 
 ## `cd Silant` 
 
