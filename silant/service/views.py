@@ -19,7 +19,7 @@ class CurrentUserView(APIView):
 
     def get(self, request):
         user = request.user
-        groups = user.groups.values_list('name', flat=True)
+        groups = user.groups.values_list('name', flat = True)
         return Response({
             'id': user.id,
             'username': user.first_name,
@@ -66,7 +66,7 @@ class MachineViewSet(viewsets.ModelViewSet):
         if self.action in ['retrieve', 'update', 'partial_update', 'destroy']:
             # Возвращаем все объекты для действий с конкретным объектом
             return Machine.objects.all()
-
+        
         # Фильтрация для списка
         queryset = Machine.objects.all()
         machine_factory_number = self.request.query_params.get('machine_factory_number')
